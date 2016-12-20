@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>飞机大战</title>
+		<style type="text/css">
+		   *{
+		   	 margin: 0;
+		   	 padding: 0;
+		   	 font-family: "微软雅黑";
+		   }
+		   body{
+		   	   background-color: #000;
+		   	   /*清除浮动*/
+		   	  overflow: hidden;
+		   }
+		   #box {
+		   	width: 300px;
+		   	height: 500px;
+		   	/*设置边框样式属性(定义白色边框)*/
+		   	border: 10px solid #fff;
+		   	margin: 50px auto;
+		   	position: relative;
+		   	overflow: hidden;
+		   }
+		   #box .title{
+		   	   text-align: center;
+		   	   padding-top: 80px;
+		   	   color: #fff;
+		   	   font-size: 24px;
+		   	   font-weight: bold;
+		   }
+		   #box .start p {
+			width: 150px;
+			height: 40px;
+			background: #fff;
+			line-height: 40px;
+			text-align: center;
+			margin: 45px auto;
+			font-size: 14px;
+			/*鼠标放在上面的光标*/
+			cursor: pointer;	
+		}
+		#box .start p.on{
+			background: red;
+			color: #ffc;
+		}
+		/*飞机主界面样式设计*/
+		#box p.scroll{
+			position: relative;
+			top: 10px;
+			left: 10px;
+			font-size: 14px;
+			color: #fff;
+			font-weight: bold;	
+		}
+		#box img.plane{
+			position: absolute;
+			display: block;
+			width: 60px;
+			height: 36px;
+		}
+		/*设置子弹的样式*/
+		#box img.bullet{
+			position: absolute;
+			display: block;
+			width: 6px;
+			height: 22px;
+		}
+		/*设置敌机的样式*/
+		#box img.enemy{
+			position: absolute;
+			display: block;
+			width: 23px;
+			height: 30px;
+			
+		}
+		#box .tip {
+				margin: 80px 50px;
+				width: 200px;
+				height: 340px;
+				background-color:#fff;
+			}
+		#box .tip .tTitle {
+				text-align: center;
+				padding: 35px;
+				font-size: 20px;
+				font-weight: bold;
+			}
+			
+	
+			#box .tip .tRank,
+			#box .tip .tModel,
+			#box .tip .tScroll {
+				font-size: 12px;
+				text-indent: 5px;
+				font-weight: bold;
+			}
+			#box .tip .tScroll_I {
+				font-size: 14px;
+				color: #f00;
+				text-align: center;
+				line-height: 40px;
+			}
+			#box .tip .tModel_I {
+				font-size: 14px;
+				color: #0fc;
+				text-align: center;
+				line-height: 40px;
+			}
+			#box .tip .tRank_I {
+				font-size: 14px;
+				color: #c0f;
+				text-align: center;
+				line-height: 40px;
+				background-color: #fc0;
+				width: auto;
+				font-weight: bold;
+			}
+			#box .author {
+				position: absolute;
+				bottom: 2px;
+				right: 2px;
+				font-size: 22px;
+				color: #fff;
+			}
+			#reStart {
+				width: 100px;
+				height: 35px;
+				border-radius: 2px;
+				margin: 10px auto;
+				display: block;
+			}
+		   
+		   
+		</style>
+	</head>
+	<body>
+		<div id="box">	
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				//调用初始化函数
+				game.init();
+			};
+			var game = {
+				//盒子
+				box:document.getElementById('box'),
+				//初始化函数
+				init:function(){
+					//需要像box里面写内容
+					game.box.innerHTML = '';
+					var oTitle = document.createElement('p');
+					oStart = document.createElement('div');
+					//样式表的具体内容
+					oTitle.className = 'title';
+					oTitle.innerHTML = '飞机大战 - 屌丝版'
+					game.box.appendChild(oTitle);
+					//同样的道理把下面三个标签自己写一下
+					oStart.className = 'start';
+					//<p>换行font-weight: bold粗体
+					oStart.innerHTML = '<p>简单</p><p>一般</p><p>困难</p><p style="color: #FFFF00; font-weight: bold;">暴走模式</p>'
+					//添加到box上面
+					game.box.appendChild(oStart);
+					var oP = oStart.getElementsByTagName('p');
+					console.log(oP);
+					//通过p标签元素进行遍历
+					for (var i = 0; i < oP.length; i++) {
+						oP[i].index = i;
+						//oP[i].setAttribute('onselect')
+					    oP[i].onmouseover = function(){
+					    	      this.className = 'on';
+					    }
+					    //鼠标离开之后
+					    oP[i].onmouseout = function(){
+					    	this.className = '';
+					    };
+					    //鼠标的点击事件
+					    oP[i].onclick = function(e){
+					    	   //事件处理时候区分IE和其他浏览器事件对象时常用的方法
+					    	   var e = e || arguments[0];
+					    	   var ev = {
+					    	   	 x: e.clientX,
+					    	   	 y: e.clientY 
+					    	   };
+					    	   //不同模式子弹发射的样式不同
+					    	   game.model = this.index;
+					    	   //点击进入游戏主界面(调用方法)
+					    	   game.start(ev);  
+					    };
+					    
+					}	
+				},
+				diff: [
+					[200, 1000, 0.2],
+					[400, 400, 0.4],
+					[400, 200, 0.8],
+					[30, 100, 1]
+				],
+			
+				//游戏开始
+				start:function(ev){
+					game.box.innerHTML = '';
+					//调用计分板
+					game.scroll();
+					//调用出现飞机
+					game.plane(ev);
+					
+					
+				},
+				//计分板
+				scroll: function(){
+					game.oScroll = document.createElement('p');
+					game.oScroll.className = 'scroll';
+					game.box.appendChild(game.oScroll);
+					game.Num = 0;
+					game.oScroll.innerHTML = '0';
+				},
+			    //飞机的显现
+			    plane: function(ev) {
+			    	    var oPlane = document.createElement('img');
+			    	    oPlane.className = 'plane';
+			    	    oPlane.src = 'img/plane.png';
+			    	    game.box.appendChild(oPlane);
+			    //设置飞机的位置(offset表示的是它的偏移量，clientHeight表示的飞机的具体位置)
+			    var pT = game.box.offsetTop  + oPlane.clientHeight/2;
+			    var pL = game.box.offsetLeft  + oPlane.clientWidth/2;
+			    console.log(game.box.offsetTop);
+			    console.log(game.box.offsetLeft);
+			    console.log(pT);
+			    console.log(pL);
+			    //设置飞机的位置
+			    oPlane.style.top = ev.y - pT + 'px';
+			    oPlane.style.left = ev.x - pL +'px';
+			    console.log(oPlane.style.top);
+			    console.log(oPlane.style.left);
+			    //设置飞机的边界位置
+			    var tMax = game.box.clientHeight - oPlane.clientHeight;
+			    //宽度的最小值
+			    var lMin = -oPlane.clientWidth/2;
+			    //宽度的最大值
+			    var lMax = game.box.clientWidth - oPlane.clientWidth/2;
+			    	//飞机的移动
+			    	document.onmousemove = function(e){
+			    		var top = e.clientY - pT;
+			    		var left = e.clientX - pL;
+			    		if (top < 0) {
+			    			top = 0;
+			    		}else if (top > tMax) {
+			    			top = tMax;
+			    		}
+			    		if (left < lMin) {
+			    			left = lMin;
+			    		}else if (left > lMax) {
+			    			left = lMax;
+			    		}
+			    		//重新设置飞机的位置
+			    		oPlane.style.top = top + 'px';
+			    		oPlane.style.left = left + 'px';
+			    	};
+			    	//发射子弹
+			    	oPlane.btime = setInterval(function(){
+			    		  //调用写子弹的方法
+			    		  game.bullet(oPlane);	  
+			    	},game.diff[game.model][0]);
+			    	//敌机的显现
+			    	oPlane.etime = setInterval(function(){
+			    		//调用敌机的方法
+			    		game.enemy(oPlane);
+			    	},game.diff[game.model][1])
+			    	
+			    	
+			    },	
+			    //生成子弹(方法之间必须用逗号)
+			    bullet: function(oPlane){
+			    	   var oBullet = document.createElement('img');
+			    	   oBullet.className = 'bullet';
+			    	   oBullet.src = 'img/bullet.png';
+			    	   //添加到盒子
+			    	   game.box.appendChild(oBullet);
+			    	   //设置子弹的位置
+			    	   var bL = parseInt(oPlane.style.left) + oPlane.clientWidth/2 - oBullet.clientWidth/2;
+			    	   var bT = parseInt(oPlane.style.top) - oBullet.clientHeight;
+			    	   oBullet.style.left = bL +'px';
+			    	   oBullet.style.top = bT + 'px';
+			    	   //子弹最小高度
+			    	   var bTMin = -oBullet.clientHeight;
+			    	   oBullet.animate = setInterval(function() {
+			    	   	//如果的它的父节点为空，它才会进入这个方法
+			    	   	if (!oBullet.parentNode) {
+			    	   		//清除动画
+			    	   		clearInterval(oBullet.animate);
+			    	   		return false;
+			    	   	}
+			    	   	//子弹的速度递减
+			    	   	bT -= 8;
+			    	   	if (bT < bTMin) {
+			    	   		bT = bTMin;
+			    	   		oBullet.style.top = bT + 'px';
+			    	   		clearInterval(oBullet.animate);
+			    	   		//如何为空了，如何删除掉字节点
+			    	   		oBullet.parentNode.removeChild(oBullet);
+			    	   	}else { 
+			    	   		oBullet.style.top = bT + 'px';
+			    	   	}
+			    	   	
+			    	   },30);
+			    
+			    	   
+			    },
+			    //敌机的生成
+			    enemy:function(oPlane){
+			    	       var oEnemy = document.createElement('img');
+			    	       oEnemy.className = 'enemy';
+			    	       oEnemy.src = 'img/enemy.png';
+			    	      //敌机的图片
+			    	      var oEysrc = oEnemy.src;
+			    	      //飞机的图片
+			    	      var pSrc = oPlane.src;
+			    	      //将敌机添加到界面上
+			    	      game.box.appendChild(oEnemy);
+			    	      //敌机出现的初始位置
+			    	      oEnemy.style.top = -oEnemy.clientHeight + 'px';
+			    	      oEnemy.style.left = Math.random()*(game.box.clientWidth - oEnemy.clientWidth)+'px';
+			    	      
+			    	      //敌机从(顶上位置出现)最低高度位置出现
+			    	      var eTBegin = -oEnemy.clientHeight;
+			    	      //最大的高度
+			    	      var eTmax = game.box.clientHeight;//销毁临界值
+			    	      //敌机的速度
+			    	      var eSpeed = Math.random()*game.diff[game.model][2]+0.2;
+			    	      oEnemy.animate = setInterval(function(){
+			    	      	    if (!oEnemy.parentNode) {
+			    	      	    	      clearInterval(oEnemy.animate);
+			    	      	    	      return false;
+			    	      	    }
+			    	      eTBegin += eSpeed;
+			    	      if (eTBegin > eTmax) {
+			    	         eTBegin = eTmax;
+			    	         oEnemy.style.top = eTBegin + 'px';
+			    	         //清除敌机的动画
+			    	         clearInterval(oEnemy.animate);
+			    	         oEnemy.parentNode.removeChild(oEnemy);
+			    	      }else{
+			    	      	 oEnemy.style.top = eTBegin +'px';
+			    	      }
+			    	      });
+			    	      
+			    	      //敌机与飞机碰撞检测
+			    	      oEnemy.Time = setInterval(function(){
+			    	      	 //敌机飞行的位置
+			    	      //敌机的上方
+			    	      var eT = parseInt(oEnemy.style.top);
+			    	      //敌机的下方
+			    	      var eB = parseInt(oEnemy.style.top) + oEnemy.clientHeight;
+			    	      //敌机的左方位置
+			    	      var eL = parseInt(oEnemy.style.left);
+			    	      //敌机的右方
+			    	      var eR = parseInt(oEnemy.style.left) + oEnemy.clientWidth;
+			    	      //取得img图片
+			    	      var oImg = document.getElementsByTagName('img');
+			    	       for (var i = 0; i < oImg.length; i++) {
+			    	           //判断图片的子弹
+			    	           if (oImg[i].className == 'bullet') {
+			    	           	//获取子弹的位置
+			    	            var bT = parseInt(oImg[i].style.top);
+			    	           	var bB = parseInt(oImg[i].style.top) + oImg[i].clientHeight;
+			    	           	var bL = parseInt(oImg[i].style.left);
+			    	           	var bR = parseInt(oImg[i].style.left) + oImg[i].clientWidth;
+			    	           	//判读子弹和飞机相撞
+			    	           	if (bR > eL && bL < eR && bB > eT && bT < eB) {
+			    	           	 //爆炸图片
+			    	           	 oEnemy.src = 'img/boom.png';
+			    	           	 //移除子弹
+			    	           	 oImg[i].parentNode.removeChild(oImg[i]);
+			    	           	 //爆炸后移除敌机(执行一次后退出)
+			    	           	 setTimeout(function(){
+			    	           	 	if (!oEnemy.parentNode) {
+			    	           	 		return false;
+			    	           	 	}
+			    	           	 	oEnemy.parentNode.removeChild(oEnemy);
+			    	           	 },500);
+			    	           	 //消除定时器
+			    	           	 clearInterval(oEnemy.Time);
+			    	           	 //添加分数
+			    	           	 game.Num++;
+			    	           	 //给界面赋值
+			    	           	 game.oScroll.innerHTML = game.Num * 10;
+			    	           	  
+			    	           	}
+			    	            	
+			    	           }
+			    	       };
+			    	       //主飞机爆炸
+			    	       //主飞机的位置
+			    	       var pT = parseInt(oPlane.style.top);
+			    	       var pB = parseInt(oPlane.style.top) + oPlane.clientHeight;
+			    	       var pL = parseInt(oPlane.style.left);
+			    	       var pR = parseInt(oPlane.style.left) + oPlane.clientWidth;
+			    	       if (pT + 5 < eB && pL + 5 < eR && pR - 5 > eL && pB > eT) {
+			    	       //设置主机爆炸的图片
+			    	       oEnemy.src = 'img/boom.png';
+//			    	       oPlane.src = 'img'
+//			    	       oPlane.src = 'img/boom2.png';
+			    	       document.onmousemove = function(){
+			    	       	return false;
+			    	       }
+			    	       //取消由 setInterval() 设置(子弹，敌机)
+			    	       clearInterval(oPlane.btime);
+			    	       clearInterval(oPlane.etime);
+			    	       clearInterval(oEnemy.Time);
+			    	       //退出函数，调用游戏结束函数
+			    	       setTimeout(function(){
+			    	       	//调用游戏结束函数
+			    	       	 game.over();
+			    	       },1000);
+			    	       	
+			    	       }  	
+			    	      },30);
+			    	
+			    },
+			    
+	          over:function() {
+	          	//取得分数
+	          	var overScroll = game.oScroll.innerHTML;
+	          	//清除分数标签
+	          	game.box.innerHTML = '';
+	          	//定义两个变量
+	          	var model,rank;
+	          	switch (game.model){
+	          		//初级模式
+	          		case 0:
+	          		model = '初级模式';
+	          		if (overScroll == 0) {
+	          			rank = '弱爆了';
+	          		}else if (overScroll < 100) {
+	          			rank = '呵呵哒';
+	          		}else if (overScroll < 500) {
+	          			rank = '初级战士';
+	          		}else if (overScroll < 700) {
+	          			rank = '初级狂战士';
+	          		}else if (overScroll < 1000) {
+	          			rank = '初级大魔王';
+	          		}else{
+	          			rank = '初级终结者';
+	          		}
+	          		break;
+	          	    //中级模式
+	          		case 1:
+	          		model = '中级模式';
+	          		if (overScroll == 0) {
+								rank = '试试初级版？';
+							} else if (overScroll < 100) {
+								rank = '中级体验者';
+							} else if (overScroll < 500) {
+								rank = '中级战士';
+							} else if (overScroll < 700) {
+								rank = '中级狂战士';
+							} else if (overScroll < 1000) {
+								rank = '中级大魔王';
+							} else {
+								rank = '中级终结者-帝王'
+							}
+	          			break;
+	          		//高级模式	
+	          		case 2:
+	          	    model = '高级模式';
+	          	    if (overScroll == 0) {
+								rank = '试试中级版？';
+							} else if (overScroll < 100) {
+								rank = '高级体验者';
+							} else if (overScroll < 500) {
+								rank = '高级战士';
+							} else if (overScroll < 700) {
+								rank = '高级狂战士';
+							} else if (overScroll < 1000) {
+								rank = '高级大魔王';
+							} else {
+								rank = '高级终结者-撸王之王'
+							}
+	          			break;
+	          		//暴走模式
+	          		case 3:
+	          		model = '暴走模式'
+	          		if (overScroll == 0) {
+								rank = '您还是回家吧';
+							} else if (overScroll < 100) {
+								rank = '5秒真男人';
+							} else if (overScroll < 500) {
+								rank = '补补肾？';
+							} else if (overScroll < 2000) {
+								rank = '666666';
+							} else if (overScroll < 3000) {
+								rank = '来呀，互相伤害呀';
+							} else {
+								rank = '小撸怡情，大撸伤身，强撸灰飞烟灭'
+							}
+	          			break;
+	          		default:
+	          			break;
+	          	}
+	          	//布局界面
+	          	var oTip = document.createElement('div');
+	          	var tTitle = document.createElement('p');
+	          	var tScroll = document.createElement('p');
+	          	var tScroll_I = document.createElement('p');
+	          	var tModel = document.createElement('p');
+	          	var tModel_I = document.createElement('p');
+	          	var tRank = document.createElement('p');
+	          	var tRank_I = document.createElement('p');
+	          	var reStart = document.createElement('input');
+	          	var author = document.createElement('span');
+	          	//设置它的类名
+	          	    tTitle.className = 'tTitle';
+					oTip.className = 'tip';
+					tScroll.className = 'tScroll';
+					tScroll_I.className = 'tScroll_I';
+					tModel.className = 'tModel';
+					tModel_I.className = 'tModel_I';
+					tRank.className = 'tRank';
+					tRank_I.className = 'tRank_I';
+					author.className = 'author';
+					//赋初值
+					tTitle.innerHTML = 'GAME OVER';
+					tScroll.innerHTML = '您在本次工商飞机大赛得分为：';
+					tScroll_I.innerHTML = overScroll + ' 分';
+					tModel.innerHTML = '游戏模式：';
+					tModel_I.innerHTML = model;
+					tRank.innerHTML = '荣获称号：';
+					tRank_I.innerHTML = rank;
+					author.innerHTML = '北京工商大学 ';
+					//将标题拼接在框框内
+					oTip.appendChild(tTitle);
+					oTip.appendChild(tScroll);
+					oTip.appendChild(tScroll_I);
+					oTip.appendChild(tModel);
+					oTip.appendChild(tModel_I);
+					oTip.appendChild(tRank);
+					oTip.appendChild(tRank_I);
+					oTip.appendChild(reStart);
+					reStart.id = 'reStart';
+					reStart.type = 'button'
+					reStart.value = '重新开始';
+					//将oTip添加到box里面
+					game.box.appendChild(oTip);
+      				game.box.appendChild(author);
+      				//当点击重新开始按钮的时候，重新调用init方法
+					reStart.onclick = game.init;
+	          }
+			      	
+			}
+		</script>
+	</body>
+</html>
