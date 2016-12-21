@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>homework1221</title>
+  <style>
+	
+  </style>
+ </head>
+ <body>
+	<div id="container"></div>
+ </body>
+	<script>
+		(function(){
+			var list = [
+				{name:"李寻欢",score:1},
+				{name:"令狐冲",score:2},
+				{name:"吕布",score:3},
+				{name:"孙悟空",score:7},
+				{name:"萎一笑",score:6},
+				{name:"李寻欢",score:5},
+				{name:"李寻欢",score:4},
+				{name:"令狐冲",score:8},
+				{name:"吕布",score:9},
+				{name:"孙悟空",score:10},
+				{name:"萎一笑",score:12},
+				{name:"李寻欢",score:11},
+			]
+			function cre(tagName,content){
+				var e = document.createElement(tagName);
+				if(content){
+					e.innerHTML = content;
+				}
+				return e;
+			}
+			function get(seclector){
+				var e = document.querySelectorAll(seclector);
+				return e.length == 1?e[0]:e;	
+			}
+			function last(element){
+				return parseFloat(element.lastChild.innerHTML);
+			}
+			var table = cre("table");
+			table.style.border="1px solid red";
+			var div = document.getElementById("container");
+			div.appendChild(table);
+			var tr = cre("tr");
+			var th = cre("th","名字");
+			tr.appendChild(th);
+			var th = cre("th","分数");
+				th.id = "score";
+				th.style.color = "blue";
+				th.style.cursor = "pointer"
+			tr.appendChild(th);
+			table.appendChild(tr);
+
+			for(var i = 0;i < list.length;i++){
+				var tr = cre("tr");
+				tr.appendChild(cre("td",list[i].name));
+				tr.appendChild(cre("td",list[i].score));
+				table.appendChild(tr);
+			}
+			var score = get("#score");
+			score.onclick = sort;
+			function sort(){
+				var tr = get("tr");
+				for(var i = 1;i < tr.length;i++){
+					for(var j = i+1;j < tr.length;j++){
+						var tr = get("tr");
+						if(last(tr[i]) < last(tr[j])){
+						   table.insertBefore(tr[j],tr[i]);
+						}
+					}
+				}		
+			}
+		})()
+	</script>
+</html>
