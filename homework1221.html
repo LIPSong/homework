@@ -8,15 +8,25 @@
   <meta name="Description" content="">
   <title>homework1221</title>
   <style>
-	
+	div{
+		margin: 10px;
+		text-align: center;
+		height: 20px;
+		width: 20px;
+		line-height: 20px; 
+	}
   </style>
  </head>
  <body>
-	<div id="container"></div>
+	<div id="container">
+		<button id="btn">
+		
+		</button>
+	</div>
  </body>
 	<script>
-		(function(){
-			var list = [
+/*		(function(){
+				var list = [
 				{name:"李寻欢",score:1},
 				{name:"令狐冲",score:2},
 				{name:"吕布",score:3},
@@ -78,5 +88,106 @@
 				}		
 			}
 		})()
+*/
+
+/*		(function(){
+			div = document.getElementById("container");
+			var images = ["0.jpg","1.jpg","2.jpg"];
+			var btnStart = document.createElement("button");
+			var index = images.length;
+			var i = 0;	
+			btnStart.innerHTML = "开始";
+			btnStart.onclick = function(){
+				var timer = setInterval(function(){
+						i++;
+						i = i % index;
+						img.src = "img/"+images[i];
+						console.log(i);
+					},1000);
+					window.timer = timer;
+				}
+			div.appendChild(btnStart);
+			var btnEnd = document.createElement("button");
+			btnEnd.innerHTML = "结束";
+			btnEnd.onclick = function(){
+					clearInterval(window.timer);
+			}
+			div.appendChild(btnEnd);
+			var img = document.createElement("img");
+				img.width = 300;
+				img.height = 300;
+				img.src = "img/"+images[0];
+				div.append(img);				
+		})()
+*/
+/*		(function () {
+			var btn = document.getElementById("btn");
+			btn.onclick = function () {
+				console.log ("old");
+				btn.onclick = null;
+			}
+			btn.addEventListener("click", function (e) {
+				console.log(1);
+				console.log(e.target);
+			})
+			btn.addEventListener("click", function btnClickHandler () {
+				console.log(4);
+				btn.removeEventListener ("click", btnClickHandler);
+			})
+
+		})()
+*/
+		(function () {
+			for (var i = 0;i < 10; i ++){
+				var div = document.createElement("div");
+				div.innerHTML = i;
+				div.onclick = function (e) {
+					document.body.removeChild(e.target);
+					e.target.onclick = null;
+				}
+				document.body.appendChild(div);
+			}
+			var div = document.getElementById("container");
+			div.addEventListener("contextmenu",function () {
+				console.log(22);
+				event.preventDefault();
+			});
+		})() 		
 	</script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
