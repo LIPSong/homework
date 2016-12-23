@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+	<form action="" method = "GET">
+		<label for="username">账号</label>
+		<input type="text" id="username" name="username">
+		<label for="password">密码</label>
+		<input type="password" id="password" name="password">
+		<input type="submit" value="注册">
+	</form>
+	<img src="" alt="" id="container">
+ </body>
+ <script>
+	(function () {
+		console.log(location.search);
+		var search = decodeURI(location.search);
+		search = search.substr(1);
+		var searches = search.split("&");
+		console.log(searches);
+		var searchObj = {};
+		for (var i = 0;i < searches.length ;i ++ )
+		{
+			var kv = searches[i].split("=");
+			searchObj[kv[0]] = kv[1];
+		}
+		console.log(searchObj);
+		var container = document.getElementById("container");
+		if(searchObj.username == "宋"){
+			container.src = "1.png";
+		}else if(searchObj.username == "qi"){
+			container.src = "2.png";
+		}
+	})()
+ </script>
+
+</html>

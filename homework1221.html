@@ -8,21 +8,70 @@
   <meta name="Description" content="">
   <title>homework1221</title>
   <style>
+	a{
+		text-decoration: none;
+		color: #000;
+		cursor: default;
+	}
 	div{
-		margin: 10px;
+		height:100px;
+		width:100px;
 		text-align: center;
-		height: 20px;
-		width: 20px;
-		line-height: 20px; 
+		position: relative;
+		background: rgba(121,11,22,.2);
+	}
+	#menu{
+		width: 40px;
+		height:65px;
+		background: white;
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+	}
+	i{
+		margin: 2px auto;
+		width: 40px;
+		display: block;
+		font-style: normal;
+		text-align: center;
+		text-decoration: none;
+	}
+	i:hover{
+		background: rgba(0,0,0,.2);
+	}
+	#a{
+		height:20px;
+		width:20px;
+		background:red;
+	}
+	#b{
+		height:20px;
+		width:20px;
+		background:red;
+	}
+	#c{
+		height:20px;
+		width:20px;
+		background:red;
 	}
   </style>
  </head>
  <body>
 	<div id="container">
 		<button id="btn">
-		
+			自定义右键菜单
 		</button>
-	</div>
+		<div id="menu">
+			<i class="item1"><a href="">返回</a></i>
+			<i class="item2"><a href="">重载</a></i>
+			<i class="item3"><a href="">退出</a></i>
+		</div>
+	</div> 
+	<div id="a"></div>
+	<div id="b"></div>
+	<div id="c"></div>
+	<img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/1.png" alt="">
  </body>
 	<script>
 /*		(function(){
@@ -137,7 +186,7 @@
 
 		})()
 */
-		(function () {
+/*		(function () {
 			for (var i = 0;i < 10; i ++){
 				var div = document.createElement("div");
 				div.innerHTML = i;
@@ -152,7 +201,42 @@
 				console.log(22);
 				event.preventDefault();
 			});
-		})() 		
+		})()
+*/
+/*		(function () {
+			var div = document.getElementById("container");
+			var menu = document.getElementById("menu");
+			document.addEventListener("contextmenu", function (e) {
+				if (e.target == div){
+					event.preventDefault();
+					var left = e.offsetX;
+					var top = e.offsetY; 
+					menu.style.display = "block"
+					menu.style.top = top + "px";
+					menu.style.left = left + "px";
+				}else{
+					menu.style.display = "none";
+				}})
+			document.addEventListener("mousedown", function (e) {
+					menu.style.display = "none";
+				});
+		})()
+*/
+		(function(){
+			var a = document.getElementById("a");
+			var b = document.getElementById("b");
+			var c = document.getElementById("c");
+			a.addEventListener("click", function () {
+				console.log(1);
+			})
+			b.addEventListener("click", function () {
+				console.log(2);
+			})
+			a.addEventListener("click", function () {
+				console.log("捕获阶段，点击 a");
+				event.stoPropagation();
+			})
+		})()
 	</script>
 </html>
 

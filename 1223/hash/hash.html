@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+	<a href="#type=text&name=abc">显示文本内容</a>
+	<a href="#type=image&name=def">显示图片内容</a>
+	<div id="container"></div>
+ </body>
+	<script>
+		(function (){
+			window.onhashchange = function (){
+				changePage();
+			}
+			changePage();
+			function changePage () {
+				console.log(location.hash);
+				var hash = location.hash.substr(1);
+				var strings = hash.split("&");
+				var hashObj = {};
+				for (var i =0;i < strings.length;i++ )
+				{
+					var item = strings[i];
+					var items = item.split("=");
+					var key = items[0];
+					hashObj[key] = items[1];
+				}
+				switch (hashObj.type)
+				{
+				case "text":
+					document.querySelector("#container").innerHTML = "<h1>Hello World</h1>";
+					break;
+				case "image":
+					document.querySelector("#container").innerHTML = "<img src='../string/1.png'>";
+				}
+
+			}
+		})()
+	</script>
+</html>
