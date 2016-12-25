@@ -1,0 +1,612 @@
+---------------------------第一部分-----------------------------
+一、入门
+	1.JavaScript的嵌入方式
+		1.1 标签内脚本	<a href="javascript:var str='to link'; alert(str);">link</a>
+		1.2 页面内部脚本	<script type="text/javascript">alert('hello'); </script>
+		1.3 页面外部脚本  <script src="arr.js" type="text/javascript"></script>
+	2.JavaScript基本数据类型
+		2.1 数字
+		2.2 字符串 单引号或双引号 引起来的就是字符串
+		2.3 布尔
+	3.注意点
+		JavaScript是大小写敏感的，拼写时一定要注意
+		JavaScript里面的事件全部是小写
+
+二、数据转换
+	1.Number,String,Boolean 强制类型转换
+	2.+号在数字运算中的加法，如果其中一个数是字符串，则是进行字符串的相连
+
+三、函数
+	1.函数定义 function name(){}
+	2.函数调用 name();
+	3.变量在函数外部声明则是全局变量，在函数内部声明的则为局部变量
+
+四、数组
+	1.数组的声明 var arr = [1,2,3]; 或 var arr = new Array(1,2,3);
+	2.数组的长度 arr.length
+	3.数组的访问 arr[下标]
+	4.数组的修改 arr[下标] = value;
+	5.数组的操作
+		arr.unshift()	头部添加
+		arr.shift()		头部删除
+		arr.push()		尾部添加
+		arr.pop()		尾部删除
+	6.数组的遍历
+		for(var i=0;i<arr.length;i++){
+			console.log(arr[i]);
+		}
+		//for in可以遍历对象,也可以遍历数组
+		for(var k in arr){
+			console.log(arr[k]);
+		}
+
+五、对象
+	1.对象的创建
+		JSON表示法 var stu = { name: 'zhangsan', age: 18, tel:{home:'010', mobile:'135'} };
+		对象操作法  
+			var stu = new Object();
+			stu.name = 'zhangsan';
+			stu.age = 18;
+			stu.tel = {home:'010', mobile:'135'};
+	2.将对象放数组里面
+		var users = new Array({uname: 'sam', password: '123', tel: ['010', '134']},
+			{uname: 'tom', password: '456'});
+	3.对象的属性访问
+		使用点操作符 或者 ['属性名']
+	4.对象属性的访问	对象.属性  或者 对象['属性']
+	5.对象属性的添加和修改	对象.属性 = 值  或者 对象['属性'] = 值
+	6.对象属性或对象的删除	delete(对象.属性) delete(对象)
+
+
+学到的函数总结：
+parseInt()  	转换为整数
+parseFloat()	转换为浮点数
+Number()		强制转换为数字类型
+typeof()		类型检测
+alert()			系统提示框
+value()			获取对象类型的原始值
+console.log()	控制台输出
+document.getElementById()	根据标签的ID属性值获取元素
+array.push()	给数组在尾部追加元素
+array.pop()		给数组尾部的元素弹出
+
+
+
+-------------------------第二部分----------------------------
+
+一、函数
+	1.arguments	存放着函数的所有参数列表
+	2.闭包			函数内部的子函数可以访问函数里面的局部变量
+
+二、对象
+	1.this关键字		获取对象本身
+
+三、日期对象
+	1.日期对象的创建 var date = new Date();
+	2.获取年 getFullYear()
+	3.获取月 getMonth()
+	4.获取日	getDate()
+	5.获取时	getHours()
+	6.获取分	getMinutes()
+	7.获取秒	getSeconds()
+
+四、正则
+	1.匹配
+		1.1 正则.test(字符串)		var re = /^[1-9]\d{5}$/i; re.test('abc');
+		1.2 正则对象.test(字符串) var patt1 = new RegExp("W3School"); patt1.test('abc')
+
+五、表单验证
+	在Form表单元素的submit事件返回布尔值，返回true则通过校验能正常提交，返回false则不提交
+	示例: <form onsubmit="return checkData();"></form>
+
+学习到的事件总结：
+onsubmit事件
+
+学习到的函数总结：
+document.write()	在文档中输出
+字符串.split(分隔符)			将字符串以分隔符拆分为数组
+日期对象.getFullYear()	获取年
+日期对象.getMonth()		获取月
+日期对象.getDate()		获取日
+日期对象.getHours()		获取时
+日期对象.getMinutes()		获取分
+日期对象.getSeconds()		获取秒
+
+-----------------------第三部分-----------------------------
+
+小技巧：
+	document.write() 会覆盖页面上的元素，所以一般这个只在页面加载之前输出
+
+一、定时器
+	1、启动定时器并存储在变量中	var timer = setInterval(函数或匿名函数, 时间间隔);
+	2、停止定时器				clearInterval(timer);
+
+二、延时器
+	1、启动延时器	var t = setTimeout(函数或匿名函数, 时间间隔);
+	2、停止延时器	clearTimeout(t);
+
+三、节点
+	1.创建元素 		document.createElement（'元素名称');
+	2.添加子元素 		元素.appendChild(子元素); 尾部插入 或者 元素.insertBefore(子元素) 头部插入
+	3.删除子元素 		元素.removeChild(子元素);
+	4.获取元素子节点	childNodes是所有子节点,children是元素子节点
+	5.节点类型		元素.nodeType  元素节点\文本节点等
+	6.节点类型常量 	document.ELEMENT_NODE 元素节点 document.TEXT_NODE 文本节点
+	7.获取元素内容 	元素.innerHTML
+	8.设置元素内容		元素.innerHTML = '<h1>abc</h1>';
+	9.获取父节点		元素.parentNode
+	10.获取第一个子元素	元素.firstElementChild
+
+四、属性
+	1.获取属性		元素.属性名 或者 元素.getAttribute('属性名');
+	2.设置属性		元素.属性名 = '属性值'; 或者 元素.setAttribute('属性名', '属性值');
+	
+五、样式
+	1.设置样式 		元素.style.属性名 = '属性值';
+
+六、事件相关参数 
+	1.事件相关参数主要针对鼠标和键盘事件
+	2.html里的event参数传递事件相关参数	onmousemove="mousemove(event)"
+	3.鼠标/键盘属性
+		clientX	鼠标指针的水平坐标
+		clientY	鼠标指针的垂直坐标
+		keyCode 键的Unicode字符码
+
+七、事件绑定
+	1.元素上绑定
+	2.对象绑定
+	3.添加事件监听
+	4.批量绑定事件
+
+学习到的属性总结：
+innerHTML		元素内部的所有内容
+style			样式属性
+checked			是否被选中
+value			input元素的值
+offsetLeft		元素左边缘的偏移量
+offsetTop		元素上边缘的偏移量
+
+学习到的事件总结：
+onclick			鼠标点击事件
+onkeyup			键盘弹起事件
+onkeydown		键盘按下事件
+onmousedown		鼠标按下事件
+onmouseup		鼠标弹起事件
+onmousemove		鼠标移动事件
+
+学习到的方法总结：
+document.createElement('元素名称')	创建对应名称的元素
+document.getElementsByTagName()	通过标签名称获取元素集合
+
+---------------------------第四部分-------------------------------
+
+一、节点
+	1.获取节点内的文本元素	元素.innerText
+
+二、表单
+	1.表单集合	document.forms
+	2.通过表单的name属性获取表单内部元素 document.forms[0].name属性值
+	2.手动提交   表单元素.submit()
+
+三、Location
+	1.href属性跳转
+	2.assign()	跳转
+	3.reload()	重新加载
+
+四、事件
+	1.绑定多个事件
+		btn.addEventListener('click', btnclick);
+		function btnclick(event) {
+			console.log('event click');
+		}
+	2.删除由addEventListener添加的事件
+		元素.removeEventListener('click', div1click);
+	3.IE绑定多个事件
+		元素.attachEvent('onclick', function(evt) { 
+			console.log('ie click');
+		})
+	4.IE移除事件
+		元素.detachEvent('onclick', '函数名'')
+	5.阻止冒泡
+		//阻止事件的冒泡,否则父容器也会接到事件
+		evt.stopPropagation();
+		//evt.cancelBubble = true;
+	6.阻止事件的默认行为
+		evt.preventDefault();
+
+学习到的属性总结：
+元素.innerText
+location.href
+document.forms
+document.body.scrollHeight 整个页面内容的高度
+document.body.scrollTop 已经滚动到窗口外边看不见的高度
+window.innerHeight 可见窗口高度
+
+学习到的方法总结：
+location.assign()
+location.reload()
+元素.addEventListener() 添加事件监听
+元素.removeEventListener() 移除事件监听
+元素.attachEvent()	IE添加事件监听
+元素.detachEvent()	IE删除事件监听
+
+学习到的事件总结：
+window.onload
+表单元素.onsubmit
+window.onscroll
+
+
+-----------------------总结------------------------------------
+
+JavaScript简介
+	前端三层 
+		结构层 html       从语义的角度搭建网页 
+		样式   css        从装饰的角度美化页面
+		行为层 JavaScript 从交互层面来描述我们的行为
+	1.用途
+		改变CSS
+		改变HTML
+		数据验证
+	2.ECMAScript
+		JavaScript,JScript,ActionScript
+		JavaScript是由ECMAScript, DOM和BOM三者组成
+	3.学习方法
+		初学的代码写三遍
+		1.认知:初步认识新的代码
+		2.熟练并记忆代码
+		3.思考:思考用途和逻辑方式,能够优化和运用
+		三多
+		多读,多思,多写
+
+JavaScript包括:ECMAScript, DOM, BOM
+JavaScript书写位置,在一对script标签, type属性, 值"text/javascript". 位置可以写到任意的位置,习惯先放在头部
+js注释:
+	单行 //
+	多行 /* */
+输出语句: alert() 警告框
+		  confirm() 确认框
+		  document.write() 写到页面
+		  document.writeln() 
+		  console.log()
+		  console.info()
+注意点: 大小写敏感
+字面量(常量): 数字,字符串,布尔,null, undefined, 数组
+变量:
+	声明 var 或者不加
+	赋值
+数据类型:
+	简单数据类型:
+		Number 数值型
+		String 字符串
+		boolean 布尔值
+		null   空对象
+		undefined 未定义
+	引用数据类型:
+		数组
+		对象
+数据类型检测:
+	typeof
+类型转换:
+	Number()
+	String()
+	parseInt()
+	parseFloat()
+基础语法
+	//条件分支语句
+		//分类：if语句，三元表达式，switch语句
+		
+		/*
+		if () {
+
+		} else if () {
+
+		} else if () {
+
+		} else {
+
+		}
+		*/
+		//接受用户输入成绩，将成绩转换成整型，赋值给score变量
+		// var score = parseInt(prompt('please input your score'));
+		// score = score<0 || score>100 ? 0 : score;
+
+		// alert(typeof(score));
+		//当满足条件：分数大于80分，并且小于100分则输入优秀
+	/*	if (score<0 || score>100) {
+			alert('分数值在0-100分之间，请重新输入');
+		} else {
+			if (score>=80 && score<=100) {
+				alert('优秀');
+			} else if(score>=70) {
+				alert('良好');
+			} else if (score>=60) {
+				alert('及格');
+			} else {
+				alert('不及格');
+			}
+		}*/
+
+		// 三元表达式相当于if..else这种语句
+		/*if (score<0 || score>100) {
+			alert('成绩不能小于0,或者大于100');
+		} else {
+			alert('成绩输入正常');
+		}*/
+		// 条件表达式 ? 条件为真时的代码 : 条件为假时的代码
+		// score<0 || score>100 ? alert('成绩不能小于0,或者大于100') : alert('成绩输入正常');
+		
+		// switch
+		/**
+		 *
+		 * switch (需要判断的值) {
+		 * 	case 值1:
+		 * 		alert();
+		 * 		break;
+		 * 	case 值2:
+		 * 		alert();
+		 * 		break;
+		 * 	default:
+		 * 		alert();
+		 * 		break;
+		 * }
+		 */
+		
+		var week = parseInt(prompt('please input week'));
+		// switch(week) {
+		// 	case 0:
+		// 		alert('星期天');
+		// 		break;
+		// 	case 1:
+		// 		alert('星期一');
+		// 		break;
+		// 	case 2:
+		// 		alert('星期二');
+		// 		break;
+		// 	case 3:
+		// 		alert('星期三');
+		// 		break;
+		// }
+
+		//表驱动法
+		var weeks = [
+			'星期天',
+			'星期一',
+			'星期二',
+			'星期三',
+			'星期四',
+			'星期五',
+			'星期六',
+		];
+		alert(weeks[week]);
+
+		//循环语句：for循环，while循环，do while循环，for in（遍历对象或数组）, break; continue;
+		// for (循环变量初始化; 条件判断; 改变循环变量) {
+		// 
+		// }
+		// 
+		// 循环变量初始化
+		// while (条件判断) {
+		// 	代码块
+		// 	改变循环变量
+		// }
+		// 
+		// 循环变量初始化
+		// do {
+		// 	代码
+		// 	改变循环变量
+		// }(条件判断);
+		// 
+		// for(声明变量 in 数组) {//这里面的变量表示数组的下标，如果是对象的话表示的是对象属性
+		// 	数组[下标]
+		// }
+		// 
+		for (var i=0; i<10; i++) {
+			console.log(i);
+		}
+		console.log('for end');
+
+		var i = 0;
+		while (i<10) {
+			console.log(i);
+			i++;
+		}
+		console.log('while end');
+
+		var i = 0;
+		do {
+			console.log(i);
+			i++;
+		} while(i<10);
+		console.log('do while end');
+
+		var arr = [0,1,2,3,4,5,6,7,8,9];
+		for (var index in arr) {
+			console.log(arr[index]);
+		}
+		console.log('for in end');
+
+Math对象
+	Math.PI
+	Math.abs()
+	Math.round()
+	Math.ceil()
+	Math.floor()
+	Math.random()
+	Math.max()
+	Math.min()
+	Math.pow()
+
+函数
+	定义:
+		function 函数名() {}
+		var 变量 = function(){}
+	调用
+		函数名()
+作用域:
+	全局变量
+闭包
+	子函数可以访问函数内的局部变量
+	函数本身是一个闭包，函数里面的所有变量和子函数等都被封闭在这个函数内
+数组:
+	定义: var arr = ['a', 'b', 3, true, {}, function(){}];	
+	遍历: 
+		for (){}
+		for (var k in arr){}
+	访问:
+		var arr = [1,2,3];
+		arr[0]
+	修改值
+		arr[0] = 'b';
+	属性:
+		length 获取数组的长度
+	方法:
+		push() 尾部追加
+		pop() 尾部弹出
+		unshift() 头部添加
+		shift() 头部删除
+		join() 把数组放到字符串
+		toString() 把数组转换成字符串
+		concat() 数组连接
+		reverse() 颠倒数组元素的顺序
+		sort() 对数组元素进行排序
+
+字符串:
+	属性:
+		length 数字,字母,汉字,空格,符号,每一个都占一个字
+	方法:
+		charAt(index) 返回指定位置的字符,也可以通过下标的方式去访问
+		concat() 连接两个或者多个字符串, 也可以通过加号将字符串进行连接
+		indexOf() 返回字符串值在字符串中首次出现的位置
+		substr() 返回从start下标到指定长度的字符, substring和slice也可以完成
+		
+正则表达式:
+	字符串支持正则的方法:
+		search()
+		match()
+		replace()
+		split()
+	正则方法:
+		test() 测试当前正则是否匹配目标字符串
+
+日期
+	获取日期和时间
+表单验证
+	事件
+		onsubmit()
+
+DOM
+	操作HTML:
+		特殊的属性名称是需要更改属性名
+		class 改成 className
+		for 改成 htmlFor
+		rowspan 改成 rowSpan
+		colspan 改成 colSpan
+	操作CSS
+		document.getElementById('div1').style.backgroundColor = 'skyblue';
+	事件
+		鼠标：
+			onclick 单击
+			onmouseover 移入
+			onmouseout 移出
+			onmousedown 鼠标按下
+			onmousemove 鼠标移动
+			onmouseup 鼠标弹起
+		键盘：
+			onkeydown  键盘的键被按下
+			onkeyup    键盘的键被松开
+		文档：
+			onload 当文档加载完成时
+		表单：
+			onsubmit 提交表单
+		window:
+			onscroll 滚动时
+		input控件：
+			onblur 元素失去焦点
+			onfocus 元素获取焦点
+			onchange 元素内容改变
+	节点：
+		获取节点：
+			getElementById() 通过标签ID获取节点
+			getElementsByTagName() 通过标签名称获取节点集
+			getElementsByClassName() 通过标签的类名称获取节点集
+
+		创建节点：
+			createElement
+		添加节点：
+			appendChild() 追加子节点
+			insertBefore() 在节点前面添加
+		节点内容：
+			innerHTML 内部的包括HTML的所有内容
+			innerText 内部的不包括HTML的文本内容
+		删除节点：
+			removeCihld() 删除子节点
+		
+
+BOM对象
+	Location
+		属性： href
+		方法：assign, replace, reload
+
+	History
+		属性： length
+		方法：
+			back() forward() go()
+
+
+学习到的属性总结：
+window.innerHeight 				可见窗口高度
+location.href					Location的链接地址
+document.forms					文档的表单集合
+document.body.scrollHeight 		整个页面内容的高度
+document.body.scrollTop 		已经滚动到窗口外边看不见的高度
+元素.innerHTML					元素内部的所有内容
+元素.innerText					元素的内部文本内容
+元素.style						样式属性
+元素.checked						是否被选中
+元素.value						input元素的值
+元素.offsetLeft					元素左边缘的偏移量
+元素.offsetTop					元素上边缘的偏移量
+
+学习到的事件总结：
+window.onload	窗口载入事件
+表单元素.onsubmit表单提交事件
+window.onscroll	窗口滚动事件
+onclick			鼠标点击事件
+onkeyup			键盘弹起事件
+onkeydown		键盘按下事件
+onmousedown		鼠标按下事件
+onmouseup		鼠标弹起事件
+onmousemove		鼠标移动事件
+
+学习到的函数总结：
+parseInt()  	转换为整数
+parseFloat()	转换为浮点数
+Number()		强制转换为数字类型
+typeof()		类型检测
+alert()			系统提示框
+value()			获取对象类型的原始值
+
+学习到的方法总结：
+document.getElementById()			根据标签的ID属性值获取元素
+document.createElement('元素名称')	创建对应名称的元素
+document.getElementsByTagName()		通过标签名称获取元素集合
+document.write()					在文档中输出
+console.log()						控制台输出
+数组.push()							给数组在尾部追加元素
+数组.pop()							给数组尾部的元素弹出
+数组.shift()							从数组头部开始删除元素
+数组.unshift()						给数组头部添加元素
+
+location.assign()					页面跳转
+location.reload()					页面重新加载
+字符串.split(分隔符)					将字符串以分隔符拆分为数组
+元素.addEventListener() 				添加事件监听
+元素.removeEventListener() 			移除事件监听
+元素.attachEvent()					IE添加事件监听
+元素.detachEvent()					IE删除事件监听
+日期对象.getFullYear()				获取年
+日期对象.getMonth()					获取月
+日期对象.getDate()					获取日
+日期对象.getHours()					获取时
+日期对象.getMinutes()					获取分
+日期对象.getSeconds()					获取秒
