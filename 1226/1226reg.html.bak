@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>1226reg</title>
+ </head>
+ <body>
+  
+ </body>
+ <script>
+ 	(function () {
+ 		var string = "Hello 2016 12 26 World 14 46";
+ 	/*	var p = /o/g;
+ 		var result = p.exec (string);
+ 		console.log (result);
+ 		result = p.exec (string);
+ 		console.log (result); 
+ 	*/
+    //   var p = /\d/g;
+ 	//  var p = /[hl]/g;
+ 	//	var p = /[^e-z]/g;
+ 	//	var p = /\d+/g;
+ 	//  var p = /[a-zA-Z]+\d+/g;
+ 	/*    var p = /[m]/g
+ 		while (true)
+ 		{
+ 			var result = p.exec (string);
+ 			if (result)
+ 			{
+ 				console.log (result);
+ 			} else {
+ 				break;
+ 			}
+ 		}
+	*/
+		var username = "asd15264253513ddd15164152513";
+	//  var p = /(1[3578]\d{9}).*/g
+	//	var p = /^\w{4,10}$/g;
+	//	console.log (p.exec (username));
+
+	//全局匹配
+		var p = /(1[3578]\d{9})/g
+		console.log (p.exec (username));
+
+ 	})()
+ </script>
+</html>

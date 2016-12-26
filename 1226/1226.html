@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>1226</title>
+  <script src = "jquery.js"></script>
+  <style>
+	#lrc{
+		height: 40px;
+		width: 300px;
+		background-color: rgba(0,255,0,0.1);
+	}
+  </style>
+ </head>
+ <body>
+	<audio src="Heartbeats.mp3" controls="controls"></audio>
+	<div id="lrc"></div>
+
+ <!--  hello
+  <a href="#1" id="">1</a>
+  <a href="#2" id="">2</a>
+  <a href="#3" id="">3</a>
+  <a href="#4" id="">4</a>
+  <a href="#5" id="">5</a>
+  <button id="btn_back">back</button>
+  <button id="btn_forward">forward</button> -->
+ </body>
+ <script>
+ (function () {
+	$.get("Heartbeats.lrc").done(function (data){
+		console.log (data);
+	})
+ })()
+/*	(function () {
+		console.log (navigator);
+		var userAgent = navigator.userAgent;
+		if (userAgent.indexOf ("MSIE 5") !== -1 || 
+		userAgent.indexOf ("MSIE 6") !== -1 || 
+		userAgent.indexOf ("MSIE 7") !== -1 || 
+		userAgent.indexOf ("MSIE 8") !== -1 ||
+		userAgent.indexOf ("MSIE 9") !== -1 ||
+		userAgent.indexOf ("MSIE 10") !== -1)
+		{
+			document.body.innerHTML = "<h1>请升级您的浏览器</h1>";
+		}else{
+			document.body.innerHTML = "<h1>恭喜您！内容显示正常！</h1>";
+		}
+	})()
+*/
+
+/*		var btn_back = document.getElementById ("btn_back");
+        var btn_forward = document.getElementById("btn_forward");	
+		btn_back.addEventListener ("click", function () {
+			history.back ();
+		})
+		btn_forward.addEventListener ("click", function () {
+			history.forward ();
+		})
+*/
+</script>
+</html>
