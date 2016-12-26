@@ -98,10 +98,10 @@
 	(function() {
 		var timer;
 		var progressBtn = document.querySelector("#progress");
-		progressBtn.addEventListener("click", function hello () {
+		progressBtn.onclick = function() {
 			progress();
-			progressBtn.removeEventListener ("click", hello);
-		});
+			progressBtn.onclick = null;
+		};
 		var clockOn = document.querySelector("#clockOn");
 		clockOn.addEventListener("click", function() {
 			timer = setInterval(function() {
@@ -147,15 +147,17 @@
 			才不会导致遇到进位时split()无分隔字符串？*/
 			function changeImg(images) {
 				var date = new Date();
-				var currentDate = formatDate(date.getFullYear()) + "" + formatDate(date.getMonth() + 1) + "" + formatDate(date.getDate()) + "" + formatDate(date.getHours()) + "" + formatDate(date.getMinutes()) + "" + formatDate(date.getSeconds());
-				currentDate = currentDate.split("");
+				var p = /\d/g;
+				var currentDate = formatDate(date.getFullYear()) + formatDate(date.getMonth() + 1) + formatDate(date.getDate()) + formatDate(date.getHours()) + formatDate(date.getMinutes()) + formatDate(date.getSeconds());
 				console.log(currentDate);
 				for (var i = 0; i < images.length; i++) {
-					images[i].src = "images/" + currentDate[i] + ".png";
+					images[i].src = "images/" + p.exec(currentDate)[0] + ".png";
 				}
 			}
 			changeImg(img);
 		}
+		//listen music
+		
 	})()
 </script>
 </html>
