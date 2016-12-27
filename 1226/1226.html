@@ -17,7 +17,7 @@
   </style>
  </head>
  <body>
-	<audio src="Heartbeats.mp3" controls="controls"></audio>
+	<audio id="palyer" src="Heartbeats.mp3" controls="controls"></audio>
 	<div id="lrc"></div>
 
  <!--  hello
@@ -30,10 +30,47 @@
   <button id="btn_forward">forward</button> -->
  </body>
  <script>
+ var lrcObject = {};
+
  (function () {
 	$.get("Heartbeats.lrc").done(function (data){
-		console.log (data);
+		lrcObject = parseLrc (data);
 	})
+
+	function parseLrc (lrcString) {
+        var lrcObject = {};
+		var p = /\[(\d{2}):(\d{2})\.\d{2}\](.+)/g;
+		while (true)
+		{
+			var result = p.exec(lrcString);
+			console.log (result);
+			if (result)
+			{
+				var min = parseInt(result[1]);
+				var second = parseInt(result[2]);
+				var seconds = min*60 + second;
+				var content = result[3];
+				lrcObject[seconds] = content;
+			} else {
+				break;
+			}
+		}
+		return lrcObject;
+	}
+
+	var player = document.querySelector("#palyer");
+	var lrc    = document.querySelector("#lrc");
+	setInterval(function () {
+		if (lrcObject)
+		{
+			var content = lrcObject[Math.floor(palyer.currentTime)];
+			if (content)
+			{
+				lrc.innerHTML = content;
+			}
+		}
+	
+	},1000);
  })()
 /*	(function () {
 		console.log (navigator);

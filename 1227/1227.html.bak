@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>1227</title>
+ </head>
+ <body>
+  
+ </body>
+ <script>
+	(function () {
+		var str = "[01:08.06]Giving me away";
+		var p = /(\d{2}).*?(\d{2}).*?(\d{2})\W+(\w+.*)/g;
+		console.log (p.exec(str));
+	})()
+ </script>
+</html>

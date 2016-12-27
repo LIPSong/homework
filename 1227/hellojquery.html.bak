@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>hellojquery</title>
+  <script src="..\..\jquery.js"></script>
+ </head>
+ <body> 
+	 <div></div>
+	 <div></div>
+ </body>
+ <script>
+	(function () {
+		var date = new Date();
+		var divs = $("div");
+		console.log(divs);
+		divs.html("Hello World"+date.getDate());
+		divs.click(function (e) {
+			$(this).remove();
+		});
+	})()
+ </script>
+</html>
