@@ -8,20 +8,55 @@
   <meta name="Description" content="">
   <title>hellojquery</title>
   <script src="..\..\jquery.js"></script>
- </head>
- <body> 
-	 <div></div>
-	 <div></div>
- </body>
- <script>
-	(function () {
+ <style>
+        p { width: 50px; height: 50px; background-color: gray; }
+		.red {background-color: red;}
+    </style>
+</head>
+<body>
+    <button>显示和隐藏</button>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+</body>
+<script>
+/*	(function () {
 		var date = new Date();
 		var divs = $("div");
 		console.log(divs);
-		divs.html("Hello World"+date.getDate());
+		divs.html("Hello World");
 		divs.click(function (e) {
 			$(this).remove();
 		});
+	})()
+*/
+    (function () {
+	//	$("p:first").css("background-color","red");
+	//	$("p:last").css("background-color","red");
+	//	$("p:eq(1)").css("background-color","red");
+    //  $("p:gt(2)").css("background-color","red");
+	//  $("p:lt(2)").css("background-color","red");
+	//	$("p:even").css("background-color","red");
+	//	$("p:odd").css("background-color","red");
+		$("p").css({
+			"width" : "20",
+			"height" : "30",
+			"backgroundColor" : "green"
+		});
+		var w = $("p").css("height");
+		$("button").click(function () {
+		 //	$("p").toggle(1000);
+		 // $("p").slideToggle(300);
+		 //	$("p").fadeToggle(1000);
+			$("P").addClass("red");
+		});
+	//	alert (w);
 	})()
  </script>
 </html>
