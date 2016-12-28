@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>1228</title>
+  <script src="..\..\jquery.js"></script>
+  <style>
+	p{
+		width: 300px;
+		height: 300px;
+		background: green;
+	//	position: absolute;
+	}
+	div{
+		width: 400px;
+		height: 400px;
+		background: red;
+	}
+	#last{
+		width: 400px;
+		height: 400px;
+		background: pink;
+	}
+	span{
+	    position: absolute;
+		width: 200px;
+		height: 290px;
+		background: black;
+	}
+  </style>
+ </head>
+ <body>
+		Hello World!
+		<div>
+			<p>自己</p>
+			<span></span>
+		</div>
+		<div id="last">
+			其他爸爸
+			<p>其他爸的儿子</p>
+		</div>
+ </body>
+ <!--
+	笔记：轮子，封装好的一个方法就好像是一个轮子，
+	多个轮子放在一块给我们使用，这样的库我们叫做框架。
+	节点关系；什么是节点关系。jQuery描述的节点关系，
+	用的是人类社会的家族关系的词语:父亲，兄弟，儿子，祖先等。
+	改变速度方法参考预科canvas时钟
+	$(this)我
+	点击页面上的p，点击谁，谁动；
+	没有引号：$(this),$(document),$(window)
+	parent() 亲父亲
+	children("span") 儿子 所有的孩子
+	siblings("span") 亲兄弟
+
+	从自己的后代中寻找p，不一定是儿子，比children()范围更大
+	$(this).find("p");
+
+	$(this).next();
+	自己后面第一个兄弟(同辈);
+
+	animate()
+	动画有参数，第一个是JSON，第二个是时间
+	一般以数值为值的属性，可以参与动画；
+	不能参与动画的属性：
+	必须记住：
+	background-color 
+	background-position
+	css3属性例如transform是不能过渡的；border-radius除外；
+
+	动画队列：
+	栈：先进去的东西后出来
+	队列：就像食堂打饭，先进去的先出来；
+	同一个元素的animate语句，会顺序执行；
+	同一个元素多次打点调用animate方法，那么动画会自动排成队列，先调用的先执行。
+	非动画语句，会提前执行；
+	$("div").animate({"left", "200"});
+	$("div").css("background" , "red");
+	JS解析会瞬间变换div颜色，动画执行；
+	不会先执行动画，再变色。
+
+	回调函数：所有异步语句，都会提出回调函数，表示这条异步语句执行完毕之后做的事。
+	$("div").animate({"left" , "100"} , 2000, function () {
+		$(this).css("background-color" , "lightgreen");
+	});
+	delay() 延迟；
+	任何动画方法之前，都可以调用delay();在里面输入数字延迟动画时间；
+	stop() 方法；有点小绕；stop()有两个布尔类型的参数；
+	$().stop();第一个参数是是否清空动画序列；第二个参数是立即停止当前动画；
+ -->
+ <script>
+	(function () {
+		$("p:first").click(function () {
+		//	$(this).animate({"left" : "+=300"}, 1000);
+		//	$(this).siblings().animate({"left" : 200},2000);
+			$(this).css("background","red");
+			$(this).siblings().css("background","blue");
+			$(this).parent().css("background","gray");
+			$(this).parent().siblings().css("background","green");
+			$(this).parent().siblings().children().css("background","yellow");
+		})
+		$("div").click(function () {
+		//	$(this).children().fadeOut(1000);
+		})
+	})()
+ </script>
+</html>

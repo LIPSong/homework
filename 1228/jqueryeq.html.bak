@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>jQuery.eq()</title>
+  <script src="..\..\jquery.js"></script>
+ </head>
+ <body>
+<!--     <div>
+        <p>p1</p>
+        <p>p2</p>
+        <p>p3</p>
+        <p>p4</p>
+    </div>
+    <div>
+        <p>p1</p>
+        <p>p2</p>
+        <p>p3</p>
+        <p>p4</p>
+    </div>
+    <div>
+        <p>p1</p>
+        <p>p2</p>
+        <p>p3</p>
+        <p>p4</p>
+    </div>
+    <div>
+        <p>p1</p>
+        <p>p2</p>
+        <p>p3</p>
+        <p>p4</p>
+    </div> -->
+
+	<div class="zhouzhou">
+		<p>1</p>
+		<p class="panpan">1</p>
+		<p class="lele">1</p>
+		<p></p>
+	</div>
+	<div class="cc">
+		<p>1</p>
+		<p class="xuxu">我想红！</p>
+		<p>1</p>
+		<p>1</p>
+		<p class="xuxu">1</p>
+	</div>
+
+ </body>
+ <script>
+	(function () {
+	//	$("div p:eq(5)").css("background-color" , "red");
+	//	$(".xuxu").eq(0).css("background-color" , "red");
+	//  $("div").eq(1).children("p:eq(1)").css("background-color" , "red");
+		$(".zhouzhou").nextAll().children().next().eq(0).css("background-color" , "red");
+	})()
+ </script>
+</html>

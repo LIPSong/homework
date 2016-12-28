@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>each</title>
+  <style>
+	tr{
+		background: green;
+		margin: 200px 0;
+	}
+  </style>
+ </head>
+ <body>
+	  <table>
+		<tr> <td>1</td> <td>1</td> <td>1</td> </tr>
+		<tr> <td>1</td> <td>1</td> <td>1</td> </tr>
+		<tr> <td>1</td> <td>1</td> <td>1</td> </tr>
+		<tr> <td>1</td> <td>1</td> <td>1</td> </tr>
+		<tr> <td>1</td> <td>1</td> <td>1</td> </tr>
+		<tr> <td>1</td> <td>1</td> <td>1</td> </tr>
+		<tr> <td>1</td> <td>1</td> <td>1</td> </tr>
+		<tr> <td>1</td> <td>1</td> <td>1</td> </tr>
+		<tr> <td>1</td> <td>1</td> <td>1</td> </tr>
+		<tr> <td>1</td> <td>1</td> <td>1</td> </tr>
+		<tr> <td>1</td> <td>1</td> <td>1</td> </tr>
+	 </table>
+  <script src="..\..\jquery.js"></script>
+  <script>
+	$("tr").each(function(i){
+		$(this).delay(i*400).fadeOut();
+    //   i % 2 == 0 && $(this).css("background" , "red");
+    })
+
+  </script>
+ </body>
+
+</html>

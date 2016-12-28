@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script src="..\..\jquery.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .tab {
+            width: 240px;
+            height: 50px;
+        }
+        .tab_menu li {
+            float: left;
+            text-align: center;
+            list-style: none;
+            background: #f1f1f1;
+            border:1px solid #898989;
+            margin-right:4px;
+            padding:1px 6px;
+            border-bottom:none;
+            cursor: pointer;
+        }
+        .tab_box {
+            clear: both;
+            height:100px;
+            border:1px solid #898989;
+        }
+        .hide {
+            display: none;
+        }
+        .tab_menu li.selected {
+            color: #ffffff;
+            background-color: #6d84b4;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab">
+        <div class="tab_menu">
+            <ul>
+                <li class="selected">时事</li>
+                <li>体育</li>
+                <li>娱乐</li>
+            </ul>
+        </div>
+        <div class="tab_box">
+            <div>时事新闻</div>
+            <div class="hide">体育新闻</div>
+            <div class="hide">娱乐新闻</div>
+        </div>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <script>
+        $(".tab_menu ul li").mouseenter(function () {
+			$(this).addClass("selected").siblings().removeClass("selected").parent().parent().siblings(".tab_box").children().eq($(this).index()).removeClass("hide").siblings().addClass("hide");
+			//$(this).siblings().removeClass("selected");
+            //$(".tab_box div").eq($(this).index()).removeClass("hide");
+			//$(".tab_box div").eq($(this).index()).siblings().addClass("hide");
+        })
+    </script>
+</body>
+</html>

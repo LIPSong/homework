@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Menu</title>
+     <style>
+        *{ margin: 0; padding:0;}
+        .nav{ width: 960px; height: 40px; margin: 50px auto;}
+        .nav ul{ list-style: none;}
+        .nav ul li{
+            float: left;
+            width: 120px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background: yellowgreen;
+            position: relative;
+        }
+        .nav ul li a{ text-decoration: none; color: white; }
+        .nav ul li .dropbox{
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 180px;
+            display: none;
+            padding-top: 10px;
+        }
+        .nav ul li .dropbox .inner{ background-color: #ccc; }
+        .nav ul li .dropbox a{
+            display: block;
+            line-height:30px;
+            height: 30px;
+            text-align: left;
+        }
+        .nav ul li .dropbox a:hover{ background-color: pink; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <ul>
+            <li><a href="#">栏目名称</a></li>
+            <li>
+                <a href="#">公司新闻</a>
+                <div class="dropbox">
+                    <div class="inner">
+                        <p><a href="#">北京总部新闻</a></p>
+                        <p><a href="#">上海分公司新闻</a></p>
+                        <p><a href="#">东莞分公司新闻</a></p>
+                        <p><a href="#">辽宁分公司新闻</a></p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#">公司财务</a>
+                <div class="dropbox">
+                    <div class="inner">
+                        <p><a href="#">2011财务</a></p>
+                        <p><a href="#">2012财务</a></p>
+                        <p><a href="#">2013财务</a></p>
+                        <p><a href="#">2014财务</a></p>
+                        <p><a href="#">2015财务</a></p>
+                        <p><a href="#">2016财务</a></p>
+                    </div>
+                </div>
+            </li>
+            <li><a href="#">栏目名称</a></li>
+            <li><a href="#">栏目名称</a></li>
+            <li><a href="#">栏目名称</a></li>
+            <li><a href="#">栏目名称</a></li>
+        </ul>
+    </div>
+ <script src="..\..\jquery.js"></script>
+ <script>
+	        //鼠标放上去让菜单往下优雅的展开
+        $("li").mouseenter(function () {
+			$(this).children("div").slideDown(300);
+        });
+        //鼠标离开时让菜单优雅的收回
+        $("li").mouseleave(function () {
+            $(this).children("div").slideUp(300);
+        })
+ </script>
+ </body>
+</html>

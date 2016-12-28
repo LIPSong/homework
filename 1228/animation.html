@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Animation</title>
+	<style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 80px;
+            height: 80px;
+            background-color: purple;
+            position: absolute;
+		//	display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div></div>
+
+ </body>
+ <script src="..\..\jquery.js"></script>
+<script>
+	(function () {
+	/*	$("div").animate({"left" : "0","top" : "0","opacity" : "1","border-radius" : "10px"},1000);
+		$("div").animate({"left" : "200","top" : "200" , "opacity" : ".5", "border-radius" : "40px"},1000);
+	    $("div").animate({"left" : "400","top" : "0","opacity" : "1","border-radius" : "20px"},1000);
+	    $("div").fadeIn(1000, function () {
+				$(this).css("background-color" , "lightyellow");
+			})
+	*/
+	$("div").click(function () {
+		$(this).delay(2000).animate({"left" :"300px"},1000);
+	});
+
+	})()
+</script>
+</html>
