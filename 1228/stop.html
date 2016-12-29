@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>stop</title>
+  <style>
+	div{
+		width: 100px;
+		height: 100px;
+		background: purple;
+		margin: 20px;
+		position: absolute;
+	}
+	
+  </style>
+ </head>
+ <body>
+ <button>start</button>
+<!--  <p>start()开始动画</p> -->
+ <button>stop()|stop(false,false)</button>
+<!--  <p>stop()不清空动画队列，立即停止当前动画</p>
+ --> <button>stop(true)|stop(true,false)</button>
+<!--  <p>stop(true)清空动画队列，立即停止当前动画</p>
+ --> <button>stop(true,true)|stop(true,true)</button>
+<!--  <p>stop(true,true)清空动画队列，立即完成当前动画</p>
+ --> <button>stop(false,true)|stop(false,true)</button>
+<!--  <p>stop(false,true)不清空动画队列，立即完成当前动画</p>
+ --> <div></div>
+ </body>
+ <script src="..\..\jquery.js"></script>
+ <script>
+	$("button").eq(0).click(function () {
+		$("div").animate({"left":200}, 2000);
+        $("div").animate({"top":200}, 2000);
+        $("div").animate({"left":20}, 2000);
+        $("div").animate({"top":20}, 2000);
+	})
+	 $("button").eq(1).click(function () {
+        $("div").stop();
+	//  if($("div").is(":animated")){return;}
+    })
+     $("button").eq(2).click(function () {
+        $("div").stop(true);
+    })
+     $("button").eq(3).click(function () {
+        $("div").stop(true,true);
+    })
+     $("button").eq(4).click(function () {
+        $("div").stop(false,true);
+    })
+
+ </script>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>lunbo</title>
+     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .carousel {
+            width: 560px;
+            height: 300px;
+            margin: 100px auto;
+            border:1px solid #000;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .carousel .m_unit {
+            width:9000px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+		.carousel .m_unit img{
+			width: 560px;
+			height: 334px;
+		}
+        .carousel .m_unit ul{
+			position: relative;
+            list-style: none;
+			overflow: hidden;
+			left: 0px;
+        }
+        .carousel .m_unit ul li {
+            float: left;
+            width:560px;
+            height: 300px;
+            overflow: hidden;
+        }
+        .btns a{
+            position: absolute;
+            width:40px;
+            height: 40px;
+            top:50%;
+            margin-top:-20px;
+            background: yellow;
+            z-index: 999;
+        }
+        .btns a.leftbtn {
+            left:10px;
+        }
+        .btns a.rightBtn{
+            right:0px;
+        }
+        .circles {
+            position: absolute;
+            bottom: 10px;
+            right:10px;
+            width: 150px;
+            height: 18px;
+        }
+        .circles ol{
+            list-style: none;
+        }
+        .circles ol li{
+            float: left;
+            width: 18px;
+            height: 18px;
+            margin-right:10px;
+            border-radius:50%;
+            background: pink;
+            cursor: pointer;
+        }
+        .circles ol li.cur {
+            background-color: purple;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="carousel">
+        <div class="btns">
+            <a href="javascript:;" class="leftBtn"></a>
+            <a href="javascript:;" class="rightBtn"></a>
+        </div>
+        <div class="m_unit">
+            <ul>
+                <li><a href="#"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/01.jpg" alt=""></a></li>
+                <li><a href="#"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/02.jpg" alt=""></a></li>
+                <li><a href="#"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/03.jpg" alt=""></a></li>
+                <li><a href="#"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/04.jpg" alt=""></a></li>
+                <li><a href="#"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/05.jpg" alt=""></a></li>
+            </ul>
+        </div>
+        <div class="circles">
+            <ol>
+                <li class="cur"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ol>
+        </div>
+    </div>
+</body>
+<script src="..\..\jquery.js"></script>
+<script>
+	(function () {
+		var $ul = $(".m_unit ul");
+		var index = 0;
+		var $imageLis = $(".m_unit li");
+		console.log($(".m_unit ul"));
+		$(".m_unit ul").append($imageLis.eq(0).clone());
+		console.log($(".m_unit ul"));
+        function change () {
+			index --;
+			$(".circles ol li").eq(0-index).addClass("cur").siblings().removeClass("cur");
+			$ul.animate({"left" : index*560},400,function () {
+					if(index <= -5) {
+					index = 0 ;
+					$(".circles ol li").eq(0-index).addClass("cur").siblings().removeClass("cur");
+					$ul.css("left","0px");
+				};
+			});		
+		}
+		$(".leftBtn").click(function () {
+			if($ul.is(":animated")){return};
+			if(index == 0){$ul.css("left","-2800px"); index = -5;}
+			index += 2;
+			change();
+		})
+		$(".rightBtn").click(function () {
+			if($ul.is(":animated")){return};
+			change();
+		})
+		$(".circles ol li").click(function () {
+			index = 0 - $(this).index()+1;
+			change();
+	    })
+		$(".carousel").mouseenter(function () {
+			clearInterval(timer);
+			})
+		$(".carousel").mouseleave(function () {
+//		var	timer = setInterval(change, 1000);
+		})
+
+//		var timer = setInterval(change,1000);
+	})()
+</script>
+</html>

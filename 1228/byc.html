@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>byc</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .shutter {
+            width: 800px;
+            height: 300px;
+            margin:10px auto;
+            position: relative;
+            overflow: hidden;
+            border:1px solid #000;
+        }
+        .shutter ul {
+            list-style-type: none}
+        .shutter ul li {
+            position: absolute;
+            top:0;
+        }
+        .shutter ul li.no0 { left:0; }
+        .shutter ul li.no1 { left: 160px;; }
+        .shutter ul li.no2 { left:320px; }
+        .shutter ul li.no3 { left:480px; }
+        .shutter ul li.no4 { left:640px; }
+    </style>
+</head>
+<body>
+<div class="shutter">
+    <ul>
+        <li class="no0"><img src="images/01.jpg" alt=""></li>
+        <li class="no1"><img src="images/02.jpg" alt=""></li>
+        <li class="no2"><img src="images/03.jpg" alt=""></li>
+        <li class="no3"><img src="images/04.jpg" alt=""></li>
+        <li class="no4"><img src="images/05.jpg" alt=""></li>
+    </ul>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script>
+    //0 160 320 480 640
+    //左边：0 75 150 225 300
+    //右边：0, 500, 575, 650, 725
+    //
+    $(".no0").mouseenter(function () {
+        $("li").stop(true);
+        $(".no1").animate({"left":500}, 1000);
+        $(".no2").animate({"left":575}, 1000);
+        $(".no3").animate({"left":650}, 1000);
+        $(".no4").animate({"left":725}, 1000);
+    })
+    $(".no1").mouseenter(function () {
+        $("li").stop(true);
+        $(".no1").animate({"left":75}, 1000);
+        $(".no2").animate({"left":575}, 1000);
+        $(".no3").animate({"left":650}, 1000);
+        $(".no4").animate({"left":725}, 1000);
+    })
+    $(".no2").mouseenter(function () {
+        $("li").stop(true);
+        $(".no1").animate({"left":75}, 1000);
+        $(".no2").animate({"left":150}, 1000);
+        $(".no3").animate({"left":650}, 1000);
+        $(".no4").animate({"left":725}, 1000);
+    })
+    $(".no3").mouseenter(function () {
+        $("li").stop(true);
+        $(".no1").animate({"left":75}, 1000);
+        $(".no2").animate({"left":150}, 1000);
+        $(".no3").animate({"left":225}, 1000);
+        $(".no4").animate({"left":725}, 1000);
+    })
+    $(".no4").mouseenter(function () {
+        $("li").stop(true);
+        $(".no1").animate({"left":75}, 1000);
+        $(".no2").animate({"left":150}, 1000);
+        $(".no3").animate({"left":225}, 1000);
+        $(".no4").animate({"left":300}, 1000);
+    })
+	 $(".shutter").mouseleave(function () {
+        $("li").stop(true);
+        $(".no1").animate({"left":160}, 1000);
+        $(".no2").animate({"left":320}, 1000);
+        $(".no3").animate({"left":480}, 1000);
+        $(".no4").animate({"left":640}, 1000);
+	 })
+</script>
+</body>
+</html>

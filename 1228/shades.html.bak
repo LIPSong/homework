@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>shades</title>
+  <style>
+	#slider{
+		position: relative;
+		width: 800px;
+		height: 333px;
+		overflow: hidden;
+	}
+	.slide{
+		position: absolute;
+		border-left: #000 1px solid;
+		width: 500px;
+		background: #000;
+		height: 333px;
+		overflow: hidden;
+		cursor: default;
+		left: 22px;
+		
+	}	
+	.slide img{
+		opacity: .7;
+		visibility: visible;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="slider">
+		<div class="slide"><a href=""><img src="images/01.jpg" alt="" class="img"></a></div>
+		<div class="slide"><a href=""><img src="images/02.jpg" alt="" class="img"></a></div>
+		<div class="slide"><a href=""><img src="images/03.jpg" alt="" class="img"></a></div>
+		<div class="slide"><a href=""><img src="images/04.jpg" alt="" class="img"></a></div>
+		<div class="slide"><a href=""><img src="images/05.jpg" alt="" class="img"></a></div>
+		<div class="slide"><a href=""><img src="images/06.jpg" alt="" class="img"></a></div>
+	</div>
+ </body>
+  <script src="..\..\jquery.js"></script>
+  <script>
+	(function () {
+		$(".slide").each(function (i) {
+			var left = i*133 ;
+			$(this).css("left" , left);
+		})
+		$divs = $(".slide");
+		$divs.mouseenter(function () {
+				$(this).stop(true);
+				$(this).children("a").children("img").animate({"opacity":"1"},400);
+				var index = $(this).index();
+				$divs.each(function (i) {
+					if(i <= index){
+						$(this).animate({"left" : 60*i},400);
+					}else {
+						$(this).animate({"left" : 500+60*(i-1)},400)
+					}
+				})
+			})
+		$divs.mouseleave(function () {
+			$(this).stop(true);
+			$(this).children("a").children("img").animate({"opacity":".7"},400);
+		})
+		$("#slider").mouseleave(function () {
+			$divs.each(function (i) {
+			var left = i*133 ;
+			$(this).animate({"left" : left},400);
+		 })
+		});
+	})()
+  </script>
+</html>
