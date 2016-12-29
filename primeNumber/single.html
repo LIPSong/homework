@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>singleprime</title>
+ </head>
+ <body>
+  
+ </body>
+ <script>
+	var num = 10000000;
+    var prime = function (num) {
+	for (var i = 2; i <= Math.sqrt(num); i++ )
+		{
+			if (num % i == 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+   function primeNumber() {
+	    var date1 = new Date();
+		var arr = [2]
+		for (var i = 3;i<num ;i++ )
+		{
+			if(prime(i)) { arr[arr.length] = i};
+		}
+		var date2 = new Date();
+		console.log(arr.length);
+		console.log (date2.getTime()-date1.getTime()+"毫秒");
+	}
+	primeNumber();
+</script>
+</html>
