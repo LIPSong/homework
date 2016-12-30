@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>variate</title>
+ </head>
+ <body>
+  <!-- 闭包 -->
+
+
+ </body>  
+ <script>
+/*	(function () {
+		function h () {
+			var a = 2;
+			function inner () {
+				console.log(a)
+			//	return 2;
+			}
+			return inner ();
+		}
+//		h();
+		var i = h();//访问函数内部变量
+		console.log(i)
+//		console.log(h()())
+	})()
+*/
+ var n = 999;
+ function f1 () {
+//	nAdd = function () {
+//		window.n += 1;
+//		console.log(window.n);
+//	}
+	function f2 () {
+		console.log(n);
+	}
+	var n = 100;
+	return f2;
+ }
+     f1()();
+//	 nAdd();
+
+ </script>
+</html>

@@ -6,8 +6,8 @@
   <meta name="Author" content="">
   <meta name="Keywords" content="">
   <meta name="Description" content="">
-  <title>lunbo</title>
-     <style>
+  <title>lunbotu</title>
+  <style>
         *{
             margin: 0;
             padding: 0;
@@ -33,15 +33,19 @@
         .carousel .m_unit ul{
 			position: relative;
             list-style: none;
-			overflow: hidden;
 			left: 0px;
         }
         .carousel .m_unit ul li {
-            float: left;
+			position: absolute;
             width:560px;
             height: 300px;
             overflow: hidden;
+			left: 0;
+			right: 0;
         }
+		.selected {
+			z-index: 2;
+		}
         .btns a{
             position: absolute;
             width:40px;
@@ -63,6 +67,7 @@
             right:10px;
             width: 150px;
             height: 18px;
+			z-index: 999;
         }
         .circles ol{
             list-style: none;
@@ -90,7 +95,7 @@
         </div>
         <div class="m_unit">
             <ul>
-                <li><a href="#"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/01.jpg" alt=""></a></li>
+                <li class="selected"><a href="#"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/01.jpg" alt=""></a></li>
                 <li><a href="#"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/02.jpg" alt=""></a></li>
                 <li><a href="#"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/03.jpg" alt=""></a></li>
                 <li><a href="#"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/04.jpg" alt=""></a></li>
@@ -110,46 +115,49 @@
 </body>
 <script src="..\..\jquery.js"></script>
 <script>
-	(function () {
-		var $ul = $(".m_unit ul");
-		var index = 0;
-		var $imageLis = $(".m_unit li");
-		console.log($(".m_unit ul"));
-		$(".m_unit ul").append($imageLis.eq(0).clone());
-		console.log($(".m_unit ul"));
-        function change () {
-			index --;
-			$(".circles ol li").eq(0-index).addClass("cur").siblings().removeClass("cur");
-			$ul.animate({"left" : index*560},400,function () {
-					if(index <= -5) {
-					index = 0 ;
-					$(".circles ol li").eq(0-index).addClass("cur").siblings().removeClass("cur");
-					$ul.css("left","0px");
-				};
-			});		
-		}
-		$(".leftBtn").click(function () {
-			if($ul.is(":animated")){return};
-			if(index == 0){$ul.css("left","-2800px"); index = -5;}
-			index += 2;
-			change();
+	var  index    = 0;
+	var  $lis     = $(".m_unit ul li");
+	var  $circles = $(".circles ol li");
+	function change () {
+		$lis.eq(index).addClass("selected").siblings().removeClass("selected");
+		$circles.eq(index).addClass("cur").siblings().removeClass("cur");
+	}
+	$(".leftBtn").click(function () {
+		index == 0 ? index = 4 : index --;
+		change();
+	});
+	$(".rightBtn").click(function () {
+		index == 4 ? index = 0 : index ++;
+		change();
+	});
+	$circles.click(function () {
+		index = $(this).index();
+		change();
+	})
+	$(".carousel").mouseenter(function () {
+		clearInterval(timer);
 		})
-		$(".rightBtn").click(function () {
-			if($ul.is(":animated")){return};
-			change();
-		})
-		$(".circles ol li").click(function () {
-			index = 0 - $(this).index()+1;
-			change();
-	    })
-		$(".carousel").mouseenter(function () {
-			clearInterval(timer);
-			})
-		$(".carousel").mouseleave(function () {
-		var	timer = setInterval(change, 1000);
-		})
+	$(".carousel").mouseleave(function () {
+		var	timer = setInterval(function () {
+				index == 4 ? index = 0 : index ++;
+				change ();
+		}, 1000);
+	})
+	var	timer = setInterval(function () {
+				index == 4 ? index = 0 : index ++;
+				change ();
+		}, 1000);
 
-//		var timer = setInterval(change,1000);
-	})()
+	function closer () {
+		for (var i =0 ; i<3 ; i++ )
+		{		
+			(function (n) {
+				setTimeout(function delayAlert(){alert(n);},3000)
+			//	setTimeout((function delayAlert(){alert(n);})(),3000);
+			//	setTimeout(delayAlert,3000)
+			})(i)
+		}
+	}
+	closer ();
 </script>
 </html>
