@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>lock</title>
+ </head>
+ <body>
+	<button id="btn">LOCK!</button>
+ </body>
+ <script>
+	var btn = document.getElementById("btn");
+	var lock = true;
+	btn.onclick = function (){
+		if(lock == false)
+		{return}
+		console.log ("HI");
+		lock = false;
+		setTimeOut(function(){lock = true},2000);
+	}
+ </script>
+</html>

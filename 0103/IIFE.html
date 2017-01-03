@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>IIFE</title>
+  <style>
+
+  </style>
+ </head>
+ <body>
+	<button id="btn">放技能</button>
+ </body>
+ <script src="..\..\jquery.js"></script>
+ <script>
+ /**
+	在函数前面加数学运算符，使其成为函数表达式
+	IIFE的函数名不能正常在外部调用，提示未定义
+	一般写做匿名函数
+ **/
+	+function () {
+		console.log("1+")
+	}();
+	!function () {
+		console.log("2+")
+	}();
+
+	(function () {
+		console.log("3+")
+	})();
+/*小括号里面可以增加参数*/
+	console.log((function (n) {
+		n--;
+		return n;
+	})(2)+2);
+	function sum (a, b, c) {
+		console.log ((function (a, b) {
+			return a > b ? a : b;
+		})(a, b)+c);
+	}
+	sum (1, 2, 3);
+/*IFEE本身就是一个表达式，如果有返回值可以直接参与运算*/
+/**
+	JSON 叫做JavaScript object notation JavaScript对象表示法。
+	JSON对象本身是一个引用类型数据。里面可以放多组数据，每一个数据里面都有自己的名字，可通过
+	名字调取暑假。
+
+	json字面量的表示法
+	var json = {
+		"k": v,
+		"k": v,
+		"k": v,
+		"k": v
+	}
+	json 调用：点语法 或者 [属性名]直接调用
+	嵌套的JSON 属性调用,点语法
+   2.JSON 的删除和添加
+   添加属性：直接用变量名 点. 自定义属性名，进行赋值
+   删除 delete json.key
+   3.json 遍历 for... in
+   对json对象里面的属性进行遍历，方便逐一操作
+   方法：循环遍历 
+   4.函数节流：为了防止函数频繁快速的被调用，对函数进行限制，限制每隔多少时间才能执行一次。这就是函数节流的过程。
+   加锁的机制，我们设置一个锁。
+   只要事件被触发，锁就发生作用，程序被锁住。
+   
+**/
+	var json = {
+		"name": "song",
+		"age": "18",
+		"sex": "male",
+		"couple": {
+			"name": "Ada",
+			"age": 17,
+			"sex": "female",
+			"high": 168
+		}
+	};
+	console.log(json.name);
+	json.age = "22";
+	console.log(json["age"]);
+	console.log(json.couple.age);
+	json.skill = "javascript";
+//	delete json.couple;
+	console.log(json);
+
+	for (var k in json)
+	{
+		console.log(k, json[k]);
+	}
+	
+	var jsoncopy = {};
+	for (var k in json )
+	{
+		jsoncopy[k] = json[k];
+	}
+	//console.log(jsoncopy);
+
+	var song = {
+		"like" : "spple",
+		"hate" : "tea",
+			"n":8,
+		"showInfo" : function () {
+			for(var i=0 ; i<this.n; i++){
+					console.log(this.like);}
+			}
+	}
+
+    var you = {
+		"like" : "orange",
+		"hate" : "song",
+			"n":5
+	}
+	song.showInfo();
+
+	song.showInfo.call(you);
+ </script>
+</html>

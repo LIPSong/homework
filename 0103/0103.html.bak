@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>0103</title>
+  <style type="text/css">
+	div	{
+		width: 100px;
+		height: 300px;
+	}
+	div.nav{
+		width: 1500px;
+		height: 30px;
+		background: green;
+	}
+	.nav.on{
+		position: fixed;
+		left: 8px;
+		top: 0px;	
+		box-shadow:1px 1px 3px #292929;
+	}
+
+  </style>
+ </head>
+ <body>
+	<div class="nav"><span>hello</span></div>	
+	<div><span>hello</span></div>
+	<div><span>hello</span></div>
+	<div><span>hello</span></div>
+	<div><span>hello</span></div>	
+ </body>
+ <script src="..\..\jquery.js"></script>
+ <script>
+
+	$(window).scroll(function () {
+		console.log($("body"));
+		console.log($("body").scrollTop());
+		if($(this).scrollTop() > 8){
+			$(".nav").addClass("on");
+		}else {
+			$(".nav").removeClass("on");
+		}
+	})
+ </script>
+</html>
