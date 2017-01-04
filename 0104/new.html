@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>new</title>
+ </head>
+ <body>
+  
+ </body>
+ <script>
+	function Fun (name,age,sex) {
+//		console.log('hello');
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+	}
+//  Fun.prototype.height = 170;
+	console.log(new Fun());
+	var obj1 = new Fun("3C","18","男");
+	var obj2 = new Fun("33","18","男");
+	var obj3 = new Fun("2C","18","男");
+//	obj1.height = "180";
+	
+	console.log (obj1); 
+	console.log (obj2);
+	console.log (obj3); 
+	console.log();
+
+	var f3 = new Function('str,str2','console.log(str);console.log(str2)');
+	console.log(f3);
+
+	function Dog(name){
+		this.pro = function(){console.log(this)};
+		this.name = name;
+	}
+	var Ale = new function () {
+		this.al = function () {console.log("alert");}
+	}
+	Dog.prototype.al = Ale.al;
+	
+	/*
+    Dog.prototype = {
+		"hi":function () {
+			console.log("hello");
+		}
+	}
+	Dog.prototype = {
+		"hello":function () {
+			console.log("hi");
+		}
+	}
+	*/
+	var taidi = new Dog("taidi");
+	taidi.al();
+	console.log();
+	
+//	taidi.hello();
+ </script>
+</html>

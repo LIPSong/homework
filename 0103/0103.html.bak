@@ -21,7 +21,20 @@
 		position: fixed;
 		left: 8px;
 		top: 0px;	
-		box-shadow:1px 1px 3px #292929;
+		box-shadow:1px 1px 3px #008000;
+	}
+	#gotop	{
+		text-align: center;
+		width: 70px;
+		height: 50px;
+		color: greenyellow;
+		position: fixed;
+		top: 50%;
+		right: 0;
+		line-height: 50px;
+		display: none;
+		background: black;
+		cursor: pointer;
 	}
 
   </style>
@@ -32,11 +45,12 @@
 	<div><span>hello</span></div>
 	<div><span>hello</span></div>
 	<div><span>hello</span></div>	
+	<div id="gotop">返回顶部</div>
  </body>
  <script src="..\..\jquery.js"></script>
  <script>
 
-	$(window).scroll(function () {
+/*	$(window).scroll(function () {
 		console.log($("body"));
 		console.log($("body").scrollTop());
 		if($(this).scrollTop() > 8){
@@ -45,5 +59,29 @@
 			$(".nav").removeClass("on");
 		}
 	})
+*/
+	var frame = 50;
+	var time = 500;
+	var $top = $("#gotop");
+	$(window).scroll(function () {
+		if($("body").scrollTop() > 300){
+			$top.css("display", "block");
+		}else{
+			$top.css("display", "none");
+		}
+	})
+	$top.click(function () {
+		var $scr = $("body").scrollTop();
+		var timer = setInterval(function () {
+			if ($scr == 0)
+			{
+				clearInterval(timer);
+			}else{
+				$scr -= $scr/frame;
+			    $("body").scrollTop($scr);
+			}
+		}, time/frame)
+	})
+
  </script>
 </html>

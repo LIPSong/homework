@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>object</title>
+ </head>
+ <body>
+  <button id="box">变色</button>
+ </body>
+ <script>
+	var obj2 = {
+		"name":"song",
+		"age":"11",
+		"sex":"男",
+		"say": function () {
+			console.log("我叫" + this.name + "年龄" + this.age + "性别" + this.sex)
+		}
+	}
+	var name = "宋立平";
+	obj2.say.call(window);
+	function fun () {
+		console.log(this);
+	}
+	fun ();
+	var box = document.getElementById("box");
+	box.onclick = function () {
+		var _this = this;
+		setTimeout(function () {
+			console.log(_this);
+			_this.style.background = "red";
+		},300)
+	}
+	//setInterval(obj2.say,500);
+	function func () {
+		console.log(this);
+		console.log(this.name);
+	}
+	var obj5 = {
+		"name":"obj5"
+	}
+	func.call(obj5);
+	var arr = [22,23,21,32,33];
+    console.log(Math.max.apply(null,arr));
+ </script>
+</html>
