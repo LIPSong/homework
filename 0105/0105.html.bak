@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>0105</title>
+ </head>
+ <body>
+  hello
+ </body>
+ <script>
+/*	function Person () {
+
+	}
+	Person.teacher = "max";//给函数加属性，和ww无关
+	console.log(Person.__proto__)
+	var ww = new Person();
+	console.log(ww.teacher);
+*/
+/* function Person() {
+	this.age = "max";
+ }
+ Person()
+ console.log(age);
+*/
+ function fun(){
+	var a = 100;
+	window.a = a;
+	//this.a = 200;
+ }
+fun();
+console.log(a);
+ </script>
+</html>

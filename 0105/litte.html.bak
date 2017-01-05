@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>LittleGirl</title>
+  <style>
+	div{
+		position: absolute;
+		left: 0;
+		top: 100px;
+		background: url("images/girl.png") no-repeat;
+		
+	}
+  </style>
+ </head>
+ <body>
+  <div></div>
+ </body>
+ <script>
+	
+ </script>
+</html>

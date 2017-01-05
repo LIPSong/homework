@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>LittleGirl</title>
+  <style>
+	div{
+		position: absolute;
+		left: 0;
+		top: 100px;
+		background: url("images/girl.png") no-repeat;
+		background-position: 0px -216px;
+		width: 79px;
+        height: 108px;
+	}
+  </style>
+ </head>
+ <body>
+  <div></div>
+ </body>
+ <script>
+	var div = document.getElementsByTagName("div")[0];
+	var step = 0;
+	var left = 0;
+	setInterval(function () {
+		
+		if(step >= 7){op = -1}
+		step += 1;
+		left += 4;
+		
+		div.style.backgroundPosition = -step*79 + 'px    -216px';
+		div.style.left = left + "px";
+	},500)
+ </script>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>GirlMove</title>
+  <style>
+  div{
+		position: absolute;
+		left: 0;
+		top: 100px;
+		background: url("images/girl.png") no-repeat;
+		background-position: 0px -216px;
+		width: 79px;
+        height: 108px;
+	}
+ </style>
+ </head>
+ <body>
+  
+ </body>
+ <script>
+	function Girl (x,y,speed,distance) {
+		this.x = x;
+		this.y = y;
+		this.speed = speed;
+		this.direction = 2;
+		this.state = 0; //步子状态，现在运动到第几步
+		this.isMove = true;
+		this.distance = distance
+	
+		this.init();
+		this.move();
+		this.bindEvent();
+	}
+	Girl.prototype.init = function () {
+		this.dom = document.createElement("div");
+		this.dom.style.left = this.x + "px";
+		this.dom.style.top = this.y + "px";
+		document.body.appendChild(this.dom);
+	}
+	Girl.prototype.move = function () {
+		var self = this;
+		var op = 0;
+		var offx = 0;
+		this.timer = setInterval(function () {
+			if(offx >self.distance){self.direction = 1}
+			if(offx <=0){self.direction = 2}
+			op = self.direction == 2?1:self.direction == 1? -1 : 1;
+			if(self.isMove){
+				self.state = self.state%7 +1;
+				console.log(self.state);
+				offx += 4*op; 
+				self.dom.style.backgroundPosition = -self.state*79 + 'px '+ ((op==1&&'-216px')||(op==-1&&'-108px'));
+				self.dom.style.left = self.x + offx + "px";
+				}else return;
+		},self.speed)
+	}
+
+	Girl.prototype.bindEvent = function () {
+		var self = this;
+		this.dom.onclick = function () {
+			self.isMove = !self.isMove;
+		}
+	};
+	new Girl(0,100,200,100)
+    new Girl(100,300,20,200)
+	
+ </script>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>redgreen</title>
+  <style>
+	div{
+		width: 150px;
+		height: 410px;
+		float: left;
+	}
+  </style>
+ </head>
+ <body>
+  
+ </body>
+ <script>
+	function Light () {
+		var index = 0;
+		var self = this;
+		self.dom = document.createElement("div");
+		self.color = ["r","y","g"];
+		self.dom.style.background = "url(images/"+self.color[0]+".png)";
+		document.body.appendChild(self.dom);
+//		setInterval(function () {
+			self.dom.style.background = "url(images/"+self.color[(++index)%(self.color.length)]+".png)";
+//		document.body.appendChild(self.dom);
+		},5000);
+/*		self.dom.onclick = function () {
+			if(self.color == "r"){
+				self.color = "y"
+			}else if (self.color == "y")
+			{
+				self.color = "g"
+			}else 
+			{
+				self.color = "r"
+			}
+			self.dom.style.background = "url(images/"+self.color+".png)";
+		}
+*/
+	}
+
+
+	for (var i = 0; i < 2 ;i++ )
+	{
+		new Light();
+	}
+ </script>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>green</title>
+  <style>
+	div{
+		width: 150px;
+		height: 410px;
+		float: left;
+	}
+  </style>
+ </head>
+ <body>
+  
+ </body>
+ <script>
+	function Light () {
+		this.color = "r";
+		this.init ();
+		this.bindEvent ();
+	}
+	Light.prototype.init = function () {
+		this.dom = document.createElement("div");
+		this.dom.style.background = "url(images/"+this.color+".png)";
+		document.body.appendChild(this.dom);
+	}
+	Light.prototype.bindEvent = function () {
+		var self = this;
+		this.dom.onclick = function () {
+			if(self.color == "r"){
+				self.color = "y"
+			}else if (self.color == "y")
+			{
+				self.color = "g"
+			}else 
+			{
+				self.color = "r"
+			}
+			self.dom.style.background = "url(images/"+self.color+".png)";
+		}
+	}
+	var div = new Light();
+	new Light();
+ </script>
+</html>
