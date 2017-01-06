@@ -26,12 +26,13 @@
  Person()
  console.log(age);
 */
- function fun(){
+/* function fun(){
 	var a = 100;
-	window.a = a;
-	//this.a = 200;
+	this.a = 200;
  }
 fun();
 console.log(a);
+*/
+(function (str,n){console.log((new Array(n+1)).join(str))})("t",3)
  </script>
 </html>
