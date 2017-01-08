@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">	
+	<title>balloongame</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html{
+			height: 100%;
+		}
+		body{
+			height: 100%;
+			background: url("http://songb2b.oss-cn-shanghai.aliyuncs.com/balloon/bg.jpg") no-repeat;
+			background-size: cover;
+			overflow: hidden;
+		}
+		h1{
+			font-size: 60px;
+			color: #ffffff;
+		}	
+		.balloon{
+			width: 81px;
+			height: 119px;
+			background: url("http://songb2b.oss-cn-shanghai.aliyuncs.com/balloon/ballon.png") no-repeat;
+			background-position: 0px 0px;
+			cursor: crosshair;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+	</head>
+	<body>
+		<h1 id="score">0</h1> 
+		<h1 id="countdown">60</h1> 
+		<audio src="http://songb2b.oss-cn-shanghai.aliyuncs.com/balloon/c.wav" id="bomb"></audio>
+	</body>
+	<script>
+		/***************打气球小游戏******************/
+
+		/*******获取倒计时,分数和音效*******/
+		var duration = 60;
+			results = 0;
+			audio = document.getElementById("bomb");
+			board  = document.getElementById("score");
+		    countDown = document.getElementById("countdown");
+				
+		/******创建构造函数******/
+		var Ball = function (interval) {
+			this.top = 300;
+			this.left = Math.random()*500;
+			this.score = parseInt(Math.random()*7) + 1;
+			this.init();
+			this.fly ();		
+		}
+
+		/******定义原型方法******/
+		Ball.prototype =  {
+			//初始化气球
+			init : function () {
+				var _this = this;
+					x = -((this.score-1) % 4) * 96;
+					y = -parseInt((this.score-1)/4) * 120;
+				this.dom = document.createElement("div");
+				this.dom.className = "balloon";
+				this.dom.style.top = this.top+"px";
+				this.dom.style.left = this.left+"px";
+				this.dom.style.backgroundPosition = x + "px " + y + "px";
+				document.body.appendChild(this.dom);
+				this.dom.onclick = function () {
+					results += _this.score;
+					board.innerHTML = results;
+					_this.bomb ();
+					audio.load ();
+					audio.play ();
+				}
+			},
+
+			//气球爆炸
+			bomb : function () {
+				clearInterval (this.timer)
+				document.body.removeChild(this.dom);
+			 	},
+
+			//气球起飞
+			fly : function () {		
+				var _this = this;
+				this.timer = setInterval (function () {
+					_this.top -= 1.5 * _this.score;
+					_this.top < -100?_this.bomb():_this.dom.style.top = _this.top + "px";
+				},20)
+			}
+
+		};
+		
+		/******Just Do it!******/		
+		var count = 0;
+    		timer = setInterval(function(){
+	        count++;
+	        if (count % 2 == 0) {
+	            duration--;
+	            countDown.innerHTML = duration;
+	        }
+
+	        if(duration == 0) {
+	            clearInterval(timer);
+	            alert("Game Over 你的分数是：" +results);
+	       		}
+	        new Ball();
+	   		}, 500);	
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</html>	
