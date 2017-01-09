@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>JavaScript-Garden</title>
+ </head>
+ <body>
+  
+ </body>
+ <script>
+	function Foo() {
+		this.value = 42;
+	}
+	Foo.prototype = {
+		method: function() {}
+	};
+	function Bar() {}
+
+	Bar.prototype = new Foo();
+	Bar.prototype.foo = 'Hello World'; 
+	//Bar.prototypr.constructor = Bar;
+	
+	var test = new Bar();
+ </script>
+</html>
