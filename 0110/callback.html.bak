@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>callback</title>
+ </head>
+ <body>
+  
+ </body>
+ <script>
+ /**
+ *流程控制
+ *顺序执行
+ *循环结构
+ *选择结构
+ *我现在出发到了通知你，这是一个异步流程，“我出发”这个函数执行完毕，你可以去做任何事。“到了”（函数执行完毕）“通知你”（回调）进行之后的流程：
+ */
+ (function() {
+	function doSomething(cd) {
+		console.log('do something 1');
+		//函数执行完成，通知
+		//cd();
+		var dodo = (function() {
+			function dodo(cd) {
+				console.log('2')
+				cd();
+			}
+			return dodo;
+		})()
+		if(typeof(cd) === "function"){
+		dodo(cd);}
+		//强化了函数，防止函数出错。
+	}
+	function callback() {
+		console.log("事情已经做完，接下来可以");
+	}
+	function callback2() {
+		console.log("我是匿名函数，事情已搞定");
+	}
+	doSomething(callback);
+	doSomething(function() {
+		console.log("我是匿名函数，事情已搞定");
+	});
+
+ })();
+ (function (name) {
+	function Thing(name){this.name = name};
+	Thing.prototype.doSomething = function(callback, sayHi){callback.call(null,sayHi)};
+	window.names = "windows";
+	function foo(hi){console.log(hi+this.names);}
+	var t = new Thing("小旭");
+	t.doSomething(foo,"Hi");
+ })()
+ </script>
+</html>
