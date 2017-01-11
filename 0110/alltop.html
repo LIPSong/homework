@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mouseposition</title>
+    <style>
+        div {
+            width: 400px;
+            height: 400px;
+            background: yellowgreen;
+            margin:100px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script>
+
+        var oDiv = document.getElementsByTagName("div")[0];
+        oDiv.onmousemove = function(event) {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+			
+			var x = event.clientX - (getAllLeft(oDiv) - scrollLeft);
+			var y = event.clientY - (getAllTop(oDiv) - scrollTop);
+			console.log( x + "  " + y)
+            
+        }
+
+        function getAllLeft(obj) {
+            var allLeft = obj.offsetLeft;
+            //当前正在算高度的元素
+            var currentObj = obj;
+            while(currentObj = currentObj.offsetParent){
+                allLeft += currentObj.offsetLeft;
+            }
+            return allLeft;
+        }
+        function getAllTop(obj) {
+            var allTop = obj.offsetTop;
+            //当前正在算高度的元素
+            var currentObj = obj;
+            while(currentObj = currentObj.offsetParent){
+                allTop += currentObj.offsetTop;
+            }
+            return allTop;
+        }
+
+    </script>
+</body>
+</html>

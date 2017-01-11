@@ -1482,7 +1482,7 @@ a:hover .download {
 	color: #737373;
 	background-position: -176px -462px;
 }
-#header.header-on{
+.header-on{
 	top: -56px;
 	position: fixed;
 }

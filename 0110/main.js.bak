@@ -139,9 +139,9 @@ $(document).ready(function() {
 		$(".v2").eq(index).addClass("checked").siblings().removeClass("checked");
 	});
 		right();
-		var timer = setInterval(right, 2000);
+		var timer = setInterval(right, 1000);
 		$(".images-container").mouseout(function(){
-			timer = setInterval(right, 2000);
+			timer = setInterval(right, 1000);
 	});
 		$(".images-container").mouseover(function(){
 			clearInterval(timer);

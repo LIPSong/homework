@@ -37,7 +37,7 @@
 
 						<li class="line"></li>
 						<li class="">
-							<a class="cart-wrapper" href="cart.html" target="_blank">购物车</a>
+							<a class="cart-wrapper" href="" target="_blank">购物车</a>
 							<!--购物车下拉列表开始-->
 							<div class="hide cart fdDiv">
 								<div class="shop" id="nullCar">
