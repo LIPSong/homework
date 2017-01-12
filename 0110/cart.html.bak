@@ -2597,10 +2597,10 @@
 		<!--回到顶部-->
 		<div class="backToTopV2"><a href="#" class="top"></a></div>
 		<p class="clr"></p>
-		<div id="pagers" style="text-align:center;">
+		<!-- <div id="pagers" style="text-align:center;">
 			<a href="/i/shop/" target="_blank" class="osm-more" style="margin-top:60px;"></a>
 			<p class="clr"></p>
-		</div>
+		</div> -->
 		<div id="service">
 			<a href="/i/shop/">
 				<p class="hand"></p>

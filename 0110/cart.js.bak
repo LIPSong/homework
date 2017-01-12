@@ -17,7 +17,7 @@ function addAmount(type,cart_id){
 	var amount = jQuery("#goodsAmount"+cart_id).parent("td").siblings().eq(0).children("input");
 	amount.attr('amount', goodsAmount) ;
 	var subTotal = jQuery("#goodsAmount"+cart_id).parent("td").siblings().eq(3);
-	subTotal.html(amount.attr('amount')*amount.attr('price'));
+		subTotal.html(amount.attr('amount')*amount.attr('price'));
 	getTotalPayMoney();
 }
 
