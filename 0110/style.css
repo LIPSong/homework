@@ -1486,3 +1486,36 @@ a:hover .download {
 	top: -56px;
 	position: fixed;
 }
+/*放大镜*/
+
+.smallPic{
+	position: relative;
+	float: left;
+	width: 317px;
+	height: 190px;
+}
+.smallPic:hover{
+	cursor: crosshair;
+}
+.bigPic{
+	position: absolute;
+	width: 250px;
+	height: 250px;
+	left: 330px;
+	top: -25px;
+	border: 2px solid #ccc;
+	background: url("http://songb2b.oss-cn-shanghai.aliyuncs.com/magnifier/25823big.jpg") no-repeat;
+	z-index: 10;
+	display: none;
+}
+.magnifier{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 100px;
+	height: 100px;
+	background: #FEDE4F;
+	opacity: .5;
+	border: 1px solid #aaa;
+	display: none;
+}

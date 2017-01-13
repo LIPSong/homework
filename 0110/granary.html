@@ -27,7 +27,7 @@
 			<div class="header-top">
 				<div class="wrap clearfix">
 					<div class="logo fl" style="opacity: 1;">
-						<a href="/i/home/"></a>
+						<a href="granary.html" target="_blank"></a>
 					</div>
 					<ul class="nav fr" id="nav">
 						<li class="login-reg-btn">
@@ -2527,7 +2527,15 @@
 			<!--轮播结束-->
 			<!--中部展示-->
 			<div class="middle">
-				<div class="item1"><a href=""><img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/25/25823.jpg" alt="" /></a></div>
+				<div class="item1">
+					<div class="smallPic">
+					<a href=""><img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/25/25823.jpg" alt="" /></a>
+					<div class="magnifier"></div>
+					</div>
+					<div class="bigPic">
+						
+					</div>
+				</div>
 				<div class="item2"><a href=""><img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/25/25825.jpg" alt="" /></a></div>
 				<div class="item1"><a href=""><img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/25/25824.jpg" alt="" /></a></div>
 				<div class="item1"><a href=""><img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/25/25822.jpg" alt="" /></a></div>
@@ -2698,6 +2706,58 @@
 			</div>
 		</div>
 	</body>
+	<script>
+	//获取元素	
+ 	var smallPic = document.getElementsByClassName("smallPic")[0];
+ 	var bigPic = document.getElementsByClassName("bigPic")[0];
+ 	var zoom = document.getElementsByClassName("magnifier")[0];
+ 	//设置隐藏
+ 	smallPic.onmouseover = function(){
+ 		bigPic.style.display = "block";
+ 		zoom.style.display = "block";
+ 	}
+ 	smallPic.onmouseout = function(){
+ 		bigPic.style.display = "none";
+ 		zoom.style.display = "none";
+ 	}
+	//获取鼠标相对本窗口位置及放大镜移动
+	smallPic.onmousemove = function(e){
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+		var x = e.clientX - (getAllLeft(smallPic) - scrollLeft) - 50;
+		var y = e.clientY - (getAllTop(smallPic) - scrollTop) - 50;
+		if(x<0){x = 0}
+		else if(x>216){x=216}
+		if(y<0){y = 0}
+		else if(y>89){y=89}
+		console.log(x + "  " + y);
+		var ratioX = (634 - 250)/(317 - 100);
+		var ratioY = (380 - 250)/(190 - 100);
+		zoom.style.left = x + "px";
+		zoom.style.top = y + "px";
+		bigPic.style.backgroundPosition = -x*ratioX + "px " + -y*ratioY + "px";
+	}
+	
+	
+	//获取窗口据文档左边距离
+	function getAllLeft(obj){
+		var allLeft = obj.offsetLeft;
+		var currentObj = obj;
+		while(currentObj = currentObj.offsetParent){
+			allLeft += currentObj.offsetLeft;
+		}
+		return allLeft;
+	}
+	//获得窗口距文档上边距离
+	function getAllTop(obj){
+		var allTop = obj.offsetTop;
+		var currentObj = obj;
+		while(currentObj = currentObj.offsetParent){
+			allTop += currentObj.offsetTop;
+		}
+		return allTop;
+	}
+ </script>
 	<script type="text/javascript " language="JavaScript " src="main.js "></script>
 
 </html>

@@ -1,8 +1,7 @@
 /*cart js*/
-var payMoney = 0;
-var payAmount = 0;
 
-//¼Ó¼õÉÌÆ·ÊýÁ¿
+
+//ï¿½Ó¼ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 function addAmount(type,cart_id){
 	var goodsAmount = jQuery("#goodsAmount"+cart_id).val();
 	if(isNaN(goodsAmount)||goodsAmount<=1) goodsAmount = 1;
@@ -30,7 +29,7 @@ function  selectAll(type,obj){
 	getTotalPayMoney();
 }
 
-//¼ÆËãÖ§¸¶×Ü½ð¶î
+//ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½Ü½ï¿½ï¿½
 function getTotalPayMoney(){
 	var cart_amount = 0;
 	var cart_price = 0;
@@ -43,7 +42,7 @@ function getTotalPayMoney(){
 	
 }
 
-//ÒÆ³ýÎïÆ·
+//ï¿½Æ³ï¿½ï¿½ï¿½Æ·
 function removeCar(e){
 	var e = $(e);
 	console.log(e);

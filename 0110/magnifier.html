@@ -20,6 +20,9 @@
 		width: 400px;
 		height: 213px;
 	}
+	.smallPic:hover{
+		cursor: crosshair;
+	}
 	.bigPic{
 		position: absolute;
 		width: 300px;
@@ -28,6 +31,7 @@
 		top: 20px;
 		border: 2px solid #ccc;
 		background: url("http://songb2b.oss-cn-shanghai.aliyuncs.com/magnifier/Ali-big-800426.png") no-repeat;
+		display: none;
 	}
 	.magnifier{
 		position: absolute;
@@ -38,6 +42,7 @@
 		background: #FEDE4F;
 		opacity: .5;
 		border: 1px solid #aaa;
+		display: none;
 	}
   </style>
  </head>
@@ -55,16 +60,52 @@
  	var smallPic = document.getElementsByClassName("smallPic")[0];
  	var bigPic = document.getElementsByClassName("bigPic")[0];
  	var zoom = document.getElementsByClassName("magnifier")[0];
- 	
-	//获取鼠标相对本窗口位置
-
+ 	//设置隐藏
+ 	smallPic.onmouseover = function(){
+ 		bigPic.style.display = "block";
+ 		zoom.style.display = "block";
+ 	}
+ 	smallPic.onmouseout = function(){
+ 		bigPic.style.display = "none";
+ 		zoom.style.display = "none";
+ 	}
+	//获取鼠标相对本窗口位置及放大镜移动
+	smallPic.onmousemove = function(e){
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+		var x = e.clientX - (getAllLeft(smallPic) - scrollLeft) - 50;
+		var y = e.clientY - (getAllTop(smallPic) - scrollTop) - 50;
+		if(x<0){x = 0}
+		else if(x>300){x=300}
+		if(y<0){y = 0}
+		else if(y>111){y=111}
+		console.log(x + "  " + y);
+		var ratioX = (800 - 300)/(400 - 100);
+		var ratioY = (426 - 300)/(216 - 100);
+		zoom.style.left = x + "px";
+		zoom.style.top = y + "px";
+		bigPic.style.backgroundPosition = -x*ratioX + "px " + -y*ratioY + "px";
+	}
+	
+	
 	//获取窗口据文档左边距离
 	function getAllLeft(obj){
 		var allLeft = obj.offsetLeft;
 		var currentObj = obj;
-		while(currentObj = Obj.offsetParent){
+		while(currentObj = currentObj.offsetParent){
 			allLeft += currentObj.offsetLeft;
 		}
+		return allLeft;
+	}
+	//获得窗口距文档上边距离
+	function getAllTop(obj){
+		var allTop = obj.offsetTop;
+		var currentObj = obj;
+		while(currentObj = currentObj.offsetParent){
+			allTop += currentObj.offsetTop;
+		}
+		return allTop;
 	}
  </script>
 </html>
+
