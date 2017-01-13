@@ -9,9 +9,10 @@
   <title>JavaScript-Garden</title>
  </head>
  <body>
-  
+  <h1>javascript</h1>
  </body>
  <script>
+ 	/*
 	function Foo() {
 		this.value = 42;
 	}
@@ -23,7 +24,47 @@
 	Bar.prototype = new Foo();
 	Bar.prototype.foo = 'Hello World'; 
 	//Bar.prototypr.constructor = Bar;
-	
 	var test = new Bar();
+	*/
+	/*
+	//hasOwnProperty
+	Object.prototype.bar = 1;
+	var foo = {goo: undefined};
+	console.log(foo.bar);
+	console.log('bar' in foo);
+	console.log(foo.hasOwnProperty('bar'));
+	console.log(foo.hasOwnProperty('goo'));
+	*/
+	/*
+	//JavaScript don't protect hasOwnProperty attribute
+	var foo = {
+		hasOwnProperty: function() {
+			return false;
+		},
+		bar: 'Here be dragons'
+	};
+	
+	console.log(foo.hasOwnProperty('bar'));
+	console.log({}.hasOwnProperty.call(foo, 'bar'));
+	*/
+	/*
+	//for in 循环遍历原型链
+	Object.prototype.bar = 1;
+	var foo = {
+		moo: 2
+	};
+	for(var i in foo) {
+		console.log(i);
+	}
+	//过滤属性
+	for(var i in foo) {
+		 if(foo.hasOwnProperty(i)) {
+		 	console.log(i);
+		 }
+	}
+	*/
+	
+	var foo = function bar(){ bar();};
+	bar();
  </script>
 </html>
