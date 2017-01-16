@@ -7,9 +7,41 @@
   <meta name="Keywords" content="">
   <meta name="Description" content="">
   <title>JavaScript-Garden</title>
+  <style>
+.wrapper{  
+	position: relative;
+    height:100px;  
+    display:table;  
+    float: left;
+    margin: 10px;
+    text-align: center;
+    width:100px; 
+}  
+.content{  
+    vertical-align:middle;  
+    display:table-cell;  
+    border:1pxsolid#FF0099;  
+    background-color:#FFCCFF;   
+}
+ 	
+  </style>
  </head>
  <body>
-  <h1>javascript</h1>
+<div class="wrapper">
+	<div class="content">
+		content agesssss
+	</div>
+</div>
+<div class="wrapper">
+	<div class="content">
+		content agess
+	</div>
+</div>
+<div class="wrapper">
+	<div class="content">
+		content age11111
+	</div>
+</div>
  </body>
  <script>
  	/*
@@ -63,8 +95,90 @@
 		 }
 	}
 	*/
-	
+	/*
 	var foo = function bar(){ bar();};
-	bar();
+	foo();
+	*/
+	//apply和call详情，call既是上下文调用，在本例子中，bar 代替了 foo中的 this，而foo中的a 调用了全局的a，b,c是函数的形参，引入实参8，9函数执行过程中调用形参，这说明call只是用bar代替了foo执行到this.a中的this，foo函数上下文不变正常按顺序执行。
+	/*
+	var a = 4,
+		b = 5,
+		c = 6;
+		
+	function foo(b,c){
+		console.log(a+"a"+this.a+"  "+b+"b"+this.b+"  "+c+"c"+this.c);
+	}
+	var bar = {a:3,b:1,c:2};
+	foo.apply(bar,[8,9]);
+	*/
+	/*
+	var a = 2;
+	function foo(){
+		var a = 1;
+		console.log(this.a);
+		console.log(a);
+	}
+	foo()
+	var arr = [1,2,3,4,5];
+	//arr.splice(1,2,3,4,5);
+	console.log(typeof(arr));
+	*/
+	//多维数组转换为一维数组
+	var arr = [1,[[4,5,6],2,[[[7,8,9]]],3]];
+	function f(arr) {
+		if(Object.prototype.toString.call(arr) != '[object Array]')
+		return;
+		var newArr = [];
+		function fn(arr) {
+			for(var i=0;i<arr.length;i++){
+				if(arr[i].length){
+					fn(arr[i]);
+				}else{
+					newArr.push(arr[i]);
+				}
+			}
+		}
+		fn(arr);
+		return newArr;
+	}
+	console.log(f(arr));
+	//解析url一系列的属性值
+	var str = 'http://s.weibo.com/weibo/Aralic?topnav=1&wvr=6';
+	function foo(url) {
+		if(url.indexOf('?') == -1)
+		return;
+		var obj = {};
+		var arr = url.substring(url.indexOf('?')+1,url.length).split('&');
+		for(var i =0;i<arr.length;i++){
+			obj[arr[i].split('=')[0]] = arr[i].split('=')[1];
+		}
+		return obj;
+	}
+	console.log(foo(str));
+	//数字类型转换为千分位 123456789.123转换为123,456,789.123
+	var num = 1234556789.123;
+	function change(num) {
+		if(typeof (num) != 'number')
+		return;
+		num += "";		
+		if(num.indexOf('.') != -1){
+			return fn(num.split('.')[0])+"."+num.split('.')[1];
+		}else{
+			return fn(num);
+		}
+		
+		function fn(newNum) {
+			var str = "";
+			var l =newNum.length;
+			while(l>3){
+				str = ","+newNum.substring(l-3,l) + str;
+				l -= 3;
+			}
+			str = newNum.substring(0,l) + str;
+			return str;
+		}
+	}
+	console.log(change(num));
+
  </script>
 </html>
