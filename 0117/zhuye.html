@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta charset="utf-8" />
+    <title>怪物历险记</title>
+    <link type="text/css" rel="stylesheet" href="jqueryui/css/sunny/jquery-ui-1.8.16.custom.css"  />
+    <script src="scripts/jquery-1.6.2.min.js"></script>
+    <script src="jqueryui/js/jquery-ui-1.8.16.custom.min.js"></script>
+    <script src="http://ditu.google.cn/maps/api/js?key=AIzaSyCzKKvwQytG5rlb7U4VzaKALtREeuK4qQE"></script>
+    <script src="scripts/maps.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="style/form.css" />-->
+    <style>
+        body {
+            background: #000000 top left;
+            color: #FFFFFF;
+            margin: 20px;
+            font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+            font-size:12px;
+        }
+
+
+        .form_pad{
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .just_display{
+            border:0px;
+            background: transparent;
+            padding-bottom: 15px;
+        }
+
+        #slide_dist, #slide_weight, #slide_height {
+            margin-bottom:14px;
+        }
+
+        #swatch {
+            width: 75px;
+            height: 75px;
+            background-image: none;
+        }
+
+        #map_canvas{
+            float: left;
+            height: 350px;
+            width: 350px;
+        }
+        select{
+            font-size: 14px;
+        }
+
+        /****** aHa a new css selector ******/
+        #sight_nav{
+            float: left;
+        }
+
+        ul#sight_list{
+            width:150px;
+            padding: 0;
+            margin:0;
+        }
+
+        li.sightings{
+            padding: 4px;
+            background: #7B7382;
+            border:1px #000 solid;
+            color:#fff;
+            list-style: none;
+        }
+
+        li.sightings:hover{
+            background: #eee;
+            color:#000;
+        }
+
+        #red .ui-slider-range { background: #ef2929; }
+        #red .ui-slider-handle { border-color: #ef2929; }
+
+        #green .ui-slider-range { background: #8ae234; }
+        #green .ui-slider-handle { border-color: #8ae234; }
+
+        #blue .ui-slider-range { background: #729fcf; }
+        #blue .ui-slider-handle { border-color: #729fcf; }
+        .footer{
+            position: absolute;
+            border-bottom-color: rgb(168, 168, 168);
+            border-bottom-style: none;
+            border-bottom-width: 0px;
+            border-image-outset: 0 0 0 0;
+            border-image-repeat: stretch stretch;
+            border-image-slice: 100% 100% 100% 100%;
+            border-image-source: none;
+            border-image-width: 1 1 1 1;
+            border-left-color: rgb(168, 168, 168);
+            border-left-style: none;
+            border-left-width: 0px;
+            border-right-color: rgb(168, 168, 168);
+            border-right-style: none;
+            border-right-width: 0px;
+            border-top-color: rgb(168, 168, 168);
+            border-top-style: none;
+            border-top-width: 0px;
+            color: rgb(0,0 ,0 );
+            display: block;
+            floatleftfont-family: "Open Sans","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-feature-settings: normal;
+            font-kerning: auto;
+            font-language-override: normal;
+            font-size: 14px;
+            font-size-adjust: none;
+            font-stretch: normal;
+            font-style: normal;
+            font-synthesis: weight style;
+            font-variant: normal;
+            font-variant-alternates: normal;
+            font-variant-caps: normal;
+            font-variant-east-asian: normal;
+            font-variant-ligatures: normal;
+            font-variant-numeric: normal;
+            font-variant-position: normal;
+            font-weight: 400;
+            line-height: 24px;
+            margin-bottom: 0px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 370px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 0px;
+            vertical-align: baseline;
+            width: 464px;
+            -moz-border-bottom-colors: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+
+        }
+        .map{
+            height: 390px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="ui-widget-header ui-corner-top form_pad">
+    <h2>反馈您的奇幻遭遇</h2>
+    <h3>填写如下表格后按下提交按钮</h3>
+</div>
+<form id="frmAddSighting" name="form" method="post" action="service.php">
+    <div class="ui-widget-content form_pad">
+        <h3>神奇物种信息</h3>
+    </div>
+    <div class="ui-widget-content form_pad">
+        <h3>发生时间:</h3>
+        <input  type="text" name="sighting_date" id="datepicker" />
+
+        <h3>怪物种类:</h3>
+
+        <div id="type_select">
+            <input type="radio" id="radio1" name="creature_type" value="凤凰"/>
+            <label for="radio1">凤凰</label>
+            <input type="radio" id="radio2" name="creature_type" value="神龙"/>
+            <label for="radio2">神龙</label>
+            <input type="radio" id="radio3" name="creature_type" value="长江水怪"/>
+            <label for="radio3">长江水怪</label>
+            <input type="radio" id="radio4" name="creature_type" value="黄河巨兽"/>
+            <label for="radio4">黄河巨兽</label>
+            <input type="radio" id="radio5" name="creature_type" value="三眼金刚"/>
+            <label for="radio5">三眼金刚</label>
+            <input type="radio" id="radio6" name="creature_type" value="不了解"/>
+            <label for="radio6">不了解</label>
+        </div>
+
+        <h3>离您多远 (米):</h3>
+        <input type="text" id="distance" class="just_display" name="creature_distance" readonly="readonly"/>
+        <div id="slide_dist"></div>
+
+        <h3>目测重量 (千克):</h3>
+        <input  type="text" id="weight" class="just_display" name="creature_weight"   readonly="readonly"/>
+        <div id="slide_weight"></div>
+
+        <h3>高矮胖瘦 (米):</h3>
+        <input  type="text" id="height" class="just_display" name="creature_height" readonly="readonly"/>
+        <div id="slide_height"></div>
+
+        <h3>姿色如何 (使用滑动条混合颜色):</h3>
+        颜色:<input  type="text" class="just_display" name="creature_color_rgb" id="color_val" readonly="readonly"/>
+        <div id="swatch" class="ui-widget-content ui-corner-all"></div>
+
+        红:<input  type="text" class="just_display" name="creature_color" id="red_val" readonly="readonly"/>
+        <div id="red"></div>
+        绿:<input  type="text" class="just_display" name="creature_color" id="green_val" readonly="readonly"/>
+        <div id="green"></div>
+        蓝:<input  type="text" class="just_display" name="creature_color" id="blue_val" readonly="readonly"/>
+        <div id="blue"></div>
+    </div>
+    <div class="ui-widget-content form_pad">
+        <h3>地理位置（可直接输入）</h3>
+    </div>
+    <div class="ui-widget-content form_pad">
+        <h3>纬度:</h3>
+        <input  type="text" id="latitude"  name="sighting_latitude"/>
+        <div id="slide_lat"></div>
+
+        <h3>经度:</h3>
+        <input  type="text" id="longitude" name="sighting_longitude"/>
+        <div id="slide_long"></div>
+    </div>
+
+    <div class="ui-widget-header ui-corner-bottom form_pad">
+        <button type="submit" id="btnSave">提交</button>
+        <input type="hidden" name="action" value="addSighting" id="action">
+    </div>
+</form>
+<div class="ui-widget-header ui-corner-top form_pad">
+    <h2>神奇物种分布图</h2>
+</div>
+<div class="ui-widget-content form_pad map">
+    <div id="map_canvas"></div>
+    <div id="sight_nav">
+        <select id="ddlTypes">
+            <option value="">请在下拉菜单中选择生物种类</option>
+        </select>
+        <ul id="sight_list">
+        </ul>
+    </div>
+<div class="footer">© Copyright 2016.10.01 by Song. All Rights Reserved.</div>
+</div>
+
+</body>
+</html>
