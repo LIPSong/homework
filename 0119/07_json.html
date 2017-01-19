@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<button id="btn">点击加载出表中所有同学的信息</button>
+<table id="tab"></table>
+<script src="myajax.js"></script>
+<script>
+	var tab = document.getElementById("tab");
+
+
+	var con = document.createElement("p");
+    document.getElementById("btn").onclick = function(){
+        myajax.get("07_php.php", {}, function(err, data){
+           if (err) {
+               console.log("加载失败");
+               return;
+           }
+            console.log(data);
+            var obj = JSON.parse(data);
+			console.log(obj);
+			var tr = document.createElement("tr");
+            	for(k in obj[0]){
+            		var td = document.createElement("td");
+            		td.innerHTML = k;
+            		tr.appendChild(td);
+            	}
+            	tab.appendChild(tr);
+            for(var i = 0;i<obj.length;i++){
+            		var tr = document.createElement("tr");
+            		for(k in obj[i]){
+            			var td = document.createElement("td");
+            			td.innerHTML = obj[i][k];
+            			tr.appendChild(td);
+            		}
+            		tab.appendChild(tr);
+            }
+        });
+    }
+</script>
+</body>
+</html>

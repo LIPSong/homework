@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+		function rep() {
+			var str = "一个~something~值~money~元";
+			var dic = {
+			  "something":"西瓜",
+			  "money":"1000"
+			}
+			str = str.replace(/~(\w+)~/g,function(match,$1) {
+				console.log(match);
+				console.log("$1 =" + $1);
+				return dic[$1];
+			});
+			console.log(str);
+		}
+		</script>
+		<style>
+			table,tr,td{
+				border: 1px solid #ccc;
+				border-collapse: collapse;
+			}
+			.special{
+				background-color: skyblue;
+			}
+			.children{
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<table id="table">
+			<tr class="">
+				<td>学号</td>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>性别</td>
+			</tr>
+		</table>
+		<!--在工程上，我们使用一个故意写错type的script标签存放模板-->
+		<script type="text/template" id="template">
+			<tr class="{{class}}">
+				<td>{{id}}</td>
+				<td>{{name}}</td>
+				<td>{{age}}</td>
+				<td>{{sex}}</td>
+			</tr>
+		</script>
+		<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+		<script>
+			var templateString = $("#template").html();
+			$.get("app.json",function(data){
+				console.log(data);
+				for(var i = 0;i < data.length;i++){
+					var dictionary = data[i];
+					dictionary.class = dictionary.age > 20 ? "special":"children";
+					var DOMString = compile(templateString,dictionary);
+					$("#table").append($(DOMString));
+				}
+			},"json");
+			function compile(templateString,dictionary) {
+				return templateString.replace(/{{(\w+)}}/g,function(match,$1){
+					return dictionary[$1];
+				});
+			}
+		</script>
+	</body>
+</html>

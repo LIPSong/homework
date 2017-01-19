@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="..\..\jquery.js"></script>
+	</head>
+	<body>
+		<script>
+			 $.get("app.json", function(data){
+                 document.write(data.people[0].email);    
+        },"json" );
+		</script>
+	</body>
+</html>

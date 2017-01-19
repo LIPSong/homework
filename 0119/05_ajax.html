@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1></h1>
+页面
+<script>
+    var h1 = document.getElementsByTagName("h1")[0];
+    //1. 实例化一个XMLHttpRequest对象
+    if (window.XMLHttpRequest) {
+        var xhr = new XMLHttpRequest();
+    } else {
+        var xhr = new ActiveXObject("Microsoft.XMLHttp");
+    }
+
+    //2.配置一下接受回来的时候做什么
+    xhr.onreadystatechange = function(){
+        console.log("ready state = " + xhr.readyState);
+        if (xhr.readyState == 4) {
+            //使用 xhr.responseText获取到返回的内容
+            if (xhr.status >200 && xhr.status < 300 || xhr.status == 304) {
+                h1.innerHTML = xhr.responseText;
+                console.log("A");
+            } else if(xhr.status == 404){
+                h1.innerHTML = "您所请求的文件不存在";
+            } else {
+                h1.innerHTML = "程序异常";
+            }
+        }
+    };
+    //3.配置发送的信息
+    xhr.open("get", "abc.txt", false);
+    //4.发送请求
+    xhr.send();
+    console.log("B");
+</script>
+</body>
+</html>

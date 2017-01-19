@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script src="myajax.js"></script>
+<script>
+    myajax.get("06_php.php", {"name":"maxwell", "age":18}, function(err, data) {
+        if (err) {
+            console.log("非常抱歉，服务器故障，请稍后再试");
+            return;
+        }
+        console.log(data);
+    })
+</script>
+</body>
+</html>

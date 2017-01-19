@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="http://www.css88.com/doc/underscore1.8.2/underscore.js"></script>
+		<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>	
+				<style>
+			table,tr,td{
+				border: 1px solid #ccc;
+				border-collapse: collapse;
+			}
+			.special{
+				background-color: skyblue;
+			}
+			.children{
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<table id="table">
+			<tr class="">
+				<td>学号</td>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>性别</td>
+			</tr>
+		</table>
+		<!--在工程上，我们使用一个故意写错type的script标签存放模板-->
+		<script type="text/template" id="template">
+			<tr class="<%=className%>">
+				<td><%=id%></td>
+				<td><%=name%></td>
+				<td><%=age%></td>
+				<td><%=sex%></td>
+			</tr>
+		</script>
+	</body>
+	<script>
+			var arr = [1,2,3,4,5,6,7,8];
+			console.log(_.sample(arr,3));
+			var str = "我是<%=name%>,<%=age%>岁！"
+			var compiled = _.template(str);
+			console.log(compiled({"name":"宋立平","age":"28"}));
+			
+			
+			
+			var templateString = $("#template").html();
+			var compile = _.template(templateString);
+			$.get("app.json",function(data){
+				console.log(data);
+				for(var i = 0;i < data.length;i++){
+					var dictionary = data[i];
+					dictionary.className = dictionary.age > 20 ? "special":"children";
+					var DOMString = compile(dictionary);
+					$("#table").append($(DOMString));
+				}
+			},"json");
+			
+		</script>
+</html>

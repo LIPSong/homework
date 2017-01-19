@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1></h1>
+    <button>异步读取内容</button>
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var h1 = document.getElementsByTagName("h1")[0];
+
+        btn.onclick = function(){
+            //实例化一个XMLHttpRequest对象，Ajax就是靠
+            //这个对象来实现的
+            if (window.XMLHttpRequest) {
+                var xhr = new XMLHttpRequest();
+            } else {
+                var xhr = new ActiveXObject("Microsoft.XMLHttp");
+            }
+            //配置一下接受回来的时候做什么
+            xhr.onreadystatechange = function(){
+                if (xhr.readyState == 4) {
+                    h1.innerHTML = xhr.responseText;
+                }
+            };
+            //配置发送信息
+            xhr.open("get", "a.txt");
+            //发送请求
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
