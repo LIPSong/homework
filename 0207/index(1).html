@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>day01</title>
+	</head>
+	<style>
+		
+	</style>
+	<body>
+		<form onsubmit="return fromsub()">
+			<input type="text"  id="user" required="required"/>
+			<input type="email" id="email"/>
+			<input type="text" pattern="^[a-z]{6,12}$" id="pwd"/>
+			<input type="number"  min="18" id="age"/>
+			<input type="number" id="scroll" min="60" max="100" step="10">
+			<input type="submit" value="提交"/>
+		</form>
+		<script>
+				var user = document.getElementById("user");
+				user.onblur = function  () {
+					if(user.value !="" ||user.value!=null ){
+						user.setCustomValidity("");
+					}
+					if (user.validity.valueMissing) {
+						user.setCustomValidity("用户不能为空");
+						return false
+					}
+				}
+				
+				var email = document.getElementById("email");
+				email.onblur = function () {
+					if (email.validity.typeMismatch) {
+						console.log("email格式错误")
+						return false
+					}
+				}
+				var pwd = document.getElementById("pwd");
+				pwd.onblur = function () {
+					if (pwd.validity.patternMismatch) {
+						console.log("请符合标准")
+					}
+				}
+				var age = document.getElementById("age");
+				age.onblur= function  () {
+					if (age.validity.rangeUnderflow) {
+						console.log("小孩子上什么网")
+					}
+				}
+				var scroll = document.getElementById("scroll");
+				scroll.onblur= function  () {
+					if(scroll.validity.valid){
+						console.log("成绩正确")
+					}else if (scroll.validity.stepMismatch) {
+						console.log("成绩不符")
+					}
+				}
+		</script>
+	</body>
+	
+</html>

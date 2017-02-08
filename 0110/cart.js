@@ -20,7 +20,22 @@ function addAmount(type,cart_id){
 	getTotalPayMoney();
 }
 
+$("input[name='car_items[]']").click(function(){
+	getTotalPayMoney();
+	checked();
+});
 //ȫѡ
+function checked(){
+	var Checked = true;
+	var its = $("input[name='car_items[]']");
+	console.log(its[0].checked);
+	for(var i =0;i<its.length;i++){
+		if (its[i].checked == false){
+		Checked = false;
+		break;}
+	}
+	$("#chec").attr("checked",Checked);
+}
 function  selectAll(type,obj){
 	if(type=='all'){
 		var isChecked = jQuery(obj).attr('checked')?true:false;
@@ -47,6 +62,7 @@ function removeCar(e){
 	var e = $(e);
 	console.log(e);
 	e.parent("td").parent("tr").remove();
+	getTotalPayMoney();
 }
 
 

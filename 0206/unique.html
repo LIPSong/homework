@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		Array.prototype.unique1 = function() {
+			var res = [this[0]];
+			for(var i =0;i<this.length;i++){
+				var repeat = false;
+				for(var j = 0;j<res.length;j++){
+					if(this[i] == res[j]){
+						repeat = true;
+						break;
+					}
+				}
+				if(!repeat){
+					res.push(this[i]);
+				}
+			}
+			return res;
+		}
+		var arr = [1,1,1,2,2,2,3,4,5];
+		alert(arr.unique1());
+	</script>
+</html>

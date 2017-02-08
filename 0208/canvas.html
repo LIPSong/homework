@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas</title>
+	</head>
+	<body>
+		<canvas width="500px" height="500px" id="canvas"></canvas>
+		<canvas width="500px" height="500px" id="canvas2"></canvas>
+		<canvas width="500px" height="500px" id="canvas3"></canvas>
+		<canvas width="500px" height="500px" id="canvas4"></canvas>
+	</body>
+	<script>
+		var canvas = document.querySelector("#canvas");
+		var content = canvas.getContext("2d");
+	
+		function draw() {
+			var r = Math.floor(Math.random() * 256);
+			var g = Math.floor(Math.random() * 256);
+			var b = Math.floor(Math.random() * 256);
+			var x = Math.random() * 500;
+			var y = Math.random() * 500;
+			var width = Math.random() * 100;
+			var height = Math.random() * 100;
+			content.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+			content.fillRect(x, y, width, height);
+			content.fill();
+		}
+		for(var i = 0; i < 10; i++) {
+			draw();
+		}
+	
+		var can = document.querySelector("#canvas2");
+		var ctx = can.getContext("2d");
+		can.onmousedown = function(e) {
+			ctx.strokeStyle = "lightgreen";
+			ctx.lineHeight = 10;
+			ctx.moveTo(e.clientX - can.offsetLeft, e.clientY - can.offsetTop);
+			can.onmousemove = function(e) {
+				ctx.lineTo(e.clientX - can.offsetLeft, e.clientY - can.offsetTop);
+				ctx.stroke();
+			}
+			can.onmouseup = function(e) {
+				can.onmousemove = null;
+			}
+		}
+		var can3 = document.querySelector("#canvas3");
+		var context = can3.getContext("2d");
+		context.beginPath();
+		//设置是个顶点的坐标，根据顶点制定路径   
+		for(var i = 0; i < 5; i++) {
+			context.lineTo(Math.cos((18 + i * 72) / 180 * Math.PI) * 200 + 200, -Math.sin((18 + i * 72) / 180 * Math.PI) * 200 + 200);
+			context.lineTo(Math.cos((54 + i * 72) / 180 * Math.PI) * 80 + 200, -Math.sin((54 + i * 72) / 180 * Math.PI) * 80 + 200);
+		}
+		context.closePath();
+		//设置边框样式以及填充颜色   
+		context.lineWidth = "3";
+		context.fillStyle = "#F6F152";
+		context.strokeStyle = "#F5270B";
+		context.fill();
+		context.stroke();
+		var can4 = document.querySelector("#canvas4");
+		+function draws() {
+  
+	  if (can4.getContext){
+	    var ctx = can4.getContext('2d');
+	
+	    ctx.beginPath();
+	    ctx.arc(75,75,50,0,Math.PI*2,true); // 绘制
+	    ctx.moveTo(110,75);
+	    ctx.arc(75,75,35,0,Math.PI,false);   // 口(顺时针)
+	    ctx.moveTo(65,65);
+	    ctx.arc(60,65,5,0,Math.PI*2,true); // 左眼
+	    ctx.moveTo(95,65);
+	    ctx.arc(90,65,5,0,Math.PI*2,true);  // 右眼
+	    ctx.stroke();
+	  }
+	}()
+		
+	</script>
+</html>

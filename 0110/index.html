@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+	for(var i = 0; i < 3; i++) {
+		(function(e) {
+			setTimeout(function() {
+				console.log(e);
+			}, 1)
+		})(i)
+	}
+	
+	var n = 10;
+	function num() {
+		var n = 0;
+		var g = function() {
+			return ++n;
+		}
+		return g;
+	}
+	var c1 = num();
+	//访问次数加一；
+	console.log(c1());//0
+	console.log(c1());//1
+	console.log(c1());//2
+	
+      var a = 10;
+    var foo = {
+    	 a:20,
+    	 b:function(){
+    	 	var a = 30;
+    	 	return this.a;
+    	 }}
+    	 console.log(foo.b.call(this));//20
+    	 
+    	 var arr = [10,20];
+    	 arr.push(30);
+    	 arr.push([40,50]);
+    	 var data = arr.pop();//arr.pop()删除最后一个数组元素并且返回该元素
+    	 console.log(data);
+    	 function hero(){
+    	 	this.name = "111";
+    	 }
+    	 hero.prototype.name="222";
+    	 var Hero = new hero;
+    	 console.log(Hero.name);
+    	 delete(Hero.name);
+    	 console.log(Hero.name);
+    	 console.log(Hero);
+    	 delete(hero.prototype.name);
+    	 console.log(Hero.name);
+    	 function A(){
+    	 	this.name = "a";
+    	 	this.toString = function() {
+    	 		return this.name;
+    	 	}
+    	 }
+    	 function B(){
+    	 	this.name = "b";
+    	 }
+    	 var b1 = new B();
+    	 console.log(b1.toString());//Object
+    	 B.prototype = new A();
+    	 var b2 = new B();
+    	 console.log(b2.toString());//b
+  </script>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>clock</title>
+		<canvas width="500px" height="500px" id="canvas"></canvas>
+	</head>
+	<body>
+		<script>
+			var canvas = document.querySelector("#canvas");
+			var ctx = canvas.getContext("2d");
+			ctx.beginPath();
+			ctx.arc(250,250,200,0,2*Math.PI);
+			ctx.strokeStyle = "pink";
+			ctx.lineWidth = 10;
+			ctx.closePath();
+			ctx.stroke();
+			
+			//
+		</script>
+	</body>
+</html>

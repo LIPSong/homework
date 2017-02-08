@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>day01</title>
+	</head>
+	<style>
+		
+	</style>
+	<body>
+		<video src="video.mp4" poster="qing.jpg.jpg" id="vid"></video><br/>
+		<button>play</button>
+		<button>全屏</button>
+		<input type="range" id="proRun" step="1" min="0"/><span id="allTime"></span>
+		<input type="range" id="volRun" step="10" min="0" max="100" /><span id="volvlue"></span>
+	</body>
+<script>
+	window.onload = function() {
+		var vdo = document.getElementById("vid");
+		var btn = document.getElementsByTagName("button");
+		var proRun = document.getElementById("proRun");
+		var alltime = document.getElementById("allTime");
+		var volRan = document.getElementById("volRun");
+		var volvlue = document.getElementById("volvlue");
+		var duTime = vdo.duration;
+		vdo.volume = 0.1;
+		console.log(duTime);
+		proRun.max = duTime;
+		alltime.innerHTML = 0 + "/" + parseInt(duTime);
+		volvlue.innerHTML = volRan.value;
+		btn[0].onclick = function() {
+			if(vdo.paused) {
+				vdo.play();
+			} else {
+				vdo.pause();
+			}
+		}
+		btn[1].onclick = function() {
+			if(vdo.webkitRequestFullScreen) {
+				vdo.webkitRequestFullScreen();
+			}
+		}
+		vdo.addEventListener("timeupdate", showTime, false);
+
+		function showTime() {
+			alltime.innerHTML = parseInt(vdo.currentTime) + "/" + parseInt(duTime);
+			proRun.value = parseInt(vdo.currentTime);
+		}
+		proRun.onmousedown = function() {
+			vdo.removeEventListener("timeupdate", showTime, false);
+		}
+		proRun.onmouseup = function() {
+			vdo.currentTime = proRun.value;
+			vdo.addEventListener("timeupdate", showTime, false);
+		}
+		volRan.onchange = function() {
+			vdo.volume = volRan.value / 100;
+			volvlue.innerHTML = vdo.volume * 100;
+		}
+		document.onkeydown = function(e){
+			if(e.keyCode == 37){
+				vdo.currentTime -= 10;
+			}
+			if(e.keyCode == 39){
+				vdo.currentTime += 10;
+			}
+			if(e.keyCode == 38){
+				vdo.volume += 0.1;
+				volRan.value = parseInt(vdo.volume*100);
+				volvlue.innerHTML = parseInt(vdo.volume*100);
+			}
+			if(e.keyCode == 40){
+				vdo.volume -= 0.1;
+				volRan.value = parseInt(vdo.volume*100);
+				volvlue.innerHTML = parseInt(vdo.volume*100);
+			}
+				
+		}
+	}	
+</script>
+</html>

@@ -1,0 +1,8 @@
+闭包
+for(var i =0;i<3;i++){
+	(function(e){
+		setTimeout(function(){
+			console.log(e);
+		},1)
+	})(i)
+}

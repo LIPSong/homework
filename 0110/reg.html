@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  <meta charset="utf-8">
+  <title>用户注册.良仓－生活美学指南</title>
+  <meta name="keywords" content="良仓，良品，导购，购物，团购，社交，圈子，达人，分享，生活，时尚，白领，明星，潮流，精品,野兽派，野兽派花店，果库，想去，风格网，LC风格网，周末画报，新视线，GQ, VOGUE, 芭莎，尚雯婕，iweekly, ELLE, 优家，Yoox, net a porter, farfech, the coner, LN-cc">
+  <meta name="description" content="良仓是数百位意见领袖引领的生活美学分享社区,良仓商店和APP精选售卖来自全球最精美的生活产品及礼物，良仓杂志的报道最有趣味及品味的人和事。">
+  <link rel="shortcut icon" href="http://www.iliangcang.com/images/default/ilcicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" type="text/css" href="http://www.iliangcang.com/css/liangcang.css?v=G.ilc.2014080100002">
+  <script type="text/javascript" language="JavaScript" src="http://www.iliangcang.com/js/html5.js"></script>
+  <script type="text/javascript" language="JavaScript" src="http://www.iliangcang.com/js/jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" language="JavaScript" src="http://www.iliangcang.com/js/utils.js"></script>
+  <script type="text/javascript" language="JavaScript" src="http://www.iliangcang.com/js/main.js"></script>
+<script type="text/javascript" language="JavaScript">
+var base_script = "i";
+</script>
+<!--<script type="text/javascript" language="JavaScript" src="http://www.iliangcang.com/js/jquery.form.min.js"></script><script type="text/javascript">
+	var count = 60;
+	var countdown = null;
+	var isok = true;
+
+	function CountDown() {
+		$("#scode").html(count + "秒");
+		isok = false;
+		if (count == 0) {
+			$("#scode").html('获取验证码');
+			isok = true;
+			clearInterval(countdown);
+		}
+		count--;
+	}
+
+	function sendCode() {
+		if (!isok) return;
+
+		if ($('#mobile').val().length != 11) {
+			alert('请输入正确的手机号');
+			return;
+		}
+
+		$.get("/i/mob_login?act=getCode&mobile=" + $('#mobile').val(), function (res) {
+			if (res.status_str == 'ok') {
+				count = 60;
+				countdown = setInterval(CountDown, 1000);
+			} else {
+				alert(res.status_str);
+			}
+		}, 'json');
+	}
+
+	jQuery(document).ready(function() {
+		var options = {
+			dataType: 'json',
+			success: function (data) {
+				console.log(data);
+				if (data.status_str == 'ok') {
+					// 登录成功
+					window.location = '/';
+				} else {
+					alert(data.status_str);
+				}
+			},
+		};
+
+		$("#loginForm").submit(function () {
+			if ($('#mobile').val().length != 11) {
+				alert('请输入正确的手机号');
+				return false;
+			}
+			if ($('#code').val().length < 4) {
+				alert('请输入正确的验证码');
+				return false;
+			}
+
+			$(this).ajaxSubmit(options);
+			return false;
+		});
+
+	});
+</script>-->
+<style>
+	#loginForm .logTable .logBtn {
+	border-radius: 4px;
+    font-weight: normal;
+    cursor: pointer;
+    width: 300px;
+    height: 50px;
+    border: 0;
+    background: #25292e;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 9px;
+    margin-bottom: 30px;
+}
+</style>
+	</head>
+	<body class="log_regBody">
+		<div class="fullscreen"></div>
+		<div class="layerMask" style="background-color: #fff;"></div>
+		<div id="main" style="padding-top:20px;">
+
+	  	 <form  id="loginForm" autocomplete="off">
+ 			<input type="hidden" name="status" value="register"/>
+		  	<table class="logTable" style="width: 300px;">
+		  		<tbody><tr valign="center" align="middle">
+		  			<td colspan="2" height="150"><a href="/i/home/"><img src="http://www.iliangcang.com/images/nlicon.png" style="margin-bottom:60px;margin-top:60px;"></a></td>
+		  		</tr>
+		  		<tr valign="center" align="middle">
+		  			<td colspan="2" height="36">
+		  				<div>
+							<input id="mobile" name="userID" value="" placeholder="输入账号" style="border:0;border-bottom:solid 1px #000;font-size: 18px;width:265px;height:34px;background: url('http://www.iliangcang.com/images/nlphone.png') no-repeat 0px 6px;padding-left:35px;">
+		  				</div>
+		  			</td>
+		  		</tr>
+		  		
+		  		<tr valign="center" align="middle" height="36">
+		  			<td colspan="2">
+		  				<div style="position: relative;padding-top: 22px;">
+							<input id="code" type="password" name="password" value="" placeholder="输入密码" style="border:0;border-bottom:solid 1px #000;font-size: 18px;width:265px;height:34px;float: left;background: url('http://www.iliangcang.com/images/nlcode.png') no-repeat 2px 8px;padding-left:35px;">
+						</div>
+		  			</td>
+		  		</tr>
+
+				<tr valign="center">
+					<!--<td colspan="2" style="padding-top: 22px;color: #000;">
+						<input type="checkbox" name="isauto" value="1" checked="checked" style="vertical-align:middle;"> <span style="vertical-align:middle;">自动登录</span>
+					</td>-->
+				</tr>
+
+		  		<tr valign="center" align="middle">
+		  			<td colspan="2" style="padding-top: 22px;">
+		  				<input type="button" value="注册" class="logBtn" id="btn" style="border-radius: 4px;font-weight: normal;">
+		  			</td>
+		  		</tr>
+				<tr valign="center" align="middle">
+					<td colspan="2">
+						<a href="/i/login" style="color: #000;font-size: 15px;">更多登录方式 &gt;</a>
+					</td>
+				</tr>
+		  	</tbody></table>
+		</form>
+		<a class="bgInfo" href="">
+			<div class="bgName"></div>
+			<img src="http://www.iliangcang.com/images/default/shoplogo.png" width="40" height="40" style="display:none;">
+			<!-- <img src=null.brand.logo.url> -->
+		</a>
+  </div>
+	</body>
+	<script>
+		 $("#btn").click(function() {
+        var userID = $("#loginForm input[name=userID]").val();
+        var password = $("#loginForm input[name=password]").val();
+        var register = $("#loginForm input[name=status]").val();
+        var formData = {
+            "status": register,
+            "userID": userID,
+            "password": password
+        };
+        $.ajax({
+            "data": formData,
+            "url": "http://datainfo.duapp.com/shopdata/userinfo.php",
+            "method": "post",
+            "success": function(data) {
+                if (data === "1") {
+                    alert("注册成功");
+                } else if(data === "0") {
+                    alert("用户名已存在");
+                } else {
+                    alert("服务器异常");
+                }
+            }
+        });
+    });
+	</script>
+</html>
+

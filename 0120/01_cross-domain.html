@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>cross-domain</title>
+		<link rel="stylesheet" href="" />
+	</head>
+	<body>
+		<input type="button" id="btn" value = "点我"/>
+	
+	<script>
+		var btn = document.getElementById("btn");
+		btn.onclick = function() {
+			var script =document.createElement("script");
+			script.src = "http://yx.xianjian.com/p/api.php?method=wf&api_key=nimakdkeiLdkfen2lidkdlDLLEKd&page=8&per_page=10&tag=&type=5&order=2&_ksTS=1484876091382_336&jsoncallback=fun";
+			document.body.appendChild(script);
+		}
+		function fun(obj){
+			console.log(obj);
+			for (var i = 0;i<obj.photos.photo.length;i++){				
+					console.log(obj.photos.photo[i].tags);
+				
+			}
+		}
+	</script>
+	<!--<script src="http://yx.xianjian.com/p/api.php?method=wf&api_key=nimakdkeiLdkfen2lidkdlDLLEKd&page=8&per_page=10&tag=&type=5&order=2&_ksTS=1484876091382_336&jsoncallback=fun"></script>-->
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<video src="movie.mp4" autoplay poster="qing.jpg.jpg" id="vid"></video>
+		<button>play</button>
+		<button>全屏</button>
+		<input type="range" id="proRun" step="1" min="0"/><span id="allTime"></span>
+		<input type="range" id="volRun" step="10" min="0" max="100" /><span id="volvlue"></span>
+	</body>
+	<script>
+	window.onload = function(){
+		var vdo = document.getElementById("vid");
+		var btn = document.getElementsByTagName("button");
+		var proRun = document.getElementById("proRun");
+		var alltime = document.getElementById("allTime");
+		var volRan = document.getElementById("volRun");
+		var volvlue = document.getElementById("volvlue");
+		var duTime = vdo.duration;
+		console.log(duTime)
+		proRun.max = duTime;
+		alltime.innerHTML = 0 +"/"+parseInt(duTime);}
+	</script>
+</html>

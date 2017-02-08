@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>H5newtags</title>
+	</head>
+	<body>
+		<form action="">
+			email
+			<input type="email" multiple="multiple"/><br />
+			search
+			<input type="search" /><br />
+			数字
+			<input type="number" min="18" max="30" step="10" name="" id="" /><br />
+			<input type="range" min="0" max="30" /><br />
+			<input type="submit" />
+		</form>
+		<div id="div" style="width:200px;height:20px;line-height:20px;border:1px solid #333;position:relative;"><br /><br /></div>
+			红<input id="red" type="range" min="0" max="255" value="0" onchange="myChange()"/>
+			绿<input id="green" type="range" min="0" max="255" value="0"onchange="myChange()"/>
+			蓝<input id="blue" type="range" min="0" max="255" value="0"onchange="myChange()"/><br />
+			日期！
+			date<input type="date" /><br />
+			month <input type="month" /><br />
+			week <input type="week" />
+			
+			
+			<input list="shop" /><br />
+			
+			<datalist id="shop">
+				<option label="京东" value="jww.jd.com">
+				<option label="优才" value="uww.ucai.com">
+				<option label="淘宝" value="tww.taobao.com">
+			</datalist>
+			<select>
+				<option>京东</option>
+				<option>淘宝</option>
+				<option>天猫</option>
+			</select><br />
+			<input list="shop" />
+			
+		color <input type="color" /><br />
+		<progress id="pro" max="100" value="10"></progress><span id="span">10%</span>
+		<div style="width:100%;height:10px;background:lightgreen;padding:20px;"></div>
+	表单验证是否为空
+	<form action="" onsubmit="return formsub()">
+		用户名<input type="text" id="user" required="required"/><br />
+		邮箱<input type="email" id="email"/><br />
+		验证<input type="text" pattern="^[a-z]{6,12}$" id="pwd"/><br />
+		<input type="number" min="18" id="age"/><br />
+		<input type="number" id="scroll" min="60" max="100" step="10"/><br />
+		<input type="submit" value="submit" />
+	</form>
+	
+	<video src="movie.mp4" controls="controls" poster="http://consumer.huawei.com/cn/assets/cbg-home/images/banner/banner_mate9new.jpg"></video>
+	</body>
+	<script>
+	
+		var user = document.getElementById("user");
+				user.onblur = function  () {
+					console.log("1");
+					if(user.value !="" ||user.value!=null ){
+						user.setCustomValidity("");
+					}
+					if (user.validity.valueMissing) {
+						user.setCustomValidity("用户不能为空");
+						return false;
+					}
+				}
+		 
+		
+	</script>
+	<script>
+	var i = 10;
+	setInterval(function(){
+		i += 10;
+		document.getElementById("pro").value = i;
+		document.getElementById("span").innerHTML = i+"%";
+		if (i==100){
+			clearInterval(1);
+		}
+		console.log(i);
+		
+	},1000);
+	function myChange(){
+		var r = document.getElementById("red").value;
+		var g = document.getElementById("green").value;
+		var b = document.getElementById("blue").value;
+		var div = document.getElementById("div");
+		document.body.style.backgroundColor = "rgb"+"("+r+","+g+","+b+")";
+		div.innerHTML = "<b>r:</b>"+r+"<b>,g:</b>"+g+"<b>,b:</b>"+b;
+	}
+	
+	</script>
+</html>
+<!--
+	H514年推出来的
+	input 标签
+	<input type="email" multiple="multiple" />
+	表单验证 pattern
+	figure 是一种元素的组合，带有可选标题。用来表示网页上一块独立的内容。
+	figcaption表示figure的标题。从属于figure，并且，figure中只能放置一个figcaption
+	
+	
+-->

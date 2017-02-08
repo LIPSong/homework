@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>day01</title>
+	</head>
+	<style>
+		
+	</style>
+	<body>
+		<video src="movie.mp4" poster="qing.jpg.jpg" id="vid"></video><br/>
+		<button>play</button>
+		<button>全屏</button>
+		<input type="range" id="proRun" step="1" min="0"/><span id="allTime"></span>
+		<input type="range" id="volRun" step="10" min="0" max="100" /><span id="volvlue"></span>
+	</body>
+	<script>
+	window.onload = function() {
+		var vdo = document.getElementById("vid");
+		var btn = document.getElementsByTagName("button");
+		var proRun = document.getElementById("proRun");
+		var alltime = document.getElementById("allTime");
+		var volRan = document.getElementById("volRun");
+		var volvlue = document.getElementById("volvlue");
+		var duTime = vdo.duration;
+		console.log(duTime);
+		proRun.max = duTime;
+		alltime.innerHTML = 0 +"/"+parseInt(duTime);
+		volvlue.innerHTML = volRan.value;
+		btn[0].onclick=function () {
+			if (vdo.paused) {
+				vdo.play();
+			} else{
+				vdo.pause();
+			}
+		}
+		btn[1].onclick=function() {
+			if(vdo.webkitRequestFullScreen){
+				vdo.webkitRequestFullScreen();
+			}
+		}
+		vdo.addEventListener("timeupdate",showTime,false)
+		function showTime() {
+			alltime.innerHTML = parseInt(vdo.currentTime)+"/"+parseInt(duTime);
+			proRun.value = parseInt(vdo.currentTime);
+		}
+		
+	}
+		
+	</script>
+</html>
