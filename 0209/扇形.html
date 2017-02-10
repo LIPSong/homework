@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图片</title>
+	</head>
+	<body>
+		<canvas width="500" height="500">
+			
+		</canvas>
+	</body>
+	<script>
+		var canvas = document.querySelectorAll("canvas")[0];
+		var ctx = canvas.getContext("2d");
+		var img = new Image();
+		img.src = "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png";
+		img.onload = function(){
+			ctx.drawImage(img,0,0,300,300);
+		}
+	</script>
+</html>

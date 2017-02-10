@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style type="text/css">
+            canvas{background: #b8edc9;}
+        </style>
+    </head>
+    <body>
+        <h5>Canvas</h5>
+        <canvas id="mycanvas" width="500" height="500">
+            您的浏览器不支持html5dcanvas元素
+        </canvas>
+    <script type="text/javascript">
+        var canvas=document.getElementById('mycanvas');//定义变量获取画布dom
+        var c=mycanvas.getContext('2d');//设置绘图环境2d
+        function draw(colorB,colorS,sReg,oReg){
+       	
+        
+        	c.beginPath();
+        c.lineWidth=4;//设置线宽
+        c.strokeStyle=colorB;
+        c.fillStyle=colorB;
+        c.moveTo(200,200);
+        c.arc(200,200,100,Math.PI*sReg,Math.PI*oReg,false);
+        c.closePath();
+        c.fill();
+        
+        
+       
+        
+        	c.beginPath();
+        c.lineWidth=3;
+        c.strokeStyle=colorS;
+        c.fillStyle=colorS;
+        c.moveTo(200,200);
+        c.arc(200,200,50,Math.PI*sReg,Math.PI*oReg,false);
+        c.closePath();
+        c.fill()
+      	
+      	}
+      	
+	    	draw("green","#b8edc9",0,0.8);
+//		draw("blue","#b8edc9",0.8,1.4);
+// 		draw("red","#b8edc9",1.4,2);
+        </script>
+        
+    </body>
+    
+</html>

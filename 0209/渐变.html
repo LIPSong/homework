@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas width="500" height="500">
+			
+		</canvas>
+	</body>
+	<script>
+		var canvas = document.querySelectorAll("canvas")[0];
+		var ctx = canvas.getContext("2d");
+		var rad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+		ctx.save();
+		ctx.beginPath();
+		rad.addColorStop(0,"red");
+		rad.addColorStop(0.5,"green");
+		rad.addColorStop(1,"yellow");
+		ctx.fillStyle = rad;
+		ctx.fillRect(0,0,500,500);
+	</script>
+</html>

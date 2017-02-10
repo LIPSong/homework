@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图片</title>
+	</head>
+	<body>
+		<canvas width="500" height="500">
+			
+		</canvas>
+		<canvas width="500" height="500">
+			
+		</canvas>
+	</body>
+<script>
+	var canvas = document.querySelectorAll("canvas")[0];
+	var canvas1 = document.querySelectorAll("canvas")[1];
+	var ctx = canvas.getContext("2d");
+	ctx.font = "20px 微软雅黑"
+	ctx.beginPath();
+	ctx.fillStyle = "red";
+	ctx.lineTo(200, 200);
+	ctx.arc(200, 200, 200, 0, Math.PI * 0.75, false);
+	ctx.fill();
+	ctx.closePath();
+
+	ctx.fillStyle = "green";
+	ctx.fillText("37.5%", 200, 300);
+
+	ctx.beginPath();
+	ctx.fillStyle = "blue";
+	ctx.lineTo(200, 200);
+	ctx.arc(200, 200, 200, Math.PI * 0.75, Math.PI * 1.5, false);
+	ctx.fill();
+	ctx.closePath();
+	ctx.fillStyle = "green";
+	ctx.fillText("37.5%", 100, 200);
+
+	ctx.beginPath();
+	ctx.fillStyle = "pink";
+	ctx.lineTo(200, 200);
+	ctx.arc(200, 200, 200, Math.PI * 1.5, Math.PI * 2, false);
+	ctx.fill();
+	ctx.closePath();
+	ctx.fillStyle = "yellow";
+	ctx.fillText("25%", 250, 100);
+
+	var context = canvas1.getContext("2d");
+
+	function draw(start, per, color, fn) {
+		var nowper = 0; 
+		var ox = ((200 * Math.cos(start + per / 2) + 250) - 250) / 2 + 250;
+		var oy = ((200 * Math.sin(start + per / 2) + 250) - 250) / 2 + 250;
+		var timer = setInterval(function() {
+					nowper += per / 100;
+					if(nowper >= per) {
+						clearInterval(timer);
+						nowper = per;
+					}
+					context.beginPath();
+					context.fillStyle = color;
+					context.lineTo(250, 250) ;
+					context.arc(250, 250, 200, start, start + nowper);
+					context.closePath();
+					context.fill();
+					if(nowper >= per) {
+						context.beginPath();
+						context.fillStyle = "black";
+						context.font = " 20px 宋体 ";
+						context.closePath();
+						context.fillText((per / (Math.PI * 2)) * 100 + "%", ox, oy);
+						fn();
+						}
+					}, 10)
+			}
+
+				function count(pernum) {
+					return(pernum / 100) * 2 * Math.PI;
+				}
+				draw(0, count(50), "red", function() {
+					draw(count(50), count(30), "green", function() {
+						draw(count(80), count(20), "yellow", function() {})
+					})
+				});
+				
+	</script>
+</html>
