@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="1200px" height="600px"></canvas>
+	</body>
+	<script>
+		var canvas = document.getElementById("canvas")
+		var context = canvas.getContext("2d")
+		var heiArr = [100,150,30,140,78,66,55,110,170,190,169,134];
+		//创建一个画线的方法
+		function drawline(startX,endX,startY,endY) {
+			context.beginPath();//
+			context.moveTo(startX,startY);
+			context.lineTo(endX,endY);
+			context.closePath();
+			context.stroke();
+		}
+		//填充文字的方法
+		function write(str,oX,oY) {
+			context.beginPath();
+			context.fillStyle = "black";
+			context.fillText(str,oX,oY);
+			context.closePath();
+		}
+		//划出两边的竖线
+		drawline(300,300,80,480);
+		drawline(900,900,80,480);
+		//画横线以及刻度
+		for (var i=0;i<11;i++) {
+			var lineH =i*40+80;  
+			drawline(300,900,lineH,lineH);
+			write((200-i*20),270,lineH+5);
+		}
+		draw(heiArr);
+		//根据数组元素划出柱状图折线图
+		function draw(OHei) {
+			var currentX = 300 + 10+470/24;
+			var currentY = 480-OHei[0]*2;
+			for (var i=0;i<OHei.length;i++) {
+				var oHeight = OHei[i]*2;
+				var oWidth = 470/12;
+				var oX = 300+i*oWidth+(i+1)*10;
+				var oY = 480-oHeight;
+				
+				drawrect(oX,oY,oWidth,oHeight);
+				//画空心圆
+				drawarc((oX+oWidth/2),oY);
+				//画折线
+				drawline(currentX,(oX+oWidth/2),currentY,oY);
+				var currentX = oX+oWidth/2;
+				var currentY = oY;
+				
+				//添加月份
+				write((i+1)+"月",oX+10,500);
+			}
+		}
+		//画柱状图的方法
+		function drawrect(ox,oy,owidth,oheight) {
+			context.beginPath();
+			context.fillStyle = "#CCC";
+			context.fillRect(ox,oy,owidth,oheight)
+			context.closePath();
+			
+		}
+		//画圆
+		function drawarc(ox,oy) {
+			context.beginPath();
+			context.strokeStyle = "black";
+			context.arc(ox,oy,5,0,Math.PI*2,true);
+			context.stroke();
+			context.closePath();
+			
+		}
+	</script>
+</html>
