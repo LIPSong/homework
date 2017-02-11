@@ -74,7 +74,17 @@
 				volRan.value = parseInt(vdo.volume*100);
 				volvlue.innerHTML = parseInt(vdo.volume*100);
 			}
-				
+			document.addEventListener("dragover",function(e){
+				e.preventDefault();
+			})
+			document.addEventListener("drop",function(e){
+				e.preventDefault();
+				var file = e.dataTransfer.files[0];
+				console.log(e.dataTransfer.files);
+				if(file.type == "audio/mp3"){
+					audioplay.src = file.name;
+				}				
+			})
 		}
 	}	
 </script>

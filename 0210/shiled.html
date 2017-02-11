@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>shiled</title>
+	</head>
+	<body>
+		<canvas width="500" height="500"></canvas>
+	</body>
+	<script type="text/javascript">
+		+function(){
+			//获取dom
+			var canvas = document.querySelectorAll("canvas")[0];
+			var ctx = canvas.getContext("2d");
+			//画圆形
+			function drawArc(color,radius){
+				ctx.beginPath();
+				ctx.fillStyle = color;
+				ctx.lineTo(250, 250);
+				ctx.arc(250, 250, radius, 0, Math.PI * 2, false);
+				ctx.fill();
+				ctx.closePath();
+			}
+			drawArc("red",200);
+			drawArc("white",160);
+			drawArc("red",120);
+			drawArc("blue",80);
+			//画五角星
+			function drawStar(x,y,color) {
+				ctx.beginPath();
+				ctx.fillStyle = color;
+				for(var i = 0; i < 5; i++) {
+					ctx.lineTo(Math.cos((18 + i * 72) / 180 * Math.PI) * 80 + x, -Math.sin((18 + i * 72) / 180 * Math.PI) * 80 + y);
+					ctx.lineTo(Math.cos((54 + i * 72) / 180 * Math.PI) * 32 + x, -Math.sin((54 + i * 72) / 180 * Math.PI) * 32 + y);
+				}
+				ctx.closePath();
+				ctx.fill();
+			}
+			drawStar(250,250,"white")
+		}()
+	</script>
+</html>

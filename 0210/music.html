@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>music-list</title>
+	</head>
+	<style type="text/css">
+		audio{
+			position: relative;
+			display: block;
+			width: 200px;
+			height:30px;
+			margin: 10px 0;
+		}
+		ul{
+			position: relative;
+			width: 200px;
+			height: 200px;
+			background-color:rgba(100,123,22,0.4);
+			list-style: none;
+			margin:0;
+			padding: 3px 0;
+		}
+		li{
+			list-style-type: none;
+			text-align: center;
+			padding:2px 0;
+		}
+	</style>
+	<body>
+		<audio src="薛之谦 - 丑八怪.mp3" controls="controls" loop="loop"></audio>
+		<ul>
+			<li>歌曲名字</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		+function(){
+			var audio = document.querySelectorAll("audio")[0];
+			var ul = document.querySelectorAll("ul")[0];
+			document.addEventListener("dragover",function(e){
+				e.preventDefault();//取消默认行为
+				e.stopPropagation();//取消冒泡
+			});
+			document.addEventListener("drop",function(e){
+				var e = e||window.event;
+				e.preventDefault();//取消默认行为
+				e.stopPropagation();//取消冒泡
+				var file = e.dataTransfer.files[0];
+				console.log(e.dataTransfer.files);
+				if (file.type == "audio/mp3") {
+					var li = document.createElement("li");
+					li.innerHTML = file.name;
+					ul.appendChild(li);
+					li.onclick = function(){
+						audio.src = file.name;
+						file.onload = audio.play();
+						
+					}
+				}	
+			})
+		}()
+	</script>
+</html>

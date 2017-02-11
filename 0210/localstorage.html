@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>localstorage</title>
+	</head>
+	<body>
+		<form action="">
+			用户名：<input type="text" id="username" name="username"/>
+			密码：<input type="password" name="password" id="password"/>
+			<input type="button" name="login" id="login" value="login" />
+			<button id="show">show</button>
+		</form>
+		<script type="text/javascript">
+			var userName = document.getElementById("username");
+			var passWord = document.getElementById("password");
+			var login = document.getElementById("login");
+			var show = document.getElementById("show");
+			login.onclick = function(e){
+				localStorage.setItem(userName.name,userName.value);
+				localStorage.setItem(passWord.name,passWord.value);
+			}
+		</script>
+	</body>
+</html>

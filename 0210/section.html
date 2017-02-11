@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>localstorage</title>
+	</head>
+	<style type="text/css">
+		div{
+			position: absolute;
+		}
+	</style>
+	<body>
+		<script>
+		document.onclick = function(e){
+			if (sessionStorage.num) {
+				sessionStorage.num = Number(sessionStorage.num)+1;
+			} else{
+				sessionStorage.num = 1;
+			}
+			var div =document.createElement("div");
+			div.innerHTML = sessionStorage.num;
+			div.style.left = e.clientX + "px";
+			div.style.top = e.clientY + "px";
+			document.body.appendChild(div);
+			}
+		</script>
+	</body>
+</html>
