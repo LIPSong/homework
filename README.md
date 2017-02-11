@@ -1,3 +1,3 @@
 # homework
 JavaScriptHomeWork
-add php
+and php
