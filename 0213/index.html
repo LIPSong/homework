@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+		<META HTTP-EQUIV="Expires" CONTENT="0"> 
+
+		<title>gun_hero</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="reset.css?ver=1.1"/>
+	<style type="text/css">
+		div{
+			width: 500px;
+			text-align: center;
+			margin:40px 0;
+		}
+	</style>
+	<body>
+		<div>
+			<a href="hello.html"></a>
+			<canvas id="canvas" width="300" height="500"></canvas>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var can = document.getElementById("canvas");
+		var ctx = can.getContext("2d");
+		var j1x = 0,j1y = 0,j1w = 60;
+		var j2x = 0,j2y = 0,j2w = 0;
+		var j3x = 0,j3y = 0,j3w = 0;
+		var playx = 0,playy = 0,fenshu = 0;
+		var gunzix = 0,gunziy = 0,gunzic = 0;
+		start();
+		function start(){
+			 j1x = 0;j1y = 0;j1w = 60;
+			 j2x = 0;j2y = 0;j2w = 0;
+			 j3x = 0;j3y = 0;j3w = 0;
+			 playx = 40;playy = 330;fenshu = 0;
+			 gunzix = 60;gunziy = 330;gunzic = 0;
+			 ctx.fillStyle = "#abcdef";
+			 ctx.fillRect(0,0,300,500);
+			 ctx.fillStyle = "black";
+			 ctx.fillRect(j1x,350,j1w,150);
+			 j2x = Math.floor(Math.random()*160+20)+j1x+j1w;
+	        j2w = Math.floor(Math.random()*60+20);
+	        ctx.fillRect(j2x,350,j2w,150);
+	        j3x = Math.floor(Math.random()*160+20)+j2x+j2w;
+	        j3w = Math.floor(Math.random()*60+20);
+	        ctx.fillRect(j3x,350,j3w,150);//初始化三个矩形
+	        ctx.fillStyle = "yellow";
+	        ctx.fillRect(playx,playy,20,20);//画出游戏人物
+	        huafenshu();
+		}
+		function huafenshu(){
+        ctx.fillStyle = "azure";
+        ctx.font = "40px 宋体";
+        ctx.fillText(fenshu,140,40);
+    }
+		document.addEventListener("keydown",dokeydown,false);
+		document.addEventListener("keyup",dokeyup,false);
+		function	 dokeydown(e){
+			var keyid = e.keyCode;
+			if (keyid == 32) {
+				ctx.strokeStyle = "salmon";
+				ctx.lineWidth = "3";
+				ctx.moveTo(playx+20,playy+20);
+				ctx.lineTo(gunzix,gunziy);
+				ctx.stroke();
+				gunziy -= 5;
+				gunzic = 350 - gunziy;
+			} else if (keyid ==13){
+				start();
+			}
+		}
+		function dokeyup(e){
+			var keyid = e.keyCode;
+			if (keyid == 32) {
+				gunziy = 350;
+				ctx.beginPath();
+				ctx.strokeStyle = "salmon";
+				ctx.moveTo(playx+20,playy+20);
+				ctx.lineTo(playx+20+gunzic,gunziy);
+				ctx.closePath();
+				ctx.stroke();
+			
+				ctx.beginPath();
+				ctx.lineWidth = "4";
+				ctx.strokeStyle = "#abcdef";
+				ctx.moveTo(playx+20,playy+20-2);
+				ctx.lineTo(playx+20, 350 - gunzic);
+				ctx.closePath();
+				ctx.stroke();
+				
+				moveplay();
+				
+				//document.removeEventListener("keydown",dokeydown,false);	
+			} 	
+		}
+		
+		function moveplay(){
+			ctx.beginPath();
+			ctx.fillStyle = "#abcdef";
+			ctx.fillRect(playx,playy,20,20);
+			ctx.beginPath();
+			ctx.fillStyle = "yellow";
+			playx += 5;
+			ctx.fillRect(playx,playy,20,20);
+			if (playx <= (gunzic+j1w-22)) {
+				setTimeout(moveplay,30)
+			} else{
+				if ((gunzic+j1w)>j2x&&((j1w+gunzic)<(j2x+j2w))) {
+					ctx.beginPath();
+					ctx.fillStyle = "#abcdef";
+					ctx.fillRect(playx,playy,20,20);
+					ctx.beginPath();
+					ctx.fillStyle = "yellow";
+					playx = j2w+j2x-20;
+					ctx.fillRect(playx,playy,20,20);
+					fenshu++;
+					moveAll();
+				} else{
+					gameover();
+				}
+			}	
+		}
+		function moveAll(){
+			ctx.fillStyle = "#abcdef";
+			ctx.fillRect(0,0,300,500);
+			ctx.fillStyle = "black";
+			j1x --;
+			j2x --;
+			j3x --;
+			playx --;
+			ctx.fillRect(j1x,350,j1w,150);
+			ctx.fillRect(j2x,350,j2w,150);
+			ctx.fillRect(j3x,350,j3w,150);
+			ctx.fillStyle = "yellow";
+			ctx.fillRect(playx,playy,20,20);
+			huafenshu();
+			if(j2x!=0){
+				setTimeout(moveAll,0);
+			}else{
+				change();
+			}
+		}
+		function change(){
+			j1x = j2x;
+			j1w = j2w;
+			j2x = j3x;
+			j2w = j3w;
+			j3x = Math.floor(Math.random()*160+20)+j2x+j2w;
+	        j3w = Math.floor(Math.random()*60+20); 
+	        gunzix = j1w;
+		}
+		function gameover(){
+			ctx.fillStyle = "#abcdef";
+			ctx.fillRect(0,0,300,500);
+			ctx.fillStyle = "#fff";
+			ctx.font = "40px 宋体";
+			ctx.fillText("得分"+fenshu,60,200);
+		}
+	</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>waves</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="600"></canvas>
+		<button id="play_btn">play</button>
+	</body>
+	<script type="text/javascript" src="player.js"></script>
+	<script type="text/javascript">
+		var playBtn = document.getElementById("play_btn");
+		var player = new Player("http://songb2b.oss-cn-shanghai.aliyuncs.com/0213-mp3/song.mp3");
+		init();
+		function init(){
+			playBtn.onclick = function () {
+				//console.log(player);
+				if (this.textContent == "play") {
+					this.textContent = "pause";
+					player.play();
+					//console.log(player.audioContext.state);
+				}else if(this.textContent == "pause"){
+					player.pause();
+					//console.log(player.audioContext.state);
+					this.textContent = "play";
+				}
+			}
+		}
+		
+	</script>
+</html>

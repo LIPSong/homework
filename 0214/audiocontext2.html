@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>audiocontext2</title>
+	</head>
+	<body>
+		<button id="play_btn">play</button>
+	</body>
+	<script type="text/javascript">
+		var context = new AudioContext();
+		var playBtn = document.getElementById("play_btn");
+		var bufferSource = context.createBufferSource();
+		init();
+		function init(){
+			var url = "http://songb2b.oss-cn-shanghai.aliyuncs.com/0213-mp3/song.mp3"
+			player(url);
+			playBtn.onclick = function(){
+				play();
+			}
+		}
+		function player(url){
+			loadAudio(url,function(arraybuffer){
+				context.decodeAudioData(arraybuffer,function(buffer){
+					bufferSource.buffer = buffer;
+					//bufferSource.connect(context.destination);
+					var compressorsNote = effectCompressors();
+					//连接效果器
+					bufferSource.connect(compressorsNote);
+					//输出效果器
+					compressorsNote.connect(context.destination);
+					
+				})
+			})		
+		}
+		function loadAudio(url,callback){
+			var request = new XMLHttpRequest();
+			request.responseType = "arraybuffer";
+			request.open("GET",url);
+			request.onload = function(){
+				if (callback) {
+					callback(request.response);
+				}
+			}
+			request.send();
+		}	
+		//压缩器效果
+		function effectCompressors(){
+			var compressorsNode = context.createDynamicsCompressor();
+			return compressorsNode;
+			compressorsNode.threshold.value = -50;//临界值
+			compressorsNode.knee.value = 10;
+			compressorsNode.ratio.value = 10;
+			compressorsNode.attack.value = 1;
+			
+		}
+		function play(){
+			if(bufferSource){
+				bufferSource.start();
+			}
+		}
+	</script>
+</html>

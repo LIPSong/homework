@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>audio_context</title>
+	</head>
+	<body>
+		<button id="play_btn">play</button>
+	</body>
+	<script type="text/javascript">
+		init();
+		function init (){
+			var context = new AudioContext;
+			var playBtn = document.getElementById("play_btn");
+//			playBtn.onclick = function (){
+				var urls = "http://songb2b.oss-cn-shanghai.aliyuncs.com/0213-mp3/song.mp3"
+				loadAudio(urls,function(arraybuffer){
+					//创建缓存区资源对象
+					var source = context.createBufferSource();
+					//开始解码音频数据
+					context.decodeAudioData(arraybuffer,function(buffer){
+						//设置缓冲区
+						source.buffer = buffer;
+						//连接音频节点
+						source.connect(context.destination);
+						//开始播放
+						source.start();
+					})
+				})
+			}
+		}
+		
+		function loadAudio(url,callback){
+			var request = new XMLHttpRequest();
+			request.open("GET",url,true);
+			request.responseType = "arraybuffer";
+			request.onload = function (){
+				if(callback){
+					callback(request.response);//只取得response就好！
+				}
+			}
+			request.send();
+		}
+	</script>
+</html>
