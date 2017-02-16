@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		/*div::first-letter{
+			color: pink;
+		}
+		div::selection{
+			background-color: green;
+		}*/
+		div{
+			width: 200px;
+			line-height: 30px;
+			text-align: center;
+		}
+		/*div:hover:before{
+			content: "";
+			display: block;
+			width: 200px;
+			height: 200px;
+			background-color: green;
+		}*/
+		a:after{
+			content: attr(name);
+		}
+		img:after{
+			content: attr(alt);
+		}
+		/*对话框*/
+		#box{
+			width: 200px;
+			height: 100px;
+			float: left;
+			border-radius: 10%;
+			background-color: green;
+		}
+		#box:after{
+			content: "";
+			display: block;
+			width: 0;
+			height: 0;
+			border-top: 10px solid transparent;
+			border-bottom: 10px solid transparent;
+			border-left: 40px solid green;
+			position: absolute;
+			left: 208px;
+			top: 40px;
+		}
+	</style>
+	<body>
+		<!--<div><span>[</span>title<span>]</span></div>
+		<a name="百度" href="www.baidu.com">跳转到</a>
+		<a name="淘宝" href="www.taobao.com">跳转到</a>
+		<img src="" alt="image" />-->
+		<div id="box">你好</div>
+	</body>
+</html>

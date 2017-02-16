@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="http://songb2b.oss-cn-shanghai.aliyuncs.com/css/reset.css"/>
+		<style type="text/css">
+			div{
+				width: 500px;
+				height: 330px;
+				overflow: hidden;
+				position: relative;
+				}
+			ul{
+				position: absolute;
+				overflow: hidden;
+				left: 0;
+			}
+			#oUl{
+				width: 3000px;
+			}
+			li{
+				float: left;
+				width: 500px;
+				height: 330px;
+			}
+			#btn {
+				left: 20%;
+				bottom: 4px;
+			}
+			#btn li{
+				width: 30px;
+				height: 30px;
+				margin-left: 30px;
+				text-align: center;
+				line-height: 30px;
+				background-color: rgba(0,255,0,.5);
+				border-radius: 50%;
+			}
+			p{
+				position: absolute;
+				top: 40%;
+				width: 40px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				background-color: rgba(0,255,0,.5);
+				border-radius: 50%;
+			}
+			#turnleft{
+				left: 10px;
+			}
+			#turnright{
+				right: 10px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id = "outer">
+			<ul id="oUl" style="transition: all 1s linear;" >
+				<li style="width: 500px;">
+					<img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/01.jpg" alt="" />
+				</li>
+				<li><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/02.jpg" alt="" /></li>
+				<li><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/03.jpg" alt="" /></li>
+				<li><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/01.jpg"/></li>
+			</ul>
+			<ul id ="btn">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+			<p id="turnleft">&lt;</p>
+			<p id="turnright">&gt;</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var outer = document.getElementById("outer");
+		var oUl = document.getElementById("oUl");
+		var btns = document.getElementById("btn").getElementsByTagName("li");
+		var change = document.getElementsByTagName("p");
+		var banWidth = oUl.getElementsByTagName("li")[0].style.width.substring(0,3);
+		
+		console.log(document.getElementsByTagName("ul"));
+		banner(outer,oUl,btns,change,banWidth,2000);
+		function banner(outer,oUl,btns,change,banWidth,duration){
+			//参数一窗口，二图片，三按钮，四方向键，五宽度，六轮播间隔
+			var page = 0,maxpage = btns.length;
+			var timer = setInterval(move,duration);
+			var timer1;
+			function move(){
+				page ++;
+				if (page>maxpage) {
+					oUl.style.transition ="";
+					page = 0;
+					oUl.style.left = "0px";
+					timer1 = setTimeout(function(){
+						page++;
+						oUl.style.transition = "all 1s linear";
+						oUl.style.left = page*(-banWidth) + "px";
+					},1)
+				}
+				oUl.style.left = page*(-banWidth) + "px";
+				for (var i = 0; i < btns.length; i++) {
+					btns[i].index = i;
+					btns[i].onmouseover = function(){
+						page = this.index;
+						oUl.style.left = page*(-banWidth) + "px";
+					}
+				}
+			}	
+			//鼠标移入
+			outer.onmouseenter = function(){
+				clearInterval(timer);
+			}
+			//鼠标移出
+			outer.onmouseleave = function(){
+				timer = setInterval(move,duration);
+			}
+			//向前
+			change[0].onclick = function(){
+				page --;
+				if (page<0) {
+					oUl.style.transition ="";
+					page = maxpage;
+					oUl.style.left = "0px";
+					timer1 = setTimeout(function(){
+						page--;
+						oUl.style.transition = "all 1s linear";
+						oUl.style.left = page*(-banWidth) + "px";
+					},1)
+				}
+				oUl.style.left = page*(-banWidth) + "px";
+			}
+			//向后
+			change[1].onclick = function(){
+				page ++;
+				if (page>maxpage) {
+					oUl.style.transition ="";
+					page = 0;
+					oUl.style.left = "0px";
+					timer1 = setTimeout(function(){
+						page ++;
+						oUl.style.transition = "all 1s linear";
+						oUl.style.left = page*(-banWidth) + "px";
+					},1)
+				}
+				oUl.style.left = page*(-banWidth) + "px";
+			}
+		}
+	</script>
+</html>

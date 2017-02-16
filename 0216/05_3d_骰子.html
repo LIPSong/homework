@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="http://songb2b.oss-cn-shanghai.aliyuncs.com/css/reset.css"/>
+	<style type="text/css">
+	
+		#box{
+			margin: 100px;
+			transform-style: preserve-3d;
+			width: 200px;
+			height: 200px;
+			transform: rotateX(-30deg) rotateY(0deg);
+			-webkit-animation: move 10s infinite;
+		}
+		@-webkit-keyframes move{
+			from{transform: rotateX(0deg) rotateY(0deg);}
+			to{transform: rotateX(360deg) rotateY(360deg);}
+		}
+		#section{
+			position: absolute;
+			width: 200px;
+			height: 200px;
+			text-align: center;
+			line-height: 200px;
+			font-size: 180px;
+			opacity: 0.9;
+			backface-visibility: hidden;
+		}
+		#section:nth-child(1){
+			background-color: red;
+			transform: translateZ(100px);
+		}
+		#section:nth-child(2){
+			background-color: orange;
+			transform: rotateY(90deg) translateZ(100px);
+		}
+		#section:nth-child(3){
+			background-color: yellow;
+			transform: rotateX(90deg) translateZ(100px);
+		}
+		#section:nth-child(4){
+			background-color: green;
+			transform: rotateX(-90deg) translateZ(100px);
+		}
+		#section:nth-child(5){
+			background-color: blue;
+			transform: rotateY(-90deg) translateZ(100px);
+		}
+		#section:nth-child(6){
+			background-color: blanchedalmond;
+			transform: rotateX(180deg) translateZ(100px);
+		}
+	</style>
+	<body>
+		<div id="box">
+			<div id="section">1</div>
+			<div id="section">2</div>
+			<div id="section">3</div>
+			<div id="section">4</div>
+			<div id="section">5</div>
+			<div id="section">6</div>
+		</div>
+	</body>
+</html>

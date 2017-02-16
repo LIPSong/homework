@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		p[align]{
+			background-color: red;
+		}
+		p[weizhi="one"]{
+			background-color: blue;
+		}
+		p[weizhi~="div"]{
+			color: salmon;	
+		}
+		/*~=包含的属性值以空格隔开*/
+		p[weizhi^="t"]{
+			color: darkgreen;
+		}
+		/*^=包含以等号后字符开头的属性*/
+		p[weizhi$="v"]{
+			color: gold;
+		}
+		/*$=包含以等号后字符结尾的属性*/
+		p[weizhi*="o"]{
+			color: hotpink;
+		}
+		/*属性含o字符*/
+		p[weizhi|="one"]
+		/**/
+		
+		/*p[自定义属性和原有属性均可]*/
+		a{
+			color: black;
+		}
+		a[href$="cn"]{
+			color: red;
+		}
+		input[type="email" i]{
+			border-color: blue;
+		}
+	</style>
+	<body>
+		<p weizhi="one" align="center">我是第一行</p>
+		<p weizhi="two" align	="left">我是第二行</p>
+		<p weizhi="three div">我是第三行</p>
+		<div id="box"></div>
+		<a href="www.baidu.cn">www.baidu.cn</a>
+		<input type="email" />
+	</body>
+</html>

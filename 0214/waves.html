@@ -5,13 +5,13 @@
 		<title>waves</title>
 	</head>
 	<body>
-		<canvas id="canvas" width="800" height="600"></canvas>
+		<canvas id="canvas" width="300" height="80"></canvas>
 		<button id="play_btn">play</button>
 	</body>
 	<script type="text/javascript" src="player.js"></script>
 	<script type="text/javascript">
 		var playBtn = document.getElementById("play_btn");
-		var player = new Player("http://songb2b.oss-cn-shanghai.aliyuncs.com/0213-mp3/song.mp3");
+		var player = new Player("http://songb2b.oss-cn-shanghai.aliyuncs.com/0213-mp3/01.mp3");
 		init();
 		function init(){
 			playBtn.onclick = function () {

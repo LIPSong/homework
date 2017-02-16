@@ -15,21 +15,25 @@
 			//画频谱分析
 			Player.prototype.draw = function() {
 				var this_= this;
+				var Width = document.getElementById("canvas").width,
+					Height = document.getElementById("canvas").height;
 				var array = this.loadAnalyserArray();
-				console.log(array);
-				this.canvasContext.clearRect(0,0,800,600);
-				var itemWidth = 10;//设置音频条宽度；
-				var itemSpace = 5;//设置间隔
-				var Width = 800,Height = 600;
+				//console.log(array);
+				this.canvasContext.clearRect(0,0,Width,Height);
+				var itemWidth = 4;//设置音频条宽度；
+				var itemSpace = 3;//设置间隔
+				
 				var canDrawNum = Width/(itemWidth + itemSpace);//计数条个数
 				var step = parseInt(array.length/canDrawNum);//音频数组取值步长
 				for (var i = 0; i < canDrawNum; i++) {				
-					var itemHeight = array[i*step];
-					this.canvasContext.fillStyle = "yellow";
+					var itemHeight = array[i*step]/3;
+					this.canvasContext.fillStyle = "rgb("+"175,"+array[i*step]+",50"+")";
 					this.canvasContext.fillRect((itemSpace+itemWidth)*i,Height-itemHeight,itemWidth,itemHeight);
 				}
 				if(this.audioContext.state != "suspended"){
-					
+					setTimeout(function(){
+						this_.draw();
+					},100)
 				}else {
 					clearTimeout(0);
 				}

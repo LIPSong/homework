@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			li{
+				width: 100px;
+				float: left;
+				line-height: 30px;
+				text-align: center;
+				border: ;
+			}
+			li:nth-last-child(1){
+				color: blue;
+			}
+			
+			div{
+				float: left;
+				width: 50px;
+				height: 50px;
+				background-color: red;
+			}
+			div:only-of-type{
+				background-color: #FFFF00;
+			}
+			input:enabled{
+				color: yellow;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<ul>
+			<li>第一行</li>
+			<li>第二行</li>
+			<li>第三行</li>
+			<li>第四行</li>
+			<li>第五行</li>
+			<li>第六行</li>
+			<li>
+				<div></div>
+			</li>
+			<li>
+				<p></p>
+				<div></div>
+			</li>
+		</ul>
+		<form action="">
+			<input type="text" value="hello"/>
+		</form>
+	</body>
+</html>

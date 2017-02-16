@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="http://songb2b.oss-cn-shanghai.aliyuncs.com/css/reset.css"/>
+		<style type="text/css">
+			h2,p,div,img{
+				transition: 1s;
+				color: #fff;
+			}
+			div{
+				overflow: hidden;
+				width: 33%;
+				height: 400px;
+				position: relative;
+				float: left;
+			}
+			div:nth-child(1) h2,div:nth-child(1) p{
+			position: absolute;	
+			left: 50px;	
+			}
+			div:nth-child(1) h2{
+				top: 100px;
+			}
+			div:nth-child(2) h2{
+				position: absolute;
+				top: 50px;
+				left: 50px;
+			}
+			div:nth-child(2) p:nth-child(3){
+				position: absolute;
+				top: 100px;
+				left: -70px;
+				transition-delay:0.2s;
+			}
+			div:nth-child(2) p:nth-child(4){
+				position: absolute;
+				top: 120px;
+				left: -70px;
+				transition-delay:0.3s;
+			}
+			div:nth-child(2) p:nth-child(5){
+				position: absolute;
+				top: 140px;
+				left: -70px;
+				transition-delay:0.4s;
+			}
+			div:nth-child(2):hover p{
+				transform: translateX(100px);
+			}
+			div:nth-child(4) p{
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				left: 0px;
+				top: 0px;
+				transform: translateX(-200px) translateY(-200px) rotate(0deg);
+				border: 1px solid beige;
+			}
+			div:nth-child(4):hover p{
+				transform: translateX(50px) translateY(50px) rotate(360deg);
+				
+			}
+		</style>
+		<style type="text/css">
+			div:nth-child(5){
+				position: relative;、
+				background-color: darkgreen;
+			}
+			div:nth-child(5) p{
+	 			position: absolute;
+	 			width: 80px;
+	 			height: 80px;
+	 			top: 10px;
+	 			left: 10px;
+			}
+			div:nth-child(5) p:first-child{
+				border-top: 1px solid navajowhite;
+				border-bottom: 1px solid navajowhite;
+			}
+			div:nth-child(5) p:last-child{
+				border-left: 1px solid navajowhite;
+				border-right: 1px solid navajowhite;
+			}
+			div:nth-child(5):hover p:first-child{
+				transform: scale(0.8,0.5);
+			}
+			div:nth-child(5):hover p:last-child{
+				transform: scale(0.5,0.8);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="">
+			
+		
+		<img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/01.jpg"/>
+		<h2>平移动画</h2>
+		<p>简单css3过渡动画</p>
+		</div>
+		<div>
+			<img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/02.jpg"/>
+			<h2>平移动画2-多条文字</h2>
+			<p>第一条文字</p>
+			<p>第二条文字</p>
+			<p>第三条文字</p>
+		</div>
+		<div>	
+			<p>第一条文字</p>
+			<p>第二条文字</p>
+		</div>
+		<div>
+			<img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/02.jpg"/>
+			<p>hello-world</p>
+		</div>
+		
+		<div>
+			<p></p>
+			<p></p>
+		</div>
+	</body>
+</html>
