@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css" id="style">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#banner{
+			width: 500px;
+			height: 300px;
+			margin: 100px auto;
+		}
+		#list{
+			width: 500px;
+			height: 300px;
+		}
+		#list li{
+			transform-style: preserve-3d;
+			float: left;
+			height: 300px;
+			transform-origin: center center -150px;
+			/*width: 20px;*/
+		}
+		#list li a{
+			width: 100%;
+			height: 300px;
+			position: absolute;
+			
+		}
+		#list li a:nth-child(1){
+			background: url("http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/01.jpg");
+		}
+		#list li a:nth-child(2){
+			background: url("http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/02.jpg");
+			top: -300px;
+			transform: rotateX(90deg);
+			transform-origin: bottom;
+		}
+		#list li a:nth-child(3){
+			background: url("http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/03.jpg");
+			transform: translateZ(-300px) rotateX(180deg) ;
+		}
+		#list li a:nth-child(4){
+			background: url("http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/04.jpg");
+			top: 300px;
+			transform: rotateX(-90deg);
+			transform-origin: top;
+		}
+		#ctrl{
+			float: right;
+		}
+		#ctrl li{
+			width: 30px;
+			height: 30px;
+			float: left;
+			border-radius: 50%;
+			margin-left: 10px;
+			background-color: #ccc;
+			text-align: center;
+			line-height: 30px;
+		}
+	</style>
+	</head>
+	
+	<body>
+		<div id="banner">
+			<ul id="list">
+				<!--<li>
+					<a href=""></a>
+					<a href=""></a>
+					<a href=""></a>
+					<a href=""></a>
+				</li>-->
+			</ul>
+			<ul id="ctrl">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		var oBanner = document.getElementById("banner");
+		var oList = document.getElementById("list");
+		var oLi = oList.getElementsByTagName("li");
+		var oCtrl = document.getElementById("ctrl");
+		var oBtn = oCtrl.getElementsByTagName("li");
+		var oStyle = document.getElementById("style");
+		var uim = 20;//方块竖条宽度
+		var oLength = oList.clientWidth/uim;
+		var sLi = "";//待追加元素初始为空
+		var oSt = "";//竖条样式初始为空
+		for (var i = 0; i < oLength; i++) {
+			sLi += "<li><a href='#'></a><a href='#'></a><a href='#'></a><a href='#'></a></li>"
+			oSt += "#list li:nth-child("+(i+1)+") a{background-position:-"+i*uim+"px;}"
+		}
+		oList.innerHTML = sLi;	
+		oStyle.innerHTML += oSt;
+		for (var i = 0; i < oLength; i++) {
+			oLi[i].style.width = uim+"px";
+		}
+		for (var i = 0; i < oBtn.length; i++) {
+			oBtn[i].index = i;
+			oBtn[i].addEventListener("click",function(){
+				for (var j = 0; j < oLength; j++) {
+					oLi[j].style.transition = 50 + j*50 +"ms"+" linear";
+					oLi[j].style.transform = "rotateX("+ -this.index*90+"deg)";
+				}
+			})
+		}
+	</script>
+</html>

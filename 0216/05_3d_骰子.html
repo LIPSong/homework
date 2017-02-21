@@ -8,7 +8,7 @@
 	<style type="text/css">
 	
 		#box{
-			margin: 100px;
+			margin: 200px;
 			transform-style: preserve-3d;
 			width: 200px;
 			height: 200px;
@@ -53,6 +53,25 @@
 			background-color: blanchedalmond;
 			transform: rotateX(180deg) translateZ(100px);
 		}
+		span{
+			position: absolute;
+			width: 400px;
+			height: 400px;
+			top: -100px;
+			left: -100px;
+			border-radius: 50%;
+		}
+		span:nth-child(7){
+			border: 1px solid #8A2BE2;
+			transform:rotateY(90deg);
+		}
+		span:nth-child(8){
+			border: 1px solid #FF0000;
+			transform:rotateX(90deg);
+		}
+		span:nth-child(9){
+			border: 1px solid #00FFCC;
+		}
 	</style>
 	<body>
 		<div id="box">
@@ -62,6 +81,10 @@
 			<div id="section">4</div>
 			<div id="section">5</div>
 			<div id="section">6</div>
+			<span></span>
+			<span></span>
+			<span></span>
 		</div>
+		
 	</body>
 </html>

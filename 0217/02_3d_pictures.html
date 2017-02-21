@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				transition: all 1s;
+			}
+			#box{
+				position: relative;
+				width: 1000px;
+				height: 600px;
+				transform-style: preserve-3d;
+				transform: rotateY(10deg) perspective(1000px);
+			}
+			.img{
+				position: absolute;
+				top: 20px;
+				right: 20px;
+				width: 400px;
+				height: 200px;
+				opacity: 1;
+			}
+			.img:nth-child(1){
+				transform: rotateX(65deg) translateZ(-50px);
+			}
+			.img:nth-child(2){
+				transform: rotateX(65deg) translateZ(-100px);
+			}
+			.img:nth-child(3){
+				transform: rotateX(65deg) translateZ(-150px);
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div class="img"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/01.jpg" alt="" /></div>
+			<div class="img"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/02.jpg" alt="" /></div>
+			<div class="img"><img src="http://songb2b.oss-cn-shanghai.aliyuncs.com/images/homework/03.jpg"/></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var imgs = document.getElementsByClassName("img");
+		for (var i = 0; i < imgs.length; i++) {
+			imgs[i].addEventListener("click",function(){
+				if(this.style.webkitTransform==""){
+					for (var j = 0; j < imgs.length; j++) {
+						imgs[j].style.webkitTransform="";
+					}
+				}
+				this.style.webkitTransform = "rotateX(0deg) rotateY(0deg) translateZ(0px) translateX(-600px)";
+			})
+			imgs[i].addEventListener("dblclick",function(){
+			this.style.webkitTransform = "";
+			})
+		}
+		
+	</script>
+</html>
