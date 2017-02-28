@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>粮仓</title>
+    <!--自适应-->
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    <script>
+    /**
+        	 * 540px screen adaptive
+        	 */
+    var a = window.document.documentElement;
+    var b = document.createElement('meta');
+    if (window.screen.width >= 540) {
+        b.setAttribute('name', 'viewport');
+        b.setAttribute('content', 'width=540,  user-scalable=0');
+        a.firstElementChild.appendChild(b);
+    }
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link href="//cdn.bootcss.com/Swiper/3.4.1/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+    html,
+    body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        background: #eee;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        width: 100%;
+        height: 6rem;
+        background-position: top;
+        background-size: cover;
+    }
+    </style>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+</head>
+<body>
+    <div class="view">
+        <!--导航-->
+        <nav class="nav-bar nav-bar-top">
+            <form action="">
+                <input type="text" class="form-control" id="searchKey" name="keywords" placeholder="发现商品">
+                <div type="button" class="btn-search" id="btnSearch" onclick="goSearch()"></div>
+            </form>
+        </nav>
+        <nav class="nav-bar nav-bar-bottom">
+            <div class="nav-bottom-cantainer">
+                <a href="index.html"><img src="img/home-small.png" alt="首页"></a>
+                <a id="classify" href="classify.html"><img src="img/ffl.png" alt="分类"></a>
+                <!--预留获取后台数据按钮-->
+                <a id="shoppingCart" href=""><img src="img/fgwc.png" alt="购物车"></a>
+                <a id="login order" href="login.html"><img src="img/fdl.png" alt="登录&订单中心"></a>
+            </div>
+        </nav>
+        <div class="container">
+            <!--首页轮播-->
+            <!-- Swiper -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="background-image: url('https://img.alicdn.com/bao/uploaded/i3/TB1eqMyIVXXXXXIaXXXXXXXXXXX_!!0-item_pic.jpg_430x430q90.jpg');"></div>
+                    <div class="swiper-slide" style="background-image: url('http://img30.360buyimg.com/popWaterMark/jfs/t2011/4/612174753/231399/8309087b/561cbdb9N3ce22bf7.jpg');"></div>
+                    <div class="swiper-slide" style="background-image: url('https://img.alicdn.com/imgextra/i2/2625587648/TB20VACfpXXXXcFXXXXXXXXXXXX_!!2625587648.jpg');"></div>
+                    <div class="swiper-slide" style="background-image: url('https://img.alicdn.com/imgextra/i3/119579859/TB2W761fpXXXXXpXpXXXXXXXXXX_!!119579859.jpg');"></div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination swiper-pagination-white"></div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//cdn.bootcss.com/Swiper/3.4.1/js/swiper.min.js"></script>
+    <script>
+    /**
+        	 * @description initialize swiper 
+        	 */
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: '.swiper-pagination',
+        spaceBetween: 30,
+        effect: 'slide',
+        autoplay: 2000,
+        loop: true
+    });
+    </script>
+    <script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+@border: #727070;
+@background: #24272F;
+@color: #fff;
+.navbar{
+    background: @background;
+}
+.btn.btn-block {
+  color: @color;
+  background-color: @background;
+  border-color: @border;
+  &:focus,
+  &.focus {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 25%);
+  }
+  &:hover {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 12%);
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    color: @color;
+    background-color: darken(@background, 10%);
+        border-color: darken(@border, 12%);
+
+    &:hover,
+    &:focus,
+    &.focus {
+      color: @color;
+      background-color: darken(@background, 17%);
+          border-color: darken(@border, 25%);
+    }
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: @background;
+          border-color: @border;
+    }
+  }
+}
+.btn-lg{
+    background: @inputbc;
+    border-color: @bordercolor;
+}
+.btn.btn-block{
+    &.active{
+    background-color: darken(@inputbc,15%);
+    border-color: darken(@bordercolor,25%);
+    }
+    &:active{
+    background: @inputbc;
+    border-color: @bordercolor;  
+    }
+    &.hover{
+    background: @inputbc;
+    border-color: @bordercolor;
+    }
+    &:hover{
+    background: @inputbc;
+    border-color: @bordercolor;  
+    }
+}

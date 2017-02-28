@@ -1,0 +1,111 @@
+body {
+  background: rgba(36, 39, 47, 0.2);
+}
+body .view {
+  padding-top: 1.1rem;
+}
+.btn {
+  background: red;
+  color: #fff;
+}
+/**
+ * 媒体查询断点540px
+ */
+@media only screen and (min-width: 540px) {
+  .nav-bar {
+    width: 100% !important;
+  }
+  .nav-bar.nav-bar-top {
+    background-size: 100% 1.2rem !important;
+  }
+  .nav-bar .btn-search {
+    margin-right: 0.5rem !important;
+  }
+}
+.container {
+  width: 10rem;
+  margin: 0 auto;
+}
+.nav-bar {
+  width: 10rem;
+  height: 1.1rem;
+  position: fixed;
+  left: 0;
+  overflow: hidden;
+  z-index: 99999;
+}
+.nav-bar.nav-bar-top {
+  top: 0;
+  background: url('http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/23/23460.png') center no-repeat;
+  background-size: 10rem 1.2rem;
+}
+.nav-bar.nav-bar-bottom {
+  bottom: 0;
+  background-color: #24272F;
+}
+.nav-bar.nav-bar-bottom .nav-bottom-cantainer {
+  width: 10rem;
+  margin: 0 auto;
+}
+.nav-bar.nav-bar-bottom a {
+  display: block;
+  width: 2.5rem;
+  float: left;
+  padding: 0.07rem 0;
+}
+.nav-bar.nav-bar-bottom a img {
+  width: 0.7rem;
+  height: 0.9rem;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.5;
+}
+.nav-bar.nav-bar-bottom a img:hover {
+  opacity: 1;
+}
+.nav-bar.nav-bar-bottom a:nth-child(3) img {
+  width: 0.9rem;
+}
+.nav-bar.nav-bar-bottom a:nth-child(1) img {
+  opacity: 1;
+}
+.nav-bar .form-control {
+  float: left;
+  margin-left: 0.70rem;
+  margin-top: 0.39rem;
+  font-size: 0.28rem;
+  width: 5.63rem;
+  height: 0.35rem;
+  line-height: 0.35rem;
+  border: 0;
+  border: none;
+}
+.nav-bar .btn-search {
+  float: right;
+  width: 1.12rem;
+  height: 1.12rem;
+  margin-right: 0rem;
+}
+/**
+     * 商品展示区样式
+ */
+.goods {
+  width: 10rem;
+  height: 100rem;
+}
+.goods .goods-item {
+  width: 100%;
+  height: 5rem;
+  overflow: hidden;
+}
+.goods .goods-item:nth-child(2n-1) {
+  background: #24272f;
+}
+.goods .goods-item:nth-child(2n-1) img {
+  width: 5rem;
+  height: 5rem;
+}
+.goods .goods-item:nth-child(2n) img {
+  width: 10rem;
+  height: 5rem;
+}

@@ -1,0 +1,56 @@
+.navbar {
+    background: #24272f;
+}
+.btn.btn-block {
+    border-color: #727070;
+    color: #fff;
+    background-color: #24272f;
+}
+.btn.btn-block:focus,
+.btn.btn-block.focus {
+    border-color: #323131;
+    color: #fff;
+    background-color: #0e0f12;
+}
+.btn.btn-block:hover {
+    border-color: #535252;
+    color: #fff;
+    background-color: #0e0f12;
+}
+.btn.btn-block:active,
+.btn.btn-block.active,
+.open > .dropdown-toggle.btn.btn-block {
+    border-color: #535252;
+    color: #fff;
+    background-color: #0e0f12;
+}
+.btn.btn-block:active:hover,
+.btn.btn-block.active:hover,
+.open > .dropdown-toggle.btn.btn-block:hover,
+.btn.btn-block:active:focus,
+.btn.btn-block.active:focus,
+.open > .dropdown-toggle.btn.btn-block:focus,
+.btn.btn-block:active.focus,
+.btn.btn-block.active.focus,
+.open > .dropdown-toggle.btn.btn-block.focus {
+    border-color: #323131;
+    color: #fff;
+    background-color: #000;
+}
+.btn.btn-block:active,
+.btn.btn-block.active,
+.open > .dropdown-toggle.btn.btn-block {
+    background-image: none;
+}
+.btn.btn-block.disabled:hover,
+.btn.btn-block[disabled]:hover,
+fieldset[disabled] .btn.btn-block:hover,
+.btn.btn-block.disabled:focus,
+.btn.btn-block[disabled]:focus,
+fieldset[disabled] .btn.btn-block:focus,
+.btn.btn-block.disabled.focus,
+.btn.btn-block[disabled].focus,
+fieldset[disabled] .btn.btn-block.focus {
+    border-color: #727070;
+    background-color: #24272f;
+}

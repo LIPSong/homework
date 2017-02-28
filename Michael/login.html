@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="css/granary.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/buttons.css" />
+    <script type="text/javascript">
+    	
+   		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+   			
+   		});
+    </script>
+   <style type="text/css">
+   	/*媒体查询*/
+   	@media only screen and (min-width: 640px) {
+   		.col-sm-10{
+   			width: 100%;
+   		}
+   		.col-sm-offset-2{
+   			margin-left: 0%;
+   		}
+   		h3{
+   			position: absolute;
+   			left: 8%;
+   			top: 10%;
+   		}
+   	}
+   </style>
+   
+</head>
+<body>
+	<!--导航条-->
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="index.html">
+	        <img alt="Brand" src="http://songb2b.oss-cn-shanghai.aliyuncs.com/granary/images/granary-logo.png">
+	      </a>	 
+	      <a href="index.html">
+	        <h3>首页</h3>
+	      </a>
+	    </div>
+	  </div>
+	</nav>	
+	<!--登录框-->
+	<form class="form-horizontal">
+		
+	  <div class="form-group">
+	    <div class="col-sm-10">
+	      <input type="email" class="form-control" id="inputUsername3" placeholder="请输入邮箱" name="userID">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <div class="col-sm-10">
+	      <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码" name="password">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <div class="col-sm-offset-2 col-sm-10">
+	      <div class="checkbox">
+	        <label>
+	          <input type="checkbox" id="remember-me"> 记住我的登录状态
+	        </label>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <div class="col-sm-offset-2 col-sm-10">
+	      <button type="button" id="login" class="btn btn-primary btn-lg btn-block">登录</button>
+	      <button type="button" id="register" class="btn btn-primary btn-lg btn-block active">注册</button>
+	      <input type="hidden" name="status" value="login"/>
+	    </div>
+	  </div>
+	</form>	
+	
+			
+	
+	
+	
+	
+	
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="//cdn.bootcss.com/layer/3.0.1/mobile/layer.min.js"></script>
+    <script type="text/javascript">
+    	console.log("hello");
+    	//注册跳转
+   	$("#register").click(function(){
+   		window.location.href = "register.html"
+   	})
+    	//登录
+	$("#login").click(function() {     
+		var userID = $(".form-group input[name=userID]").val();
+        var password = $(".form-group input[name=password]").val();
+        var register = $(".form-group input[name=status]").val();
+        $(this).addClass("active");
+        var formData = {
+            "status": register,
+            "userID": userID,
+            "password": password
+        };
+        console.log(formData);
+   		function verify(object){
+   			var myreg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+   			if (object.userID=="") {
+   				layer.open({skin:'msg',content:'请输入正确的账号',time:2});
+   				return false;
+   			} else if(object.password==""){
+   				layer.open({skin:'msg',content:'请输入正确的密码',time:2});
+   				return false;
+   			} else if(myreg.test(object.userID) == false){
+   				layer.open({skin:'msg',content:'请输入正确的账号',time:2});
+   				return false;
+   			}
+   			return true;		
+   		}
+   		if(verify(formData)){
+   			//加载加载层
+   			layer.open({type: 2,content: '登录中',shadeClose:false});
+   			$("#login").attr("disabled",true);
+	        $.ajax({
+	            "data": formData,
+	            "url": "http://datainfo.duapp.com/shopdata/userinfo.php",
+	            "method": "POST",
+	            "success": function(data) {
+	                if (data === "0") {
+	                		layer.closeAll();
+	                		layer.open({skin:'msg',content:'用户名不存在',time:2});
+	                    $("#login").removeAttr("disabled");
+	                    return;
+	                } else if(data === "2") {
+	                		layer.open({skin:'msg',content:'用户名或密码错误',time:2});
+	                    $("#login").removeAttr("disabled");
+	                    return;
+	                } else {
+	               	    $("#login").removeAttr("disabled");
+	                    data = JSON.parse(data);
+	                    console.log(data);
+	                    for(var key in formData){
+	                    localStorage.setItem(key, formData[key]);}
+	                    window.location.href = "index.html";
+	                }
+           		 }
+	           })
+    			}
+   		})		
+    </script>
+</body>
+</html>

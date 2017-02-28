@@ -1,0 +1,89 @@
+body {
+    background: rgba(36, 39, 47, .2);
+}
+body .view {
+    padding-top: 1.1rem;
+}
+.btn {
+    color: #fff;
+    background: red;
+}
+/**
+ * 媒体查询断点540px
+ */
+@media only screen and (min-width: 540px) {
+    .nav-bar {
+        width: 100% !important;
+    }
+    .nav-bar.nav-bar-top {
+        background-size: 100% 1.2rem !important;
+    }
+    .nav-bar .btn-search {
+        margin-right: .5rem !important;
+    }
+}
+.container {
+    width: 10rem;
+    margin: 0 auto;
+    background: red;
+}
+.nav-bar {
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    overflow: hidden;
+    width: 10rem;
+    height: 1.1rem;
+}
+.nav-bar.nav-bar-top {
+    top: 0;
+    background: url("http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/23/23460.png") center no-repeat;
+    background-size: 10rem 1.2rem;
+}
+.nav-bar.nav-bar-bottom {
+    bottom: 0;
+    background-color: #24272f;
+}
+.nav-bar.nav-bar-bottom .nav-bottom-cantainer {
+    width: 10rem;
+    margin: 0 auto;
+}
+.nav-bar.nav-bar-bottom a {
+    display: block;
+    float: left;
+    width: 2.5rem;
+    padding: .07rem 0;
+}
+.nav-bar.nav-bar-bottom a img {
+    display: block;
+    width: .7rem;
+    height: .9rem;
+    margin: 0 auto;
+    opacity: .5;
+}
+.nav-bar.nav-bar-bottom a img:hover {
+    opacity: 1;
+}
+.nav-bar.nav-bar-bottom a:nth-child(3) img {
+    width: .9rem;
+}
+.nav-bar.nav-bar-bottom a:nth-child(1) img {
+    opacity: 1;
+}
+.nav-bar .form-control {
+    float: left;
+    width: 5.63rem;
+    height: .35rem;
+    margin-top: .39rem;
+    margin-left: .70rem;
+    border: 0;
+    border: none;
+    font-size: .28rem;
+    line-height: .35rem;
+}
+.nav-bar .btn-search {
+    float: right;
+    width: 1.12rem;
+    height: 1.12rem;
+    margin-right: 0rem;
+}

@@ -1,0 +1,44 @@
+/*********************
+ * 
+ * author: Song Liping;
+ * version: 1.0-0223;
+ * 
+ * ********************/
+/**head**/
+
+.navbar{
+	-webkit-box-shadow: 0 0 8px #727070;
+    -moz-box-shadow: 0 0 8px #727070;
+    box-shadow: 0 0 8px #727070;
+	background: #24272F;
+	min-height: 60px;
+}
+.btn-lg{
+	width: 90%;
+	margin: 0 auto;
+	background-color: #24272F;
+	border-color: #727070;
+}
+#inputUsername3,#inputPassword3{
+	width: 90%;
+	margin: 0 auto;
+	outline: none;
+	border: 0;
+	border-bottom: solid 1px #000;
+	border-radius: 0;
+	box-shadow: none;
+}
+.checkbox{
+	margin-left: 5%;
+}
+.navbar-header
+h3{
+	color: #fff;
+}
+.btn-lg{
+	margin-bottom: 5%;
+}
+.btn:active{
+	
+}
+

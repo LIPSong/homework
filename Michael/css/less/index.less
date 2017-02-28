@@ -1,0 +1,129 @@
+// 
+//  index.less
+//  <project>
+//  
+//  Created by song on 2017-02-25.
+//  Copyright 2017 song. All rights reserved.
+// 
+
+@border: #727070;
+@background: #24272F;
+@color: #fff;
+body{
+    background: fade(@background,20%);
+    .view{
+    padding-top: 1.1rem;}
+}
+.btn-varant(@btncolor:red){
+    background: @btncolor;
+    color: @color;
+}
+.btn{
+    .btn-varant();
+}
+/**
+ * 媒体查询断点540px
+ */
+@media only screen and (min-width: 540px) {
+    .nav-bar{
+        width: 100% !important; 
+        &.nav-bar-top{
+            background-size: 100% 1.2rem !important;
+        }
+        .btn-search{margin-right: 0.5rem !important;}
+    }
+}
+.container{
+    width: 10rem;
+    margin: 0 auto;
+}
+.nav-bar{
+    width: 10rem;
+    height: 1.1rem;
+    position: fixed;
+    left: 0;
+    overflow: hidden;
+    z-index: 99999;
+    &.nav-bar-top{
+        top: 0;
+        background: url('http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/23/23460.png') center no-repeat;
+    background-size:10rem 1.2rem;
+    }
+    &.nav-bar-bottom{
+        bottom: 0;
+        background-color: @background;
+        .nav-bottom-cantainer{
+            width: 10rem;
+            margin: 0 auto;
+        }
+        a{
+            display: block;
+            width: 2.5rem;
+            float: left;
+            padding: 0.07rem 0;
+            img{
+                width: 0.7rem;
+                height: 0.9rem;
+                display: block;
+                margin: 0 auto;
+                opacity: 0.5;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+            &:nth-child(3){
+                img{
+                    width: 0.9rem;
+                }
+            }
+            &:nth-child(1){
+                img{
+                    opacity: 1;
+                }
+            }      
+        }
+    }
+    .form-control{
+        float: left;
+        margin-left: 0.70rem;
+        margin-top: 0.39rem;
+        font-size: 0.28rem;
+        width: 5.63rem;
+        height: 0.35rem;
+        line-height: 0.35rem;
+        border: 0;
+        border: none; 
+    }
+    .btn-search{
+        float: right;
+        width: 1.12rem;
+        height: 1.12rem;
+        margin-right: 0rem;
+        
+    }
+}
+/**
+     * 商品展示区样式
+ */
+.goods{
+    width: 10rem;
+    height: 100rem;
+    .goods-item{
+        width: 100%;
+        height: 5rem;
+        overflow: hidden;
+        &:nth-child(2n-1){
+            background: fade(@background,100%);
+            img{
+                width: 5rem;
+                height: 5rem;
+            }
+        }
+        &:nth-child(2n){
+            img{
+                width: 10rem;
+                height: 5rem;
+            }
+        }
+    }
+}
