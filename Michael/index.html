@@ -54,7 +54,7 @@
 		<!--导航-->
 		<nav class="nav-bar nav-bar-top">
 			<form action="">
-				<input type="text" class="form-control" id="searchKey" name="keywords" placeholder="发现商品"/>
+				<input type="text" class="form-control" id="searchKey" name="selectText" placeholder="发现商品"/>
 				<div type="button" class="btn-search" id="btnSearch" onclick="goSearch()"></div>
 			</form>
 		</nav>
@@ -205,12 +205,15 @@
 			}
 			else
 			{
-				var gourl = "search.html?keywords="+key;
+				var gourl = "classify-details.html?selectText="+key;
 				window.location.href=gourl;
 			}
 
 		}
-		
+		if(GetQueryString('selectText')){
+			var gourl = "classify-details.html?selectText="+GetQueryString('selectText');
+			window.location.href=gourl;
+		}
 	
     </script>
 </body>

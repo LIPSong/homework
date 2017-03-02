@@ -134,6 +134,7 @@
 	</script>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/layer/3.0.1/mobile/layer.min.js"></script>
 	<script src="js/ajax.js"></script>
 	<!--<script src="js/classify.js"></script>-->
 	<script type="text/javascript">
@@ -146,8 +147,14 @@
 		/**
 		 * 获取商品区dom并通过提交location内容获取数据
 		 */
-		var listUrl = 'http://datainfo.duapp.com/shopdata/getGoods.php';//获取商品数据
-		var GetGoodsOptions = {classID: GetQueryString('classID')};
+		if(GetQueryString('classID')){
+			var GetGoodsOptions = {classID: GetQueryString('classID')};
+			var listUrl = 'http://datainfo.duapp.com/shopdata/getGoods.php';//获取商品分类接口
+		}
+		else if(GetQueryString('selectText')){
+			var GetGoodsOptions = {selectText: GetQueryString('selectText')};
+			var listUrl = 'http://datainfo.duapp.com/shopdata/selectGoodes.php';//搜索商品接口
+		};
 		getGoods(listUrl,GetGoodsOptions,parseList,'JSONP');
 		var templateStrings = $("#template").html();
 		 /**
@@ -163,6 +170,14 @@
 			     $('.shop-list').append($(Domstring));
 			    }
 		   }
+		 	else if(data == 0){
+		 		layer.open({skin:'msg',content:'暂无商品',time: 3,style: 'bottom: 0;'});
+		 		setTimeout(function(){
+		 			var gourl = 'index.html';
+              		history.replaceState(null, "", gourl);
+              		window.location.reload();
+		 		}, 4000)		 		
+		 	}
 		    /**
 		     * 解析数据
 		     */

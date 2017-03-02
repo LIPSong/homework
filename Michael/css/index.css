@@ -73,7 +73,7 @@ body .view {
   margin-top: 0.39rem;
   font-size: 0.28rem;
   width: 5.63rem;
-  height: 0.35rem;
+  height: 0.4rem;
   line-height: 0.35rem;
   border: 0;
   border: none;
@@ -382,4 +382,13 @@ body .view {
   height: 0.37rem;
   color: #3193F3;
   font-size: 0.37rem;
+}
+/*
+ * 弹出层
+ */
+.layui-m-layer-msg .layui-m-layercont {
+  width: 8rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 0.43rem;
 }
