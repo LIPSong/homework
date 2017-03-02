@@ -1,9 +1,90 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title></title>
+		<meta charset="utf-8">
+	    <title>分类</title>
+	    <!--自适应-->
+	    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+	    <script>
+	    	/**
+	    	 * 540px screen adaptive defalut 
+	    	 */	
+	    	 	var a =window.document.documentElement;
+	    		var b = document.createElement("meta");
+	    		if(window.screen.width >= 540){
+	    			b.setAttribute('name','viewport');
+	    			b.setAttribute('content', 'width=540,  user-scalable=0');
+	    			a.firstElementChild.appendChild(b);
+	    		}
+	    </script>
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	    <link rel="stylesheet" href="css/index.css" />
 	</head>
 	<body>
+		<div class="classify-view">
+			<!--顶部导航-->
+			<nav class="nav-bar nav-bar-top">
+				<div class="welcome-logo"><a href="index.html"><img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/23/23348.png"></a>					
+				</div>
+				<div class="welcome-div">
+					<a href="index.html"> 首页</a>
+				</div>
+				<div class="title-div">
+				分类
+				</div>
+				<div class="login-div"><a href="javascript: goLoginWeb()">登录</a></div>
+			</nav>
+			<!--分类内容-->
+			<div class="main-container">
+				<!--<div class="classify-item">
+					<div class="layer"></div>
+					<div class="desc">衬衫</div>
+				</div>
+				<div style="height: 0.26rem;"></div>-->
+			</div>
+		   
+		</div>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+	<script src="js/ajax.js"></script>
+	<!--<script src="js/classify.js"></script>-->
+	<script type="text/javascript">
+		//登录到设置登录网址，并打开登录窗口
+		function goLoginWeb(){
+              var gourl = "login.html?gourl="+location.href;
+              history.replaceState(null, "", gourl);
+              window.location.reload();
+		}
+		/**
+		 * 获取分类区dom @example img a 并修改值
+		 */
+		var classUrl = 'http://datainfo.duapp.com/shopdata/getclass.php';//获取商品数据
+		 var GetGoodsOptions = {};
+		 getGoods(classUrl,GetGoodsOptions,parseHot,'');
+		 /**
+		  * 
+		  * @param {Object} data
+		  */
+		 function parseHot(data){
+		 	var mainContainer = $('.main-container');
+		 	data = JSON.parse(data);
+		 	//循环取数据
+		 	for(var i in data){
+		 		var classID =data[i].classID;		 		
+				var className = data[i].className;
+				var classifyItem = "<div class='classify-item'><div class='layer'></div><div class='desc'>"+className+"</div></div><div style='height: 0.26rem;'></div>"
+				classifyItem = $(classifyItem);
+				classifyItem.on('click',function(){
+					var gourl = "classify-details.html?className="+className+"&classID="+classID;
+              		history.replaceState(null, "", gourl);
+              		window.location.reload();
+				})
+				mainContainer.append(classifyItem);
+			}
+		 }
+	</script>
 	</body>
 </html>
+
+       
+

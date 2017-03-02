@@ -10,8 +10,8 @@
 	/**
 	 * @description 获取轮播数据 
 	 */
-	var getBannerOptions = new GetGoodsOptions();
-		 getGoods(bannerUrl,getBannerOptions,parseBanner);
+	 var getBannerOptions = new GetOptions();
+		 getGoods(bannerUrl,getBannerOptions,parseBanner,'JSONP');
 	 /**
 	  * @description 处理首页轮播
 	  */
@@ -32,58 +32,40 @@
 	 	   swiper.destroy(false);
 	 	   swiper.init();
 	 }
-	
-	/**
-	 * 商品列表
-	 */
-	function getGoods(url,options,callback){
-	 	$.ajax({
-	 		data: options,
-	 		url: url,
-	 		method: 'POST',
-	 		dataType: 'JSONP',
-	 		success: function(data){
-	 			callback(data);
-	 		}
-	 	});
-	 }
 		/**
-		 * 获取展示区dom @example img a 并修改值
+		 * 获取热卖区dom @example img a 并修改值
 		 */
-		 getGoods(getGoodsUrl,GetGoodsOptions,parseGoods);
-		 function parseGoods(data){
-		 	var goodsItems = $('.goods-item').children('a');
+		 var GetGoodsOptions = {};
+		 getGoods(getGoodsUrl,GetGoodsOptions,parseHot,'JSONP');
+		 /**
+		  * 
+		  * @param {Object} data
+		  */
+		 function parseHot(data){
+		 	var goodsItems = $('.goods-hot .item a');
 		 	//循环取数据
 		 	goodsItems.each(function(i){
 		 		var imgSrc = JSON.parse(data[i][6])[0];
-			 	var imgAlt = data[i][2]
+			 	var imgAlt = data[i][2];
+			 	var price = data[i][4];
 		 		var links = "details.html?goodsID=" + data[i].goodsID;
 		 		$(this).attr('href',links);
 		 		$(this).children('img').attr('alt',imgAlt);
 		 		$(this).children('img').attr('src',imgSrc);
+		 		$(this).children('.desc').html(imgAlt);
+		 		$(this).children('.price').html(price);
 		 	})
 		 }
-		/**
-		 * @constructor 请求商品时传入后台参数
-		 */
-		function GetGoodsOptions(classID,goodsID,pageCode,lineumber){
-			this.classID = classID || "";
-			this.goodsID = goodsID || "";
-			this.pageCode = pageCode || "";
-			this.linenumber = lineumber || "";
-		}
-		var GetGoodsOptions = new GetGoodsOptions();
-
-	
-	
-
-
-
-
-
-
-
-
-
-
+		 /**
+		  * 
+		  */
+		 var searchGoodsUrl =  'http://datainfo.duapp.com/shopdata/selectGoodes.php';
+		 var searchOptions = new SearchOptions();
+		 searchOptions.selectText = '衬衫';
+		 getGoods(searchGoodsUrl,searchOptions,parseSearchGoods,'JSONP');
+		 console.log(searchOptions);
+		 function parseSearchGoods(data){
+		 	console.log(data);
+		 }
+		 
 }()

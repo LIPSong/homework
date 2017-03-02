@@ -10,9 +10,9 @@
 @background: #24272F;
 @color: #fff;
 body{
-    background: fade(@background,20%);
     .view{
-    padding-top: 1.1rem;}
+    padding-top: 1.1rem;
+    }
 }
 .btn-varant(@btncolor:red){
     background: @btncolor;
@@ -36,6 +36,7 @@ body{
 .container{
     width: 10rem;
     margin: 0 auto;
+    padding-bottom: 1.3rem;
 }
 .nav-bar{
     width: 10rem;
@@ -105,7 +106,67 @@ body{
 /**
      * 商品展示区样式
  */
+.diary{
+	background-color: #fff;
+	text-align: center;
+	padding: 0.5rem 0;
+	height: 0.7rem;
+	&::after{
+		content: "";
+		display: table;
+	}
+	img{
+		width: 3rem;
+		height: 0.5rem;
+	}
+}
+.goods-hot{
+	overflow: hidden;
+	background: white;
+	&::after{
+		content: ' ';
+		display: table;
+	}
+	.item{
+		background-color: rgb(241,241,241);
+		float: left;
+		margin-left: 0.25rem;
+		margin-bottom: 0.25rem;
+		width: 3rem;
+		height: 4.65rem;
+		overflow: hidden;
+		a{
+			color: black;
+		}
+		img{
+			width: 3rem;
+			height: 3rem;
+		}
+		.desc{
+			height: 0.9rem;
+			margin-left: 5%;
+			font-size: 0.3rem;
+			width: 90%;
+			line-height: 1.5;
+			word-break: break-all;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+		}
+		.price{
+			text-align: center;
+			font-size: 0.3rem;
+			line-height: 0.32rem;
+			margin-bottom: 0.28rem;
+			margin-top: 0.15rem;
+		}
+	}
+}
+
 .goods{
+	background-color: #fff;
     width: 10rem;
     height: 100rem;
     .goods-item{
@@ -126,4 +187,223 @@ body{
             }
         }
     }
+}
+/**
+ 	* footer
+ */
+.footer-container{
+	.footer{
+		float: left;
+		a{
+			color: black;
+			margin-left: 0.24rem;
+			img{
+				width: 3rem;
+				height: 1.84rem;
+			}
+		}
+	}
+	.tel{
+		text-align: center;
+		img{
+			width: 9.4rem;
+			height: 0.31rem;
+		}
+	}
+	.server-tel{
+		text-align: center;
+		font-size: 0.4rem;
+		a{
+			color: #000;
+		}
+	}
+	.work-time{
+		text-align: center;
+		font-size: 0.3rem;
+		color: #c2c2c2;
+	}
+}
+.contect-server{
+	position: fixed;
+	right: 10%;
+	bottom: 9%;
+	z-index: 1000;
+	color: #fff;
+	font-size: 0.3rem;
+	background-color: #5b799a;
+	float: right;
+	width: 1.6rem;
+	height: 0.7rem;
+	border-radius: 0.05rem;
+	text-align: center;
+	line-height: 0.7rem;
+}
+/**
+ 	* 热卖商品分类
+ */
+.classify-view{
+	width: 100%;
+	overflow: hidden;
+	.nav-bar{
+		box-shadow: 0 0 0.125rem #727070;
+		-webkit-box-shadow: 0 0 0.125rem #727070;
+		width: 100%;
+		height: 1.25rem;
+		background: #24272f;
+		margin-top: 0.01rem;
+		z-index: 1000;
+		.welcome-logo{
+			margin-top: 0.15rem;
+			height: 1.09rem;
+			line-height: 1.09rem;
+			margin-left: 0.31rem;
+			float: left;
+			a{
+				color: #fff;
+				font-size: 0.4rem;
+				text-decoration: none;
+				font-weight: bold;
+				img{
+					width: 0.5rem;
+					height: 0.54rem;
+				}
+			}
+		}
+		.welcome-div{
+			margin-top: 0rem;
+			height: 1.25rem;
+			line-height: 1.25rem;
+			margin-left: 0.18rem;
+			width: 1.56rem;
+			float: left;
+			a{
+				color: #fff;
+				font-size: 0.4rem;
+				text-decoration: none;
+				font-weight: bold;
+			}
+		}
+		.title-div{
+			color: #fff;
+			margin-top: 0rem;
+			margin-left: 1.25rem;
+			width: 2.5rem;
+			height: 1.25rem;
+			line-height: 1.25rem;
+			font-size: 0.4rem;
+			float: left;
+			text-align: center;
+		}
+		.login-div{
+			margin-top: 0rem;
+			margin-right: 0.37rem;
+			height: 1.25rem;
+			line-height: 1.25rem;
+			float: right;
+			a{
+				color: #fff;
+				font-size: 0.4rem;
+				text-decoration: none;
+			}
+		}
+	}
+	.main-container{
+		margin-top: 1.25rem;
+	}
+	.classify-item{
+		width: 100%;
+		height: 5.59rem;
+		background-size: cover;
+		position: relative;
+		.layer{
+			background: fade(#000,30%);
+			width: 100%;
+			height: 5.59rem;
+			position: absolute;
+		}
+		.desc{
+			color: #fff;
+			font-size: 0.4rem;
+			width: 100%;
+			text-align: center;
+			padding-top: 2.59rem;
+			position: absolute;
+			z-index: 10;
+		}
+		&:nth-child(3n){
+			background-image: url('http://imgs-qn.iliangcang.com/ware/appimg/topic/cover/1599_.jpg?_t=1478764517');
+		}
+		&:nth-child(3n+1){
+			background-image: url('http://imgs-qn.iliangcang.com/ware/appimg/topic/cover/1598_.jpg?_t=1478696769');
+		}
+		&:nth-child(3n+2){
+			background-image: url('http://imgs-qn.iliangcang.com/ware/appimg/topic/cover/1597_.jpg?_t=1478605562');
+		}
+	}
+}
+/**
+ 	* 商品列表
+ */
+.shop-list{
+	width: 100%;
+	overflow: hidden;
+	padding-top: 1.45rem;
+	.shop-item{
+		margin-left: 0.21rem;
+		background: #fff;
+		width: 4.68rem;
+		display: block;
+		float: left;
+		a{
+			color: #000;
+		}
+		img{
+			width: 4.68rem;
+			height: 4.68rem;
+			border-radius: 0.1rem 0.1rem 0 0; 
+		}
+		.desc{
+			margin-top: -7px;
+			padding-top: 7px;
+			height: 2.5rem;
+			width: 4.66rem;
+			box-shadow: 0 0 0.06rem #afaeae;
+			-webkit-box-shadow: 0 0 0.06rem #afaeae;
+			border-radius: 0 0 0.06rem 0.06rem;
+			clear: right;
+			&::after{
+					content: " ";
+					display: table;
+					clear: both;
+					}
+			.div-name{
+				margin: 0 auto;
+				line-height: 1.5;
+				word-break: break-all;
+				width: 95%;
+				height: 1rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				-ms-text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				clear: right;
+				&::after{
+					content: " ";
+					display: table;
+					clear: both;
+				}
+			}
+		}
+		.price{
+			width: 14.07rem;
+		    float: left;
+		    margin-top: 0.4rem;
+		    margin-left: 0.4rem;
+		    height: 0.37rem;
+		    color: #3193F3;
+		    font-size: 0.37rem;
+		}		
+	}
 }
