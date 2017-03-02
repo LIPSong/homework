@@ -392,3 +392,150 @@ body .view {
   line-height: 2rem;
   font-size: 0.43rem;
 }
+/**
+ 	* 商品详情页
+ */
+.add-goods-btn {
+  width: 100%;
+  height: 1.09rem;
+  text-align: center;
+  line-height: 1.09rem;
+  vertical-align: middle;
+  position: fixed;
+  z-index: 100000;
+  bottom: 0rem;
+  color: #fff;
+  background: #60a9d7;
+  font-size: 0.34rem;
+  border-color: #60a9d7;
+}
+.add-goods-btn img {
+  width: 10%;
+  vertical-align: middle;
+}
+.info-content {
+  background: #fff;
+  width: calc(99.59%);
+  padding: 0rem 0.2rem;
+}
+.info-content .goodsName {
+  background: #fff;
+  height: 1.17rem;
+  font-size: 0.37rem;
+  line-height: 1.7;
+  vertical-align: middle;
+  margin-top: 0.28rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-left: 0.23rem;
+  width: 90%;
+}
+.info-content .txtCon {
+  width: 9.7rem;
+  background: #fff;
+  font-size: 0.3rem;
+  line-height: 0.62rem;
+  color: #666;
+  margin-top: 0.15rem;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.info-content .goodsDetail {
+  background: #fff;
+  float: left;
+  width: 100%;
+}
+.info-content .goodsDetail .mainImg {
+  width: 96%;
+}
+.info-content .price {
+  font-size: 0rem;
+  vertical-align: bottom;
+  line-height: 0.31rem;
+  margin-top: 0.2rem;
+}
+.info-content .price .cur {
+  display: inline-block;
+  color: #0c79cc;
+  font-weight: bold;
+}
+.info-content .price .cur b {
+  font-weight: bold;
+}
+.info-content .price .cur span {
+  color: #0c79cc;
+}
+.info-content .price .dis {
+  font-size: 0.42rem;
+  display: inline-block;
+  color: #666;
+  margin-left: 0.15rem;
+  font-weight: bold;
+  text-decoration: line-through;
+}
+.line {
+  float: left;
+  margin-top: 0.15rem;
+  border: 0.01rem solid #e5e5e5;
+  width: 100%;
+  margin: 0.23rem 0rem;
+  font-size: 0rem;
+  clear: both;
+}
+.skuInfo {
+  margin-top: 0rem;
+  clear: both;
+  float: left;
+  width: calc(99.59%);
+  padding: 0rem 0.2rem;
+}
+.skuInfo .title {
+  float: left;
+  width: 100%;
+  font-size: 0.37rem;
+  line-height: 0.28rem;
+  padding-top: 0.23rem;
+  padding-bottom: 0.23rem;
+}
+.skuInfo ul {
+  float: left;
+  width: 100%;
+  margin-top: 0.31rem;
+}
+.skuInfo ul li {
+  float: left;
+  margin: 0rem 0.12rem 0.12rem 0rem;
+  display: block;
+  height: 1rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.skuInfo ul .minus {
+  width: 0.7rem;
+  height: 0.7rem;
+  line-height: 0.7rem;
+  border: 0.04rem solid #d9d9d9;
+  margin: 0rem 0rem 0.12rem 0rem;
+  background: url('http://www.iliangcang.com/images/wap/minus10_10.png') no-repeat center center;
+}
+.skuInfo ul .nums {
+  width: 1.09rem;
+  height: 0.7rem;
+  line-height: 0.7rem;
+  border: 0.04rem solid #d9d9d9;
+  border-left: 0rem;
+  border-right: 0rem;
+  margin: 0rem 0rem 0.12rem 0rem;
+  font-size: 0.37rem;
+}
+.skuInfo ul .plus {
+  width: 0.7rem;
+  height: 0.7rem;
+  line-height: 0.7rem;
+  border: 0.04rem solid #d9d9d9;
+  margin: 0rem 0rem 0.12rem 0rem;
+  background: url('http://www.iliangcang.com/images/wap/add10_10.png') no-repeat center center;
+}
