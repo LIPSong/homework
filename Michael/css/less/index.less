@@ -252,6 +252,7 @@ body{
 		background: #24272f;
 		margin-top: 0.01rem;
 		z-index: 1000;
+		overflow: visible;
 		.welcome-logo{
 			margin-top: 0.15rem;
 			height: 1.09rem;
@@ -305,6 +306,73 @@ body{
 				font-size: 0.4rem;
 				text-decoration: none;
 			}
+		}
+		.profile-div{
+			margin-top: 0.32rem;
+			margin-right: 0.37rem;
+			float: right;
+			img{
+				width: 0.46rem;
+				height: 0.54rem;
+			}
+		}
+		.cart-div{
+			margin-top: 0.32rem;
+			margin-right: 0.65rem;
+			width: 0.54rem;
+			height: 0.54rem;
+			float: right;
+			a{
+				color: black;
+				img{
+					width: 0.54rem;
+					height: 0.54rem;
+				}
+				.tip-div{
+					position: absolute;
+					z-index: 100;
+					top: 0.21rem;
+					width: 0.34rem;
+					height: 0.34rem;
+					margin-left: 0.34rem;
+					img{
+						width: 0.34rem;
+						height: 0.34rem;
+					}
+					#global-cart-num{
+					    overflow: hidden;
+					    color: #fff;
+					    position: absolute;
+					    z-index: 101;
+					    top: 0.01rem;
+					    width: 0.34rem;
+					    text-align: center;
+					    font-size: 0.25rem;
+					    height: 0.34rem;
+					    line-height: 0.34rem;
+					}
+				}
+			}
+		}
+		#logout-div{
+			display: none;
+		    margin-top: 1.25rem;
+		    width: 100%;
+		    height: 3.75rem;
+		    background: #f00;
+		    a{
+		    	 color: #333;
+		    	 div{
+		    	 	width: 10rem;
+			    height: 1.25rem;
+			    line-height: 1.25rem;
+			    margin-top: 0rem;
+			    text-align: center;
+			    font-weight: bold;
+			    font-size: 0.5rem;
+			    background: #fff;
+			    	}
+		    }
 		}
 	}
 	.main-container{
@@ -542,6 +610,7 @@ body{
 			border: 0.04rem solid #d9d9d9;
 			margin: 0rem 0rem 0.12rem 0rem;
 			background: url('http://www.iliangcang.com/images/wap/minus10_10.png') no-repeat center center;
+			background-size: 0.15rem 0.15rem;
 		}
 		.nums{
 			width: 1.09rem;
@@ -560,6 +629,7 @@ body{
 		    border: 0.04rem solid #d9d9d9;
 		    margin: 0rem 0rem 0.12rem 0rem;
        		background: url('http://www.iliangcang.com/images/wap/add10_10.png') no-repeat center center;
+       		background-size: 0.15rem 0.15rem;
 		}
 	}
 }

@@ -1,3 +1,4 @@
+
 /**
  * 
  * @param {Object} url
@@ -50,3 +51,32 @@ function GetQueryString(name){
 	 /*但会参数值*/
      if(r!=null)return  decodeURI(r[2]); return null;
 }
+/**
+ * 登录验证
+ * @param {Object} callback
+ */
+function checkLogin(callback){
+	var closeTime = 500000;
+	console.log(Date.now()-localStorage.closeDate)
+	if(localStorage.isLogin&&(Date.now()-localStorage.closeDate < closeTime)){
+		callback();
+	}
+	else localStorage.clear();
+}
+	/**
+    	 * 用户头像点击弹出框
+    	 */
+    		$('.profile-div').click(function(){
+			if($('#logout-div')[0].style.display == "block"){
+    				$('#logout-div').hide();
+			}else{
+				$('#logout-div').show();
+			}
+    		})
+	/**
+	 * 设置logout退出按钮清空localstorage
+	 */
+		$('#logout').click(function(){
+			localStorage.clear();
+			window.location.href = 'index.html';	
+		})

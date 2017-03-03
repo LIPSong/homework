@@ -1,11 +1,231 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <meta charset="utf-8">
+    <title>商品列表</title>
+    <!--自适应-->
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    <script>
+    /**
+    	    	 * 540px screen adaptive defalut 
+    	    	 */
+    var a = window.document.documentElement;
+    var b = document.createElement('meta');
+    if (window.screen.width >= 540) {
+        b.setAttribute('name', 'viewport');
+        b.setAttribute('content', 'width=540,  user-scalable=0');
+        a.firstElementChild.appendChild(b);
+    }
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="css/index.css">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
 </head>
 <body>
+    <div class="classify-view">
+        <!--顶部导航-->
+        <nav class="nav-bar nav-bar-top">
+            <div class="welcome-logo">
+                <a href="index.html"><img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/23/23348.png"></a>
+            </div>
+            <div class="welcome-div">
+                <a href="index.html"> 首页</a>
+            </div>
+            <div class="title-div">
+                商品列表
+            </div>
+            <div class="login-div">
+                <a href="javascript: goLoginWeb()">登录</a>
+            </div>
+        </nav>
+        <!--默认商品列表-->
+        <div class="shop-list">
+            <div class="shop-item">
+                <a href="details.html?goodsID=1"> <img src="http://img13.360buyimg.com/n8/jfs/t1705/49/1279540754/390079/4aa81978/55ebe778Nc711e466.jpg" alt="goodsName"> </a>
+                <div class="desc">
+                    <div class="div-name">
+                        茵曼 2015秋装新款文艺长袖格子衬衫百搭长袖衬衣女
+                    </div>
+                    <div class="price">
+                        ￥338
+                    </div>
+                </div>
+            </div>
+            <div class="shop-item">
+                <a href="details.html?goodsID=2"> <img src="https:////img.alicdn.com/bao/uploaded///img.alicdn.com/bao/uploaded/i4/TB1vGO5IFXXXXb4XXXXXXXXXXXX_!!0-item_pic.jpg_160x160q90.jpg" alt="goodsName"> </a>
+                <div class="desc">
+                    <div class="div-name">
+                        韩都衣舍韩版2015秋装新款女装翻领绣花图案长袖衬衫
+                    </div>
+                    <div class="price">
+                        ￥260
+                    </div>
+                </div>
+            </div>
+            <div class="shop-item">
+                <a href="details.html?goodsID=3"> <img src="http://img.alicdn.com/bao/uploaded/i4/TB1QP0gJpXXXXczXpXXXXXXXXXX_!!0-item_pic.jpg_b.jpg" alt="goodsName"> </a>
+                <div class="desc">
+                    <div class="div-name">
+                        韩都衣舍长袖衬衫
+                    </div>
+                    <div class="price">
+                        ￥198
+                    </div>
+                </div>
+            </div>
+            <div class="shop-item">
+                <a href="details.html?goodsID=4"> <img src="http://s20.mogucdn.com/p1/150915/17d08t_ieytanlbmjqtondbgmzdambqmeyde_640x960.jpg_220x330.jpg" alt="goodsName"> </a>
+                <div class="desc">
+                    <div class="div-name">
+                        秋冬纯棉美美女衬衫
+                    </div>
+                    <div class="price">
+                        ￥58.1
+                    </div>
+                </div>
+            </div>
+            <div class="shop-item">
+                <a href="details.html?goodsID=5"> <img src="http://s16.mogucdn.com/p1/150727/14dhcd_ie2wgmrtmnqtin3bgizdambqhayde_640x960.jpg_220x330.jpg" alt="goodsName"> </a>
+                <div class="desc">
+                    <div class="div-name">
+                        秋冬条纹显瘦棉质长袖女衬衫
+                    </div>
+                    <div class="price">
+                        ￥67.3
+                    </div>
+                </div>
+            </div>
+            <div class="shop-item">
+                <a href="details.html?goodsID=6"> <img src="http://s17.mogucdn.com/p1/150919/mwent_iezton3dheywiy3cgmzdambqgyyde_1000x1500.jpg_468x468.jpg" alt="goodsName"> </a>
+                <div class="desc">
+                    <div class="div-name">
+                        秋冬文艺纯棉长袖女衬衫
+                    </div>
+                    <div class="price">
+                        ￥115
+                    </div>
+                </div>
+            </div>
+            <div class="shop-item">
+                <a href="details.html?goodsID=7"> <img src="http://s17.mogucdn.com/p1/150819/14dhcd_ieytcodchbrwczbrgmzdambqmeyde_640x960.jpg_468x468.jpg" alt="goodsName"> </a>
+                <div class="desc">
+                    <div class="div-name">
+                        文艺纯棉长袖女衬衫学院
+                    </div>
+                    <div class="price">
+                        ￥115
+                    </div>
+                </div>
+            </div>
+            <div class="shop-item">
+                <a href="details.html?goodsID=8"> <img src="http://img.alicdn.com/bao/uploaded/i2/TB1MYGcJFXXXXayXXXXXXXXXXXX_!!0-item_pic.jpg_240x240.jpg" alt="goodsName"> </a>
+                <div class="desc">
+                    <div class="div-name">
+                        妖精的口袋学院风宽松衬衫
+                    </div>
+                    <div class="price">
+                        ￥199
+                    </div>
+                </div>
+            </div>
+            <div class="shop-item">
+                <a href="details.html?goodsID=9"> <img src="http://img.alicdn.com/bao/uploaded/i3/TB1srzoHVXXXXXiapXXXXXXXXXX_!!0-item_pic.jpg_240x240.jpg" alt="goodsName"> </a>
+                <div class="desc">
+                    <div class="div-name">
+                        妖精的口袋撞色中长款衬衫
+                    </div>
+                    <div class="price">
+                        ￥109
+                    </div>
+                </div>
+            </div>
+            <div class="shop-item">
+                <a href="details.html?goodsID=10"> <img src="http://img.alicdn.com/bao/uploaded/i2/TB1GyIfIFXXXXauXXXXXXXXXXXX_!!0-item_pic.jpg_b.jpg" alt="goodsName"> </a>
+                <div class="desc">
+                    <div class="div-name">
+                        衣品天成休闲女士衬衣
+                    </div>
+                    <div class="price">
+                        ￥129
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--模板-->
+    <script type="text/template" id="template">
+		<div class="shop-item">
+				<a href="details.html?goodsID={{goodsID}}">
+					<img src="{{imgUrl}}" alt="goodsName" />
+				</a>
+				<div class="desc">
+					<div class="div-name" >{{goodsName}}</div>
+				<div class="price">￥{{price}}</div>
+			</div>						
+		</div>
+    </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/layer/3.0.1/mobile/layer.min.js"></script>
+    <script src="js/ajax.js"></script>
+    <!--<script src="js/classify.js"></script>-->
+    <script>
+    // 登录到设置登录网址，并打开登录窗口
+    function goLoginWeb() {
+        var gourl = 'login.html?gourl=' + location.href;
+        history.replaceState(null, '', gourl);
+        window.location.reload();
+    }
+
+    /**
+    		 * 获取商品区dom并通过提交location内容获取数据
+    		 */
+    if (GetQueryString('classID')) {
+        var GetGoodsOptions = {
+            classID: GetQueryString('classID')
+        };
+        var listUrl = 'http://datainfo.duapp.com/shopdata/getGoods.php'; // 获取商品分类接口
+    }
+    else if (GetQueryString('selectText')) {
+        var GetGoodsOptions = {
+            selectText: GetQueryString('selectText')
+        };
+        var listUrl = 'http://datainfo.duapp.com/shopdata/selectGoodes.php'; // 搜索商品接口
+    }
+    getGoods(listUrl, GetGoodsOptions, parseList, 'JSONP');
+    var templateStrings = $('#template').html();
+
+    /**
+    		  * @description 处理数据
+    		  * @param {Object} data
+    		  */
+    function parseList(data) {
+        if (data != 0) {
+            $('.shop-list').html(' ');
+            for (var i in data) {
+                data[i].imgUrl = data[i][3];
+                var Domstring = compile(templateStrings, data[i]);
+                $('.shop-list').append($(Domstring));
+            }
+        }
+        else if (data == 0) {
+            layer.open({skin: 'msg', content: '暂无商品', time: 3, style: 'bottom: 0;'});
+            setTimeout(function () {
+                var gourl = 'index.html';
+                history.replaceState(null, '', gourl);
+                window.location.reload();
+            }, 4000);
+        }
+
+        /**
+         * 解析数据
+         */
+        function compile(templateString, dictionary) {
+            return templateString.replace(/{{(\w+)}}/g, function (match, $1) {
+                return dictionary[$1];
+            });
+        }
+    }
+    </script>
 </body>
 </html>

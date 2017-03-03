@@ -1,11 +1,339 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <meta charset="utf-8">
+    <title>粮仓</title>
+    <!--自适应-->
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    <script>
+    /**
+            	 * 540px screen adaptive defalut 
+            	 */
+    var a = window.document.documentElement;
+    var b = document.createElement('meta');
+    if (window.screen.width >= 540) {
+        b.setAttribute('name', 'viewport');
+        b.setAttribute('content', 'width=540,  user-scalable=0');
+        a.firstElementChild.appendChild(b);
+    }
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link href="//cdn.bootcss.com/Swiper/3.4.1/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+    html,
+    body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Hiragino Sans GB","冬青黑体","Hiragino Kaku Gothic ProN","Microsoft Yahei" ,"Simsun","Arial", "Helvetica", "sans-serif";
+        font-size: 14px;
+        color: #000;
+        background: #eee;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+        margin-top: 1.24rem;
+        background: #fff;
+    }
+    .swiper-slide {
+        width: 100%;
+        height: 8.59rem;
+        background: #fff;
+        background-position: top;
+        background-size: cover;
+    }
+    .swiper-slide img {
+        width: 100%;
+        height: 8.59rem;
+    }
+    </style>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
 </head>
 <body>
+    <div class="classify-view">
+        <!--顶部导航-->
+        <nav class="nav-bar nav-bar-top">
+            <div class="welcome-logo">
+                <a href="index.html"><img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/23/23348.png"></a>
+            </div>
+            <div class="welcome-div">
+                <a href="index.html"> 首页</a>
+            </div>
+            <div class="title-div">
+            </div>
+            <div class="login-div">
+                <a href="javascript: goLoginWeb()">登录</a>
+            </div>
+            <div class="profile-div" style="display: none;">
+                <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/22/22941.png">
+            </div>
+            <div class="cart-div" style="display: none;">
+                <a href="cart.html"> <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/24/24768.png"> <div class="tip-div">
+                        <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/24/24767.png">
+                        <div id="global-cart-num">
+                            1
+                        </div>
+                    </div> </a>
+            </div>
+            <div id="logout-div">
+                <a href="cart.html"> <div>
+                        购物车
+                    </div> </a>
+                <a href="orderlist.html"> <div>
+                        订单
+                    </div> </a>
+                <a id="logout"> <div>
+                        退出
+                    </div> </a>
+            </div>
+        </nav>
+        <div class="container">
+            <!--首页轮播-->
+            <!-- Swiper -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href=""><img src="https://img.alicdn.com/bao/uploaded/i3/TB1eqMyIVXXXXXIaXXXXXXXXXXX_!!0-item_pic.jpg_430x430q90.jpg" alt=""></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href=""><img src="http://img30.360buyimg.com/popWaterMark/jfs/t2011/4/612174753/231399/8309087b/561cbdb9N3ce22bf7.jpg" alt=""></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href=""><img src="https://img.alicdn.com/imgextra/i2/2625587648/TB20VACfpXXXXcFXXXXXXXXXXXX_!!2625587648.jpg" alt=""></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href=""><img src="https://img.alicdn.com/imgextra/i3/119579859/TB2W761fpXXXXXpXpXXXXXXXXXX_!!119579859.jpg" alt=""></a>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination swiper-pagination-white"></div>
+            </div>
+            <!--商品展示-->
+            <div class="info-content">
+                <p class="goodsName">
+                    缅甸/加拉帕戈斯有机咖啡/烫金杯/铜盒 新年礼盒
+                </p>
+                <p class="price" style="margin-top:0.31rem">
+                    <span class="cur" style="font-size:0.46rem"><b style="font-size:0.42rem">¥</b><span id="curPriceTxt">518.00</span></span>
+                    <span class="dis" style="font-size:0.42rem" id="shopPriceTxt">¥0.00</span>
+                </p>
+                <div class="skuInfo">
+                    <div class="line" style="float:left;margin-top:0.15rem;"></div>
+                    <div class="title">
+                        数量
+                    </div>
+                    <ul>
+                        <li class="minus"></li>
+                        <li class="nums" id="goodsAmount">
+                            1
+                        </li>
+                        <li class="plus"></li>
+                    </ul>
+                    <div class="line" style="float:left;margin-top:0.15rem;"></div>
+                </div>
+                <div style="height:0.21rem;width:100%;"></div>
+                <div class="txtCon-box">
+                    <p class="txtCon">
+                        渗透禅意的缅甸咖啡、加拉帕戈斯无需认证的有机咖啡、烫金骨瓷分享杯、多用途盛装铜盒，仪式感偏好者的不二之选。
+                    </p>
+                </div>
+                <div class="goodsDetail-box">
+                    <div class="goodsDetail">
+                        <img src="https://img.alicdn.com/imgextra/i4/361914132/TB2wxufct4opuFjSZFLXXX8mXXa_!!361914132.jpg" class="mainImg">
+                    </div>
+                </div>
+            </div>
+            <!--加入购物车-->
+            <div class="add-goods-btn" id="addCart">
+                <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/23/23436.png">
+                &nbsp;&nbsp;加入购物车
+            </div>
+        </div>
+        <div class="line" style="float:left;margin-top:0.15rem; height: 1rem; clear: both;"></div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="//cdn.bootcss.com/Swiper/3.4.1/js/swiper.min.js"></script>
+        <script src="js/ajax.js"></script>
+        <script>
+        /**
+                    	 * @description initialize swiper 
+                    	 */
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: '.swiper-pagination',
+            spaceBetween: 30,
+            effect: 'slide',
+            autoplay: 2000,
+            loop: true
+        });
+
+        /**
+                     * 处理详情页用户点击加减商品数量
+                     */
+        $('.minus').click(function () {
+            if ($('.nums').html() == 1) {
+                return;
+            }
+            else {
+                $('.nums').html(parseInt($('.nums').html(), 10) - 1);
+            }
+        });
+        $('.plus').click(function () {
+            $('.nums').html(parseInt($('.nums').html(), 10) + 1);
+        });
+
+        /**
+                 	*	获取用户购物车数据
+                 	*/
+        var getCarUrl = 'http://datainfo.duapp.com/shopdata/getCar.php';
+        function getUserCar(userID) {
+            getGoods(getCarUrl, {
+                userID: userID
+            }, parseCar, 'JSONP');
+        }
+
+        /**
+                    	 * 处理购物车数据添加到顶部导航栏
+                    	 */
+        function parseCar(data) {
+            console.log(data);
+            console.log('购物车数据：');
+            var number = 0;
+            for (var i in data) {
+                number += parseInt(data[i].number, 10);
+            }
+            $('#global-cart-num').html(number);
+        }
+
+        /**
+                	 * 用户更新购物车数据
+                	 */
+        var updateCarUrl = 'http://datainfo.duapp.com/shopdata/updatecar.php';
+        $('#addCart').on('click', updateCar);
+        function updateCar() {
+            if (localStorage.isLogin) {
+                getGoods(getCarUrl, {
+                    userID: localStorage.userID
+                }, updateCar, 'JSONP');
+                function updateCar(updateData) {
+                    var number = parseInt($('.nums').html(), 10);
+                    for (var i in updateData) {
+                        if (updateData[i].goodsID == GetQueryString('goodsID')) {
+                            number += parseInt(updateData[i].number, 10);
+                        }
+
+                    }
+                    getGoods(updateCarUrl, {userID: localStorage.userID, goodsID: GetQueryString('goodsID'), number: number}, function (data) {
+                        console.log('更新购物车返回状态：' + data);
+                        $('#global-cart-num').html(parseInt($('.nums').html(), 10) + parseInt($('#global-cart-num').html(), 10));
+                    });
+                }
+            }
+            else {
+                goLoginWeb();
+            }
+        }
+
+        /**
+                    	 * 验证localstora是否存在存活期内登录信息
+                    	 */
+        checkLogin(function () {
+            console.log('hello');
+            $('.login-div').hide();
+            $('.profile-div').show();
+            $('.cart-div').show();
+            getUserCar(localStorage.userID);
+        });
+        // 登录到设置登录网址，并打开登录窗口
+        function goLoginWeb() {
+            var gourl = 'login.html?gourl=' + location.href;
+            history.replaceState(null, '', gourl);
+            window.location.reload();
+        }
+
+        /**
+                     * 搜索框
+                     */
+        function goSearch() {
+            var key = document.getElementById('searchKey').value;
+            if (key == '') {
+                alert('请输入搜索关键词');
+            }
+            else {
+                var gourl = 'search.html?keywords=' + key;
+                window.location.href = gourl;
+            }
+        }
+        </script>
+        <script>
+        /**
+                		 * 轮播dom修改
+                		 */
+        var getGoodsUrl = 'http://datainfo.duapp.com/shopdata/getGoods.php'; // 获取商品数据	
+
+        /**
+                	 * @description 获取轮播数据 
+                	 */
+        var getGoodsOptions = GetQueryString('goodsID') == null ? {
+            goodsID: 8
+        } : {
+            goodsID: GetQueryString('goodsID')
+        };
+        getGoods(getGoodsUrl, getGoodsOptions, parseBanner, 'JSONP');
+
+        /**
+                	  * @description 处理首页轮播
+                	  */
+        function parseBanner(data) {
+            data = data[0];
+            var txtCons = $(data.detail.split('。')); // 数组
+            $('title').html(data[2]);
+            $('.goodsName').html(data[2]);
+            var imgUrls = $(JSON.parse(data.goodsBenUrl
+            ));
+            var imgLists = $(JSON.parse(data.imgsUrl
+            ));
+            $('.txtCon-box').html('');
+            $('.goodsDetail-box').html('');
+            // 添加详情文字	
+            txtCons.each(function (i) {
+                $('.txtCon-box').append($('<p class=\'txtCon\'>' + txtCons[i] + '</p>'));
+            });
+            // 添加详情图片
+            imgLists.each(function (i) {
+                $('.goodsDetail-box').append($('<div class=\'goodsDetail\'><img class=\'mainImg\' src=' + imgLists[i] + '></div>'));
+            });
+            // 获取价格并修改DOM
+            var discount = data.discount == 0 ? 10 : data.discount;
+            $('#curPriceTxt').html(parseInt(data.price * discount / 10, 10));
+            $('#shopPriceTxt').html(data.price);
+
+            /**
+                     * 获取轮播数组
+                     */
+            var swiperWrapper = $('.swiper-wrapper')[0];
+            var str = '';
+            imgUrls.each(function (i) {
+                // 获取并设置轮播a链接参数
+                var bannerUrl = 'details.html?goodsID=' + data.goodsID;
+                var imgUrl = imgUrls[i];
+                str += '<div class=\'swiper-slide\'><a href=' + bannerUrl + '><img src=' + imgUrl + ' alt=' + data[2] + ' /></a></div>';
+            });
+            swiperWrapper.innerHTML = str;
+            swiper.destroy(false);
+            swiper.init();
+        }
+
+        /**
+                	  * 修改商品详情DOM
+                	  */
+        </script>
+    </div>
 </body>
 </html>

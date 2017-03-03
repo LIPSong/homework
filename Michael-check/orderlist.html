@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>订单中心</title>
+    <!--自适应-->
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    <script>
+    /**
+        	 * 540px screen adaptive defalut 
+        	 */
+    var a = window.document.documentElement;
+    var b = document.createElement('meta');
+    if (window.screen.width >= 540) {
+        b.setAttribute('name', 'viewport');
+        b.setAttribute('content', 'width=540,  user-scalable=0');
+        a.firstElementChild.appendChild(b);
+    }
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link href="//cdn.bootcss.com/Swiper/3.4.1/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+    html,
+    body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Hiragino Sans GB","冬青黑体","Hiragino Kaku Gothic ProN","Microsoft Yahei" ,"Simsun","Arial", "Helvetica", "sans-serif";
+        font-size: 14px;
+        color: #000;
+        background: #eee;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        width: 100%;
+        height: 6rem;
+        background-position: top;
+        background-size: cover;
+    }
+    .swiper-slide img {
+        width: 100%;
+        height: 6rem;
+    }
+    </style>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+</head>
+<body>
+    <div class="classify-view">
+        <!--导航-->
+        <nav class="nav-bar nav-bar-top">
+            <div class="welcome-logo">
+                <a href="index.html"><img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/23/23348.png"></a>
+            </div>
+            <div class="welcome-div">
+                <a href="index.html"> 首页</a>
+            </div>
+            <div class="login-div">
+                <a href="javascript: goLoginWeb()">登录</a>
+            </div>
+            <div class="profile-div" style="display: none;">
+                <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/22/22941.png">
+            </div>
+            <div class="cart-div" style="display: none;">
+                <a href="cart.html"> <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/24/24768.png"> <div class="tip-div">
+                        <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/24/24767.png">
+                        <div id="global-cart-num">
+                            1
+                        </div>
+                    </div> </a>
+            </div>
+            <div id="logout-div">
+                <a href="cart.html"> <div>
+                        购物车
+                    </div> </a>
+                <a href="orderlist.html"> <div>
+                        订单
+                    </div> </a>
+                <a id="logout"> <div>
+                        退出
+                    </div> </a>
+            </div>
+        </nav>
+    </div>
+    <div class="view">
+        <nav class="nav-bar nav-bar-bottom">
+            <div class="nav-bottom-cantainer">
+                <a href="index.html"><img src="img/home-small.png" style="opacity: 0.5;" alt="首页"></a>
+                <a id="classify" href="classify.html"><img src="img/ffl.png" alt="分类"></a>
+                <!--预留获取后台数据按钮-->
+                <a id="shoppingCart" href=""><img src="img/fgwc.png" alt="购物车"></a>
+                <a id="login" href="javascript: goLoginWeb()" style="display: none;"><img src="img/fdl.png" alt="登录&订单中心"></a>
+                <a id="order" href="javascript: goOrderList()"><img style="width: 1.23rem;height: 0.87rem; opacity: 1;" src="img/fdd.png" alt="登录&订单中心"></a>
+            </div>
+        </nav>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//cdn.bootcss.com/Swiper/3.4.1/js/swiper.min.js"></script>
+    <script src="js/ajax.js"></script>
+    <!--<script src="js/index.js"></script>-->
+    <script>
+    /**
+     	*	获取用户购物车数据
+     	*/
+    function getUserCar(userID) {
+        var getCarUrl = 'http://datainfo.duapp.com/shopdata/getCar.php';
+        getGoods(getCarUrl, {
+            userID: userID
+        }, parseCar, 'JSONP');
+    }
+
+    /**
+        	 * 处理购物车数据添加到顶部导航栏
+        	 */
+    function parseCar(data) {
+        console.log(data);
+    }
+
+    /**
+        	 * 验证localstora是否存在存活期内登录信息
+        	 */
+    checkLogin(function () {
+        console.log('hello');
+        $('.login-div').hide();
+        $('.profile-div').show();
+        $('.cart-div').show();
+        getUserCar(localStorage.userID);
+    });
+
+    /**
+        	 * 登录
+        	 */
+    function goLoginWeb() {
+        var gourl = 'login.html?gourl=' + location.href;
+        history.replaceState(null, '', gourl);
+        window.location.reload();
+    }
+
+    /**
+        	 * 订单中心
+        	 */
+    function goOrderList() {
+        var gourl = 'orderlist.html?gourl=' + location.href;
+        history.replaceState(null, '', gourl);
+        window.location.reload();
+    }
+
+    /**
+        	 * @description initialize swiper 
+        	 */
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: '.swiper-pagination',
+        spaceBetween: 30,
+        effect: 'slide',
+        autoplay: 2000,
+        loop: true
+    });
+
+    /**
+         * 搜索框
+         */
+    function goSearch() {
+        var key = document.getElementById('searchKey').value;
+        if (key == '') {
+            alert('请输入搜索关键词');
+        }
+        else {
+            var gourl = 'classify-details.html?selectText=' + key;
+            window.location.href = gourl;
+        }
+    }
+    if (GetQueryString('selectText')) {
+        var gourl = 'classify-details.html?selectText=' + GetQueryString('selectText');
+        window.location.href = gourl;
+    }
+    </script>
+</body>
+</html>

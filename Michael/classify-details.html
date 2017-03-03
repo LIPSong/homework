@@ -33,6 +33,28 @@
 				商品列表
 				</div>
 				<div class="login-div"><a href="javascript: goLoginWeb()">登录</a></div>
+								<div class="profile-div" style="display: none;">
+                <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/22/22941.png">
+            </div>
+            <div class="cart-div" style="display: none;">
+                <a href="cart.html"> <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/24/24768.png"> <div class="tip-div">
+                        <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/24/24767.png">
+                        <div id="global-cart-num">
+                            1
+                        </div>
+                    </div> </a>
+            </div>
+            <div id="logout-div">
+                <a href="cart.html"> <div>
+                        购物车
+                    </div> </a>
+                <a href="orderlist.html"> <div>
+                        订单
+                    </div> </a>
+                <a id="logout"> <div>
+                        退出
+                    </div> </a>
+            </div
 			</nav>
 			<!--默认商品列表-->
 			<div class="shop-list">
@@ -138,6 +160,37 @@
 	<script src="js/ajax.js"></script>
 	<!--<script src="js/classify.js"></script>-->
 	<script type="text/javascript">
+		 /**
+                    	 * 验证localstora是否存在存活期内登录信息
+                    	 */
+        checkLogin(function () {
+            console.log('hello');
+            $('.login-div').hide();
+            $('.profile-div').show();
+            $('.cart-div').show();
+            getUserCar(localStorage.userID);
+        });
+                /**
+                 	*	获取用户购物车数据
+                 	*/
+        function getUserCar(userID) {
+            getGoods('http://datainfo.duapp.com/shopdata/getCar.php', {
+                userID: userID
+            }, parseCar, 'JSONP');
+        }
+
+        /**
+                    	 * 处理购物车数据添加到顶部导航栏
+                    	 */
+        function parseCar(data) {
+            console.log(data);
+            console.log('购物车数据：');
+            var number = 0;
+            for (var i in data) {
+                number += parseInt(data[i].number, 10);
+            }
+            $('#global-cart-num').html(number);
+        }
 		//登录到设置登录网址，并打开登录窗口
 		function goLoginWeb(){
               var gourl = "login.html?gourl="+location.href;
@@ -149,11 +202,11 @@
 		 */
 		if(GetQueryString('classID')){
 			var GetGoodsOptions = {classID: GetQueryString('classID')};
-			var listUrl = 'http://datainfo.duapp.com/shopdata/getGoods.php';//获取商品分类接口
+			var listUrl = "http://datainfo.duapp.com/shopdata/getGoods.php";//获取商品分类接口
 		}
 		else if(GetQueryString('selectText')){
 			var GetGoodsOptions = {selectText: GetQueryString('selectText')};
-			var listUrl = 'http://datainfo.duapp.com/shopdata/selectGoodes.php';//搜索商品接口
+			var listUrl = "http://datainfo.duapp.com/shopdata/selectGoodes.php";//搜索商品接口
 		};
 		getGoods(listUrl,GetGoodsOptions,parseList,'JSONP');
 		var templateStrings = $("#template").html();
@@ -176,7 +229,7 @@
 		 			var gourl = 'index.html';
               		history.replaceState(null, "", gourl);
               		window.location.reload();
-		 		}, 4000)		 		
+		 		}, 4000000)		 		
 		 	}
 		    /**
 		     * 解析数据

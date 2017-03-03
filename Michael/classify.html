@@ -33,6 +33,28 @@
 				分类
 				</div>
 				<div class="login-div"><a href="javascript: goLoginWeb()">登录</a></div>
+				<div class="profile-div" style="display: none;">
+                <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/22/22941.png">
+            </div>
+            <div class="cart-div" style="display: none;">
+                <a href="cart.html"> <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/24/24768.png"> <div class="tip-div">
+                        <img src="http://7qn7hi.com1.z0.glb.clouddn.com/ware/orig/2/24/24767.png">
+                        <div id="global-cart-num">
+                            1
+                        </div>
+                    </div> </a>
+            </div>
+            <div id="logout-div">
+                <a href="cart.html"> <div>
+                        购物车
+                    </div> </a>
+                <a href="orderlist.html"> <div>
+                        订单
+                    </div> </a>
+                <a id="logout"> <div>
+                        退出
+                    </div> </a>
+            </div>
 			</nav>
 			<!--分类内容-->
 			<div class="main-container">
@@ -49,6 +71,37 @@
 	<script src="js/ajax.js"></script>
 	<!--<script src="js/classify.js"></script>-->
 	<script type="text/javascript">
+		 /**
+                    	 * 验证localstora是否存在存活期内登录信息
+                    	 */
+        checkLogin(function () {
+            console.log('hello');
+            $('.login-div').hide();
+            $('.profile-div').show();
+            $('.cart-div').show();
+            getUserCar(localStorage.userID);
+        });
+                /**
+                 	*	获取用户购物车数据
+                 	*/
+        function getUserCar(userID) {
+            getGoods('http://datainfo.duapp.com/shopdata/getCar.php', {
+                userID: userID
+            }, parseCar, 'JSONP');
+        }
+
+        /**
+                    	 * 处理购物车数据添加到顶部导航栏
+                    	 */
+        function parseCar(data) {
+            console.log(data);
+            console.log('购物车数据：');
+            var number = 0;
+            for (var i in data) {
+                number += parseInt(data[i].number, 10);
+            }
+            $('#global-cart-num').html(number);
+        }
 		//登录到设置登录网址，并打开登录窗口
 		function goLoginWeb(){
               var gourl = "login.html?gourl="+location.href;
@@ -67,20 +120,22 @@
 		  */
 		 function parseHot(data){
 		 	var mainContainer = $('.main-container');
-		 	data = JSON.parse(data);
+		 	data = JSON.parse(data); 
 		 	//循环取数据
 		 	for(var i in data){
-		 		var classID =data[i].classID;		 		
+		 		var classID =data[i].classID;	
 				var className = data[i].className;
 				var classifyItem = "<div class='classify-item'><div class='layer'></div><div class='desc'>"+className+"</div></div><div style='height: 0.26rem;'></div>"
 				classifyItem = $(classifyItem);
-				classifyItem.on('click',function(){
-					var gourl = "classify-details.html?className="+className+"&classID="+classID;
-              		history.replaceState(null, "", gourl);
-              		window.location.reload();
-				})
 				mainContainer.append(classifyItem);
 			}
+		 	$('.classify-item').each(function(i){
+		 		this.onclick = function(){
+		 			var gourl = "classify-details.html?classID="+data[i].classID+"&className="+data[i].className;
+					history.replaceState(null, "", gourl);
+          			window.location.reload();
+		 		}
+		 	})
 		 }
 	</script>
 	</body>

@@ -86,25 +86,27 @@
 	    </div>
 	  </div>
 	</form>	
-	
-			
-	
-	
-	
-	
-	
-	
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="//cdn.bootcss.com/layer/3.0.1/mobile/layer.min.js"></script>
+    <script src="js/ajax.js"></script>
     <script type="text/javascript">
-    	console.log("hello");
     	//注册跳转
    	$("#register").click(function(){
-   		window.location.href = "register.html"
+   		window.location.href = "login.html?gourl="+location.href;
    	})
+   	//获取url参数
+   	function GetQueryString(name){
+		/*定义正则，用于获取相应参数*/
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		 /*字符串截取，获取匹配参数值*/
+	     var r = window.location.search.substr(1).match(reg);
+		 /*但会参数值*/
+	     if(r!=null)return  decodeURI(r[2]); return null;
+	}
     	//登录
 	$("#login").click(function() {     
 		var userID = $(".form-group input[name=userID]").val();
@@ -146,16 +148,35 @@
 	                    $("#login").removeAttr("disabled");
 	                    return;
 	                } else if(data === "2") {
+	                		layer.closeAll();
 	                		layer.open({skin:'msg',content:'用户名或密码错误',time:2});
 	                    $("#login").removeAttr("disabled");
 	                    return;
 	                } else {
+	                		layer.closeAll();
+	                		layer.open({skin:'msg',content:'登陆成功',time:2});
 	               	    $("#login").removeAttr("disabled");
 	                    data = JSON.parse(data);
 	                    console.log(data);
-	                    for(var key in formData){
-	                    localStorage.setItem(key, formData[key]);}
-	                    window.location.href = "index.html";
+	                    //存储登录状态到本地,增加记住我的登录状态
+	                    if($('#remember-me')[0].checked){
+	                    		localStorage.clear();
+		                    localStorage.setItem('userID', formData.userID);
+		                    localStorage.setItem('isLogin', true);	
+		                    localStorage.setItem('closeDate',Date.now());
+		                    for(key in data){
+		                    		localStorage.setItem(key,data[key]);
+		                    }
+	                    }
+						setTimeout(function(){
+							var gourl = GetQueryString('gourl');
+							if(gourl){
+		                   		history.replaceState(null, "", gourl);//防止参数丢失？
+              					window.location.reload();
+							}else{
+								window.location.href = 'index.html';
+							}
+						},2000)
 	                }
            		 }
 	           })

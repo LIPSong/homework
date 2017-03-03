@@ -229,6 +229,7 @@ body .view {
   background: #24272f;
   margin-top: 0.01rem;
   z-index: 1000;
+  overflow: visible;
 }
 .classify-view .nav-bar .welcome-logo {
   margin-top: 0.15rem;
@@ -283,6 +284,73 @@ body .view {
   color: #fff;
   font-size: 0.4rem;
   text-decoration: none;
+}
+.classify-view .nav-bar .profile-div {
+  margin-top: 0.32rem;
+  margin-right: 0.37rem;
+  float: right;
+}
+.classify-view .nav-bar .profile-div img {
+  width: 0.46rem;
+  height: 0.54rem;
+}
+.classify-view .nav-bar .cart-div {
+  margin-top: 0.32rem;
+  margin-right: 0.65rem;
+  width: 0.54rem;
+  height: 0.54rem;
+  float: right;
+}
+.classify-view .nav-bar .cart-div a {
+  color: black;
+}
+.classify-view .nav-bar .cart-div a img {
+  width: 0.54rem;
+  height: 0.54rem;
+}
+.classify-view .nav-bar .cart-div a .tip-div {
+  position: absolute;
+  z-index: 100;
+  top: 0.21rem;
+  width: 0.34rem;
+  height: 0.34rem;
+  margin-left: 0.34rem;
+}
+.classify-view .nav-bar .cart-div a .tip-div img {
+  width: 0.34rem;
+  height: 0.34rem;
+}
+.classify-view .nav-bar .cart-div a .tip-div #global-cart-num {
+  overflow: hidden;
+  color: #fff;
+  position: absolute;
+  z-index: 101;
+  top: 0.01rem;
+  width: 0.34rem;
+  text-align: center;
+  font-size: 0.25rem;
+  height: 0.34rem;
+  line-height: 0.34rem;
+}
+.classify-view .nav-bar #logout-div {
+  display: none;
+  margin-top: 1.25rem;
+  width: 100%;
+  height: 3.75rem;
+  background: #f00;
+}
+.classify-view .nav-bar #logout-div a {
+  color: #333;
+}
+.classify-view .nav-bar #logout-div a div {
+  width: 10rem;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  margin-top: 0rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.5rem;
+  background: #fff;
 }
 .classify-view .main-container {
   margin-top: 1.25rem;
@@ -520,6 +588,7 @@ body .view {
   border: 0.04rem solid #d9d9d9;
   margin: 0rem 0rem 0.12rem 0rem;
   background: url('http://www.iliangcang.com/images/wap/minus10_10.png') no-repeat center center;
+  background-size: 0.15rem 0.15rem;
 }
 .skuInfo ul .nums {
   width: 1.09rem;
@@ -538,4 +607,5 @@ body .view {
   border: 0.04rem solid #d9d9d9;
   margin: 0rem 0rem 0.12rem 0rem;
   background: url('http://www.iliangcang.com/images/wap/add10_10.png') no-repeat center center;
+  background-size: 0.15rem 0.15rem;
 }
