@@ -95,6 +95,21 @@
 				<a id="order" href="javascript: goOrderList()"><img style="width: 1.23rem;height: 0.87rem; opacity: 1;" src="img/fdd.png" alt="登录&订单中心" /></a>
 			</div>
 		</nav>
+		<div style="width: 100%; height: 1.56rem;"></div>
+		<div class="list-statement">
+			<script type="text/javascript">
+				var listStatement = document.querySelector('.list-statement');
+				for (var i = 0; i < 50  ; i++) {
+					(function(i){
+						//setTimeout立即执行,function 延后执行
+						setTimeout(function(){
+							listStatement.innerHTML = "<h1>抱歉功能未实现，"+ (50-i) +"秒后回到主页!</h1>"
+							i == 49?window.location.href="index.html":console.log(i);
+						},i*1000)
+					})(i)
+				}
+			</script>
+		</div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
