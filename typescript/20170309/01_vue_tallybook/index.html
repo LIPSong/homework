@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <script src="//cdn.bootcss.com/vue/2.2.1/vue.js"></script>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+</head>
+<body>
+    <div id="container">
+        <button class="save" @click="saveText(content)">
+            保存
+        </button>
+        <textarea cols="100" rows="30" v-model="content"></textarea>
+        <br>
+        <ul>
+            <li v-for="every_p in arr">
+                <p v-text="every_p.value"></p>
+                <button class="del" @click="del(every_p.index)">
+                    删除
+                </button>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="main.js" charset="utf-8"></script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <script src="//cdn.bootcss.com/vue/2.2.1/vue.js"></script>
+    <style>
+    .full-class {
+        font-weight: bold;
+        color: yellow;
+    }
+    </style>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+</head>
+<body>
+    <div id="app">
+        <h1>book</h1>
+        <web :datas="bookInfo"></web>
+        <button @click='setData(bookInfo)'>add_data</button>
+        <ul>
+            <li :class="{'full-class':obj.isFull}" v-for="obj in bookList" @click="addMark(obj)">
+                <p>
+                    <span v-text="obj.title"></span>
+                    <span v-text="obj.date"></span>
+                </p>
+                <p v-text="obj.des"></p>
+                <p v-text="obj.price"></p>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="app/main.js" charset="utf-8"></script>
+<!--<script src="app/app_ccc.js" type="text/javascript" charset="utf-8"></script>-->
+</html>

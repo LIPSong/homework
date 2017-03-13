@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--<script src="//cdn.bootcss.com/vue/2.2.1/vue.common.js"></script>-->
+	</head>
+	
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+
+			function ArithmeticOperations(initiaValue,elementTagName,color,borderStyle){
+				this.initialValue = initiaValue;
+			    this.plusBtn = this.createElement(elementTagName,color,borderStyle);
+				this.result = this.createElement(elementTagName,color,borderStyle);
+				this.minusBtn = this.createElement(elementTagName,color,borderStyle); 
+				this.addPlusEvent(this.plusBtn);
+				this.addMinusEvent(this.minusBtn);
+				this.init();
+			}
+			//创建dom
+			ArithmeticOperations.prototype.createElement = function(elementTagName,color,borderStyle){
+				var element = document.createElement(elementTagName);
+				element.style.backgroundColor = color;
+				element.style.border = borderStyle;
+				element.style.height = "100px";
+				element.style.width = "100px"
+				return element;				
+			}
+			//绑定加事件
+			ArithmeticOperations.prototype.addPlusEvent = function(object){
+				var _this = this;
+				object.addEventListener('click',function(){
+					_this.result.innerHTML = ++ _this.result.innerHTML;
+				})
+			}
+			//绑定减事件
+			ArithmeticOperations.prototype.addMinusEvent = function(object){
+				var _this = this;
+				object.addEventListener('click',function(){
+					_this.result.innerHTML = -- _this.result.innerHTML;
+				})
+			}
+			//初始化
+			ArithmeticOperations.prototype.init = function(){
+				this.result.innerHTML = this.initialValue;
+				document.getElementsByTagName('body')[0].appendChild(this.plusBtn); 
+				document.getElementsByTagName('body')[0].appendChild(this.result);
+				document.getElementsByTagName('body')[0].appendChild(this.minusBtn);
+			}
+		var arithmeticOperations = new ArithmeticOperations(0,"div","blue","2px solid black");
+	
+	</script>
+</html>
