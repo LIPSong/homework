@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://unpkg.com/vue/dist/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+		<!-- 引入组件库 -->
+        <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<mt-tabbar :selected.sync="selected">
+                <mt-tab-item id="外卖">
+                        <img slot="icon" src="tab-home.png"> <router-link to="/">外卖</router-link>
+                </mt-tab-item>
+                <mt-tab-item id="订单">
+                        <img slot="icon" src="tab-home.png"> <router-link to='/order'>订单</router-link>
+                </mt-tab-item>
+                <mt-tab-item id="发现">
+                        <img slot="icon" src="tab-home.png"> <router-link to='/find'>发现</router-link>
+                </mt-tab-item>
+                <mt-tab-item id="我的">
+                        <img slot="icon" src="tab-home.png"> <router-link to='setting'>我的</router-link>
+                </mt-tab-item>
+        		</mt-tabbar>
+        		<router-view></router-view>
+		</div>
+	</body>
+	<script src="js/find.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/home.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/order.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/setting.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+</html>
