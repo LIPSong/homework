@@ -1,0 +1,20 @@
+{
+  "name": "typescript",
+  "homepage": "https://github.com/LIPSong/homework",
+  "authors": [
+    "SongLiping <slp7756646@126.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^2.2.4"
+  }
+}
