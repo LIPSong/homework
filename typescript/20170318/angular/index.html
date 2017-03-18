@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="//cdn.bootcss.com/angular.js/1.6.3/angular.js"></script>
+	</head>
+	<body ng-app='app'>
+		<input type="text" ng-model='msg' />
+		<span >{{msg}}</span>
+		<div ng-if='1 == 1'>1 == 1?true</div>
+		<div ng-show='2 == 2'>2 == ?true</div>
+		<div class="main" ng-controller = 'main'>
+			<form action="" name='appForm'>
+				<lable>phone number</lable>
+				<input type="" name="phone" id="" value="" ng-model='phone' ng-pattern='/^1(3|4|5|7|8)\d{9}$/' />
+				<span ng-show='appForm.phone.$invalid'>erro</span>
+				<br />
+				<button ng-click='check()'>submit</button>
+			</form>
+			<div>{{date}}</div>
+			<div>{{date|date:'yyyy'}}</div>
+			<div>{{date|date:'MM'}}</div>
+			<div>{{date|date:'d'}}</div>
+			<div>{{date|date:'hh'}}</div>
+			<div>{{date|date:'mm'}}</div>
+			<div>{{date|date:'ss'}}</div>
+			<div>{{date|date:'yyyy MM d,hh mm ss'}}</div>
+			<button ng-click='toggle()'>toogle</button>
+ 			<div ng-show = 'showFirst' >1</div>
+			<div ng-hide = 'showFirst' >2</div>	
+			<div>{{num|number}}</div>
+			<div>{{num|number:1}}</div>
+			<div>{{data.toUpperCase()}}</div>
+			<div>{{data|limitTo:6}}</div>
+			<div>{{data|uppercase}}</div>
+			<div>{{color|limitTo:3}}</div>
+			<div 3tyle="background-color: green;">{{color|filter:firstCharIsUpper}}</div>
+			<div>{{color|filter:filterChar}}</div>
+			<div>{{btnn|json}}</div>
+			<div>{{price|currency}}</div>
+			<div ng-repeat="x in names">{{x.name+""}}</div>
+			<table border="" cellspacing="" cellpadding="">
+				<tr><th>Header</th></tr>
+				<tr ng-repeat='i in [1,2,3,4,5,6]'>
+					<td>
+						{{i+1}}
+					</td>
+				</tr>
+			</table>
+			<input type="text" ng-model="stark" />
+			{{stark}}
+			<div ng-if="sex == 1">man</div>
+			<div ng-if="sex == 0">woman</div>
+			<button ng-click = "clickRed('hello',$event)" ng-bind="btn.red"></button>
+			<button ng-click = "clickGreen()" ng-bind="btn.green"></button>
+			<button ng-click = "clickBlue()" ng-bind="btn.blue"></button>
+			<p>color:{{chooseColor}}</p>
+			<div>{{arr|orderBy:'age':true}}</div>
+		</div>
+		<script type="text/javascript">
+			var app = angular.module('app',[]);
+			app.controller('main',function($scope){
+				console.log(this);
+				$scope.stark = 'hello world';
+				$scope.sex = '1';
+				var that = this;
+				$scope.btn = {
+					red:'red',
+					green:'green',
+					blue:'blue'
+				}
+				$scope.chooseColor = '';
+					$scope.clickRed = function(){
+					$scope.chooseColor = $scope.btn.red;
+				}
+
+				$scope.clickBlue = function(){
+					$scope.chooseColor = $scope.btn.blue;
+				}
+
+			$scope.clickGreen = function(){
+					$scope.chooseColor = $scope.btn.green;
+				}
+			$scope.names =[
+			{name:'sds',sex:'man'},
+			{name:'sd2',sex:'man'},
+			{name:'sd3',sex:'man'},
+			{name:'sd4',sex:'man'},
+			];
+			$scope.price = 37901;
+			$scope.btnn = {
+				red: 'red',
+				green: 'green',
+				blue: [1,2,3],
+			};
+			$scope.color = ['red','Blue','Green','orange'];
+			$scope.filterChar = 'g';
+			$scope.firstCharIsUpper = function(color){
+				return color[0] == color[0].toUpperCase();
+				//return '==' if statements (==) is true return
+			}
+			$scope.data = 'Thisisstark';
+			$scope.color = ['red','Yellow','Green','orange'];
+			$scope.num = 1234567.12345;
+			$scope.arr = [
+				{name:'json',phone:'888-920',age:39},
+				{name:'json',phone:'888-920',age:29},
+				{name:'json',phone:'888-920',age:19},
+				{name:'json',phone:'888-920',age:39},
+			]
+			$scope.toggle = function(){
+				this.showFirst = !this.showFirst;
+			}
+			$scope.date = new Date();
+			$scope.check = function(){
+				$scope.phone = phone;
+			}
+        })
+		</script>
+	</body>
+</html>

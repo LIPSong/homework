@@ -1,0 +1,15 @@
+angular ng-bind
+{{3+4}}print 7
+angular init: <body ng-app ng-init="age=3;ages=6">
+MVC:
+orders:ng-repeat
+ng-repeat traverse DOM
+filter:
+$scope.firstCharIsUpper = function(color){
+	return color[0] == color[0].toUpperCase();
+}
+Pipe symbol:'|',
+limitTo:过滤器，截取过滤器，参数表示截取的长度，这个过滤器不仅可以截取字符串，还可截取数组
+number 过滤器
+是一种数字类型数据过滤器，参数表示截取的小数位置
+orderBy:是对数组进行排序的过滤器，第一个参数表示数组中的每个成员排序的索引；第二个参数表示正序还是倒序false从小到大，true从大到小。
