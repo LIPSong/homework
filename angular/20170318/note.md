@@ -2,8 +2,19 @@ name 王树冬  stark  git :wsdo
 
 angular 表达式 {{}}  	ng-bind
 ng-init  
-
+ng-href:对应的值{{}} ng-href = {{url}}
+链式引用：app.name 和 app    .name 是一样的
+定义其他模块名的时候，应用程序入口的模块名.其他模块名angular.module("app.controllers",[]).controller('homeControllser',function($scope,$apply注入服务){})在调用控制器函数的时候需要传控制器的名字和回调函数会得到angular中的服务，只要是以$开头的都是angular中的内置服务，在自定angular服务的时候不要以$开始，$scope用于连接视图和模型的变量只要是定义在$scope上面的变量都可以被视图找到,$scope只在当前的控制器起作用
+控制器使用步骤：1.创建应用程序的入口模块angular.module('app',['注入的模块名'])
+2.创建控制器模块->在html中引入js并且需要在入口模块中注入控制这个模块
+控制器监控$scope.$watch('',function(newValue,oldValue){console.log(newValue,oldValue)}):检测数据模型的改变
+app.js:angular.module('app',['app.controllers'])
+controllers.js:var app = angular.module('app.controllers');
+app.controller('homeController',callback)控制器不要去继承控制器，angular存在就不用写了，控制器之间通过事件进行交互
 ng-app : 声明应用程序的指令，一个程序中必须要有该指令
+ng-app：可以认为是应用程序的入口 一般情况下都写在html、body，用于开发单一应用页面的应用程序，只有一个完整文档结构的页面其他全部都是view
+如果在一个文档中使用多个ng-app只有第一个ng-app起作用
+ng-bind：可以绑定数据模型不可以在输入控件里面去绑定，在输入控件里面绑定数据模型使用ng-model
 
 ng-model：声明数据双向绑定的指令，说明将表单的数据绑定到应用程序中。
 
