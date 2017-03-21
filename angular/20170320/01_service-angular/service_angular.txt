@@ -1,0 +1,3 @@
+service:The custom service
+steps:1. create module:angular.module('app.services',[])
+2.inject service module to other module

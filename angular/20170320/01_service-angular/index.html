@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="//cdn.bootcss.com/angular.js/1.6.3/angular.js"></script>
+		<script src="myService.js" type="text/javascript" charset="utf-8"></script>
+		<script src="controllers.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app='app'>
+		<div ng-controller="findController">
+			<p ng-bind='name' ng-click='showInfo(name)'></p>
+		</div>
+
+		<script type="text/javascript">
+			var app = angular.module("app",["app.controllers","app.services"]);
+		</script>
+	</body>
+</html>

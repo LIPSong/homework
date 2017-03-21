@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn">click</button>
+	</body>
+	<script type="text/javascript">
+		var info = {};
+		info.age = 1;
+		var infos = [];
+		var save = function(x){
+			x.age = x.age+1;
+			infos.push(x);
+			console.log(infos)
+		}
+		document.getElementById('btn').onclick= function(){save(info)};
+	</script>
+</html>

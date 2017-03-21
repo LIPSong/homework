@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app = "app">
+	<head>
+		<meta charset="UTF-8">
+		<script src="//cdn.bootcss.com/angular.js/1.6.3/angular.js"></script>
+		<title></title>
+	</head>
+	<body ng-controller="homeController">
+			<p>
+        		<lable for="title-input">title</lable>
+        		<input type="text" id="title-input" ng-model='book.title'/>
+<p ng-bind="book.title"></p>
+		</p>
+		<p>
+        		<lable for="price-input">price</lable>
+        		<input ng-model='book.price' type="number" id="price-input" />
+<p ng-bind="book.price"></p>
+		</p>
+		<button ng-click='toSave(book)' value="">save</button>
+		<div ng-repeat="item in books track by $index">
+			<h1 ng-bind="item.title"></h1>	
+			<p ng-bind="item.price"></p>
+		</div>
+	</body>
+		<script src="js/models.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/services.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/controllers.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+</html>
