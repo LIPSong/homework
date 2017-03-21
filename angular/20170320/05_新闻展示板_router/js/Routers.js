@@ -1,0 +1,15 @@
+(function(){
+	angular.module('app.routers',['ngRoute'])
+	.config(function($routeProvider,$locationProvider){
+		$locationProvider.hashPrefix("");
+		$routeProvider.when('/home',{
+			templateUrl:"views/homeView.html",
+			controller:"postNewsController"
+		})
+			$routeProvider.when('/find',{
+			templateUrl:"views/findView.html",
+			controller:"readNewsController"
+		})	
+		$routeProvider.otherwise("/home")
+	}) 
+})()

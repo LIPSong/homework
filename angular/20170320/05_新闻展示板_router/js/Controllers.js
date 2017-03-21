@@ -22,8 +22,8 @@
 //			$http.get('url').then(function(data){
 //				console.log(data);
 //			})
-			$scope.list = dataManager.read('newsList')||[];
-			$scope.list = $rootScope.newsList;
+			$scope.list = dataManager.read('newsList')||[]||$rootScope.newsList;
+//			$scope.list = $rootScope.newsList;
 			$scope.num = 1;
 			$scope.update = function(){
 				console.log($rootScope.message);

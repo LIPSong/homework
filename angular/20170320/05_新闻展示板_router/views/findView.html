@@ -1,0 +1,11 @@
+<div >
+			<button ng-click="update()">Update</button>
+			<ul style="list-style: none;">
+				<li ng-repeat="news in list track by $index">
+					<img ng-src="{{news.imagePath}}" alt="" />
+					<h3 ng-bind='news.title'></h3>
+					<p ng-bind='news.des'></p>
+					<hr />
+				</li>
+			</ul>
+		</div>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="//cdn.bootcss.com/angular.js/1.6.3/angular.js"></script>
+		<script src="js/angular-route.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--display content-->
+		<ng-view></ng-view>
+
+		<ul>
+			<!--通过href跳转到指定的路由位置-->
+			<li><a href="#/home">home-index</a></li>
+			<li><a href="#/find">find-index</a></li>
+		</ul>
+	</body>
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+</html>

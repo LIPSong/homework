@@ -8,9 +8,14 @@
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
-	<script src="lib/bower_components/angular/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/node_modules/angular/angular.js" type="text/javascript" charset="utf-8"></script>
 	<body>
-		<div ng-controller="postNewsController">
+		<ng-view></ng-view>
+		<ul>
+			<li><a href="#/home">post news</a></li>
+			<li><a href="#/find">display news</a></li>
+		</ul>
+		<!--<div ng-controller="postNewsController">
 			<p>picture:<input type="text" ng-model="news.image" /></p>
 			<p>title:<input type="text" ng-model="news.title" /></p>
 			<p>details:<input type="text" ng-model="news.des" /></p>
@@ -26,9 +31,10 @@
 					<hr />
 				</li>
 			</ul>
-		</div>
+		</div>-->
 	</body>
 	<script src="lib/angular-route.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Routers.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/News.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/Services.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/Controllers.js" type="text/javascript" charset="utf-8"></script>
