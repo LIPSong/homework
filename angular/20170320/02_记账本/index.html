@@ -17,6 +17,7 @@
 <p ng-bind="book.price"></p>
 		</p>
 		<button ng-click='toSave(book)' value="">save</button>
+		<!--track 可以解决在遍历数组的时候出现重复内容会报错的情况(angular在遍历数组的时候会给每一个内容加一个hashkey用于区分是不是重复的内容)可以通过一个唯一的标识让angular查看它是不是有重复的 track by utem.id or track by $index  需要注意的是如果对数组进行排序track by 需要写在排序后面-->
 		<div ng-repeat="item in books track by $index">
 			<h1 ng-bind="item.title"></h1>	
 			<p ng-bind="item.price"></p>

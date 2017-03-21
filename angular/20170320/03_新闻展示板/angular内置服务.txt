@@ -1,0 +1,3 @@
+angular内置服务
+$scope:控制器的作用域
+$rootScope:根作用域 可以跨控制器使用
