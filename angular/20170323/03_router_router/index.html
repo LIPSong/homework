@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="public/main.css"/>
+		<script src="node_modules/angular/angular.js" type="text/javascript" charset="utf-8"></script>
+		<script src="node_modules/angular-ui-router/release/angular-ui-router.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<ul class="nav clear">
+			<li ui-sref="home">home</li>
+			<li ui-sref="find">find</li>
+			<li ui-sref="setting">setting</li>
+		</ul>
+		<ui-view></ui-view>
+	</body>
+	<script src="public/routes.js" type="text/javascript" charset="utf-8"></script>
+	<script src="public/app.js" type="text/javascript" charset="utf-8"></script>
+</html>

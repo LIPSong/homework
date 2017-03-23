@@ -1,0 +1,18 @@
+ul {
+  list-style: none;
+}
+
+ul:after {
+  content: "";
+  display: block;
+  clear: left;
+}
+
+.nav li {
+  width: 100px;
+  float: left;
+  background-color: #006400;
+  color: #fff;
+  border-right: 1px solid #ced0d0;
+  text-align: center;
+}

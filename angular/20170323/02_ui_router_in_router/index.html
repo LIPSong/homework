@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="node_modules/angular/angular.js" type="text/javascript" charset="utf-8"></script>
+		<script src="node_modules/angular-ui-router/release/angular-ui-router.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<ui-view></ui-view>
+		<ul>
+			<li ui-sref="home">home</li>
+			<li ui-sref="find">find</li>
+			<li ui-sref="setting">setting</li>
+		</ul>
+	</body>
+	<script src="js/routes.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+</html>
