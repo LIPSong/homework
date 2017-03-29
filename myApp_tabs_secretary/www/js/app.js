@@ -5,8 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers',
-  'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -15,6 +14,7 @@ angular.module('starter', ['ionic', 'starter.controllers',
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
+
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -22,54 +22,57 @@ angular.module('starter', ['ionic', 'starter.controllers',
     }
   });
 })
-//配置路由
 .config(function ($stateProvider,$urlRouterProvider,$ionicConfigProvider) {
-  $stateProvider.state("tabs",{
-    url:"/tabs",//路由的路径
-    abstract:true,//设置 tabs 页 为模板页
-    templateUrl:"templates/tabs.html"//路由的内容
-  });
-  //设置  IOS android  tabs定位在底部
-  $ionicConfigProvider.tabs.position("bottom");
-  //不写这个   在android手机上 在顶部
-  //第一页   记录
-  $stateProvider.state("tabs.recorders",{
-    url:"/recorders",
-    views:{
-      "tab-recorders":{
-        //tab-recorders   视图的名字
-        templateUrl:"templates/recorders.html"
-      }
-    }
-  });
-  // 第二页  好友
-  $stateProvider.state("tabs.friends",{
-    url:"/friends",
-      views:{
-      "tab-friends":{
-        templateUrl:"templates/friends.html"
-      }
-    }
-  });
-  //第三页   圈子
-  $stateProvider.state("tabs.circle",{
-    url:"/circle",
-    views:{
-      "tab-circle":{
-        templateUrl:"templates/circle.html"
-      }
-    }
-  });
-//第四页  设置
-  $stateProvider.state("tabs.setting",{
-    url:"/setting",
-    views:{
-      "tab-setting":{
-        templateUrl:"templates/setting.html"
-      }
-    }
-  });
-  $urlRouterProvider.otherwise("/tabs/recorders")
+	//设置ios Android tabs 定位在底部
+	$ionicConfigProvider.tabs.position("bottom");
+	$stateProvider.state('tabs', {
+		url:"/tabs",
+		abstract:true,
+		templateUrl:"templates/tabs.html"
+	});
+	$stateProvider.state('tabs.recorders', {
+		url:"/recorders",
+		views:{
+			"tab-recorders":{
+				templateUrl:"templates/recorders.html",
 
+			}
+		}
+	});
+	$stateProvider.state("tabs.write",{
+		url:"/write",
+		views:{
+			"tab-recorders":{
+				templateUrl:"templates/write.html",
+				controller:"RecorderWriteController"
+			}
+		}
+	});
+	$stateProvider.state("tabs.friends",{
+		url:"/friends",
+		views:{
+			"tab-friedns":{
+				templateUrl:"templates/friends.html"
+			}
+		}
+	});
+	$stateProvider.state("tabs.circle",{
+		url:"/circle",
+		views:{
+			"tab-circle":{
+				templateUrl:"templates/circle.html"
+			}
+		}
+	});
+	$stateProvider.state("tabs.setting",{
+		url:"/setting",
+		views:{
+			"tab-setting":{
+				templateUrl:"templates/setting.html"
+			}
+		}
+	});
 
+	$urlRouterProvider.otherwise("/tabs/recorders");
 })
+

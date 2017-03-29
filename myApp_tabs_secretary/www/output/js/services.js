@@ -38,8 +38,8 @@ angular.module('starter.services', [])
                             // 获得地址的对象
                             var addComp = rs.addressComponents;
                             var address = addComp.province + ' ' + addComp.city + ' ' + addComp.district + ' ' + addComp.street + ' ' + addComp.streetNumber;
-                            //反地理编码成功之后，把坐标和位置信息传递到使用promise的地方
-                            res({point:point,address:address});
+                            // 反地理编码成功之后，把坐标和位置信息传递到使用promise的地方
+                            res({point: point, address: address});
                         });
                     }
 
@@ -49,6 +49,6 @@ angular.module('starter.services', [])
             return promise;
         }
         this.alertTime = alertTime;
-        this.status= status;
+        this.status = status;
         this.getCurLocation = getCurLocation;
     });
