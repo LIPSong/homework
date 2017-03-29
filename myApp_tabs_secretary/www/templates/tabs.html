@@ -1,0 +1,23 @@
+<ion-tabs class="tabs-light tabs-icon-top">
+<!--第一页   记录-->
+  <ion-tab ui-sref="tabs.recorders" icon-off="ion-ios-compose-outline"
+           icon-on="ion-ios-compose balanced" title="记录">
+    <ion-nav-view name="tab-recorders"></ion-nav-view>
+    <!--name 指定视图的名字-->
+  </ion-tab>
+<!--第二页  好友 -->
+  <ion-tab ui-sref="tabs.friends" icon-off="ion-ios-people-outline"
+           icon-on="ion-ios-people balanced"  title="好友">
+    <ion-nav-view name="tab-friends"></ion-nav-view>
+  </ion-tab>
+<!--第三页   圈子-->
+  <ion-tab ui-sref="tabs.circle" icon-off="ion-ios-world-outline"
+           icon-on="ion-ios-world balanced" title="圈子">
+    <ion-nav-view name="tab-circle"></ion-nav-view>
+  </ion-tab>
+<!--第四页   设置-->
+  <ion-tab ui-sref="tabs.setting" icon-off="ion-ios-gear-outline"
+           icon-on="ion-ios-gear balanced" title="设置">
+    <ion-nav-view name="tab-setting"></ion-nav-view>
+  </ion-tab>
+</ion-tabs>
