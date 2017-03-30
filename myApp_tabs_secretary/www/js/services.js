@@ -51,4 +51,90 @@ angular.module('starter.services', [])
         this.alertTime = alertTime;
         this.status= status;
         this.getCurLocation = getCurLocation;
-    });
+    })
+    .service("DBManager",function () {
+    		var self = this;
+    		//打开数据库的方法
+    		this.openDB = function (dbName,dbVersion) {
+    			//打开数据库，得到数据库的对象
+    			this.db = openDatabase(dbName,dbVersion,dbName,10*1024*1024);
+    		};
+    		this.createTable= function (sql) {
+    			return new Promise(function(res,reject){
+    				if (self.db) {
+    					self.db.transaction(function(ts){
+    						ts.executeSql(sql,[],function(result){
+    							res({
+    								code:2000,
+    								message:"建表成功",
+    								data:result
+    							});
+    						},function(error){
+    							reject({
+    								code:2001,
+    								message:"建表失败",
+    								data:error
+    							})
+    						});
+    					})
+    				} else{
+    					reject({code:3000,message:"请打开数据库"});	
+    				}	
+    			});
+    		};
+    		/*添加数据 插入数据到数据库
+    		 * addData 插入数据到数据库
+    		 * sql：string sql语句
+    		 * vaules：array 插入的值数组
+    		 */
+    		this.addData = function (sql,values) {
+    			return new Promise(function(res,reject){
+    				if (self.db) {
+    					self.db.transaction(function(ts){
+    						ts.executeSql(sql,values,function(result){
+    							res({
+    								code:2000,
+    								message:"添加数据成功",
+    								data:result
+    							});
+    						},function(error){
+    							reject({
+    								code:2002,
+    								message:"添加数据失败",
+    								data:error
+    							});
+    						})
+    					})
+    				} else{
+    					reject({code:3000,message:"请打开数据库"});	
+    				}
+    			});
+    		};
+    		this.updateData = function (sql) {
+    			return new Promise(function(res,reject){});
+    		};
+    		this.deleteData = function (sql) {
+    			return new Promise(function(res,reject){});
+    		};
+  		this.searchData = function (sql) {
+    			return new Promise(function(res,reject){});
+    		};
+    })
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ;

@@ -13,7 +13,7 @@
       </ion-item>
 
       <ion-item class="item item-input space-bottom">
-        <textarea placeholder="内容" ng-model="writeInfo.des"></textarea>
+        <textarea rows="8" placeholder="内容" ng-model="writeInfo.des"></textarea>
       </ion-item>
 
       <ion-item class="item item-button-right space-bottom">
@@ -30,9 +30,9 @@
 
 
       <ion-item class="item-toggle space-bottom">
-        是否公开
+      	<span ng-bind="writeInfo.public.message"></span>
         <label class="toggle toggle-energized">
-       <input type="checkbox">
+       <input type="checkbox" ng-model="writeInfo.public.isPublic" ng-change="addEvent(3)">
        <div class="track">
          <div class="handle"></div>
        </div>
@@ -46,7 +46,7 @@
 
     </ion-list>
 
-    <button class="button button-balanced button-block">保存</button>
+    <button class="button button-balanced button-block" ng-click="toSave(writeInfo)">保存</button>
 
   </ion-content>
 </ion-view>

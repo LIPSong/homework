@@ -28,7 +28,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 	$stateProvider.state('tabs', {
 		url:"/tabs",
 		abstract:true,
-		templateUrl:"templates/tabs.html"
+		templateUrl:"templates/tabs.html",
+		controller:"tabController"
 	});
 	$stateProvider.state('tabs.recorders', {
 		url:"/recorders",
