@@ -63,7 +63,7 @@ angular.module('starter.services', [])
     			return new Promise(function(res,reject){
     				if (self.db) {
     					self.db.transaction(function(ts){
-    						ts.executeSql(sql,[],function(result){
+    						ts.executeSql(sql,[],function(trans,result){
     							res({
     								code:2000,
     								message:"建表成功",
@@ -91,7 +91,7 @@ angular.module('starter.services', [])
     			return new Promise(function(res,reject){
     				if (self.db) {
     					self.db.transaction(function(ts){
-    						ts.executeSql(sql,values,function(result){
+    						ts.executeSql(sql,values,function(trans,result){
     							res({
     								code:2000,
     								message:"添加数据成功",
@@ -110,17 +110,112 @@ angular.module('starter.services', [])
     				}
     			});
     		};
-    		this.updateData = function (sql) {
-    			return new Promise(function(res,reject){});
-    		};
+ this.updateData =function (sql,values) {
+            return  new Promise(function (res,reject) {
+                if(self.db){
+                    self.db.transaction(function (ts) {
+                      ts.executeSql(sql,values,function (trans,result) {
+                        res({
+                          code:2000,
+                          message:"更新成功",
+                          data: result
+                        })
+                      },function (error) {
+                        reject({
+                          code:2002,
+                          message:"更新失败",
+                          data: error
+                        })
+                      });
+                    })
+                }else{
+                    reject({code:3000,message:"请打开数据库"});
+                }
+            });
+      }; 
     		this.deleteData = function (sql) {
-    			return new Promise(function(res,reject){});
+    			return new Promise(function(res,reject){
+    				self.db.transaction(function(ts){
+    					ts.executeSql(sql,[],function(trans,result){
+    						res({
+    							code:2000,
+    							message:'删除成功',
+    							data:result
+    						});
+    					},function(error){
+    						reject({
+    							code:2004,
+    							message:'删除数据失败',
+    							data:error
+    						});
+    					});
+    				});
+    			});
     		};
   		this.searchData = function (sql) {
-    			return new Promise(function(res,reject){});
+    			return new Promise(function(res,reject){
+    				if (self.db) {
+    					self.db.transaction(function (ts) {
+    						ts.executeSql(sql,[],function(trans,result){
+    							res({
+    								code:2000,
+    								message:"查询成功",
+    								data:result.rows
+    							});
+    						},function(error){
+    							reject({
+    								code:3000,
+    								message:"查询数据失败",
+    								data:error
+    							});
+    						});
+    					});
+    				} else{
+    					reject({code:3000,message:"请打开数据库"});
+    				}
+    				
+    			});
     		};
     })
-    
+    .service('timeTool',function(){
+    		//时间戳是一个事件的标记
+    		//xxxx年-xx月-xx日
+    		this.YMD = function(timeStamp){
+			//把时间戳转成日期对象
+			var date = new Date(timeStamp);
+var dateString = date.getFullYear()+"年-"+(date.getMonth()+1)+"月-"+date.getDate()+"日";
+			console.log(dateString);
+    			return dateString;
+    		}
+    		function returnDecimal(num) {
+        return num>=10 ? num:"0"+num;
+    }
+//  xx:xx:xx
+    this.hourMinuteSeconds = function (timeStamp) {
+
+      var date = new Date(timeStamp);
+
+      return returnDecimal(date.getHours())+":"+returnDecimal(date.getMinutes())+":"+returnDecimal(date.getSeconds());
+    };
+    this.amOrPm = function(timeStamp){
+    	var date = new Date(timeStamp);
+    	var hours = date.getHours();
+    	var ampm = hours >= 12?'下午':'上午';
+    	hours = hours>12?hours-12:hours;
+    	return ampm+' '+hours+':'+date.getMinutes()+':'+date.getSeconds()+'';
+    }
+        //Am Pm  24/12
+    		//周几
+this.week = function (timeStamp) {
+        var date = new Date(timeStamp);
+
+        var weekNum = date.getDay();
+
+        var list = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"]
+
+        return list[weekNum];
+      }
+    })
     
     
     

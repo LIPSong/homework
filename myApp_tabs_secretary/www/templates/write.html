@@ -1,5 +1,5 @@
-<ion-view title="新建">
-
+<ion-view title="{{type=='001'?'录入':writeInfo.title}}">
+<!--todo:title的内容需要根据type去改变-->
   <ion-nav-buttons side="right">
     <button class="button icon ion-share button-clear"></button>
   </ion-nav-buttons>
@@ -8,7 +8,8 @@
 
     <ion-list>
 
-      <ion-item class="item item-input space-bottom">
+      <ion-item class="item item-input space-bottom" ng-show="type=='001'">
+      		<!--todo:type 如果不是001就是详情页面,不需要显示标题-->
         <input ng-model="writeInfo.title" type="text" placeholder="标题">
       </ion-item>
 
@@ -18,7 +19,7 @@
 
       <ion-item class="item item-button-right space-bottom">
         提醒时间
-        <span ng-bind="writeInfo.alertTime"></span>
+        <span ng-bind="writeInfo.showTime"></span>
         <button class="button button-clear button-energized icon ion-ios-stopwatch-outline" ng-click="addEvent(0)"></button>
       </ion-item>
 
@@ -38,12 +39,13 @@
        </div>
      </label>
       </ion-item>
-
-      <ion-item class="item-button-right space-bottom">
+			<!--如果type不是001 需要地图显示-->
+      <ion-item ng-show="type=='001'"  class="item-button-right space-bottom">
        	<span ng-bind="writeInfo.location.address||'定位'"></span> 
         <button class="button button-clear button-energized  icon ion-android-radio-button-on assertive" ng-click="addEvent(2)"></button>
       </ion-item>
-
+		<ion-item style="padding:0;"  class="space-bottom" ng-show="type!='001'&&wirteInfo.location.address!='定位'"><div id="showLocationMapView"></div></ion-item>
+		
     </ion-list>
 
     <button class="button button-balanced button-block" ng-click="toSave(writeInfo)">保存</button>

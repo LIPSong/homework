@@ -36,12 +36,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 		views:{
 			"tab-recorders":{
 				templateUrl:"templates/recorders.html",
-
+				controller:'recorderController'
 			}
 		}
 	});
 	$stateProvider.state("tabs.write",{
-		url:"/write",
+		//录入信息页面的type 001
+		//进入详情页面 传下标
+		url:"/write/:type",
 		views:{
 			"tab-recorders":{
 				templateUrl:"templates/write.html",
