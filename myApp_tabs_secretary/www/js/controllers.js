@@ -222,4 +222,12 @@ angular.module('starter.controllers', [])
 
         		});
         };
-    });
+    })
+   //设置控制器 
+   .controller('settingController', function ($scope, HTTPManager) {
+   	$scope.gotoRegister = function () {
+   		HTTPManager.post(HOST+REGISTER,{name:'Jhon'}).then(function(result){console.log(result)});
+   	};
+   })
+    
+    ;

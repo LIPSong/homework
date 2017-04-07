@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>indexdb</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+</head>
+<body>
+    <p>
+1.打开数据库open
+		var request = indexedDB.open(name,version)
+		request.onsuccess = function (event) {this.db = event.target.result;}
+			onsuccess
+			onerror
+			onupgradeneeded
+			</br>
+	2.建表
+		var os = db.createObjectStore("user", {keyPath: "name"}) 类似于websql中 建表的方法
+		os.createIndex("name", "name", {unique: true}); 类似于 websql中 添加字段
+    </p>
+    <button onclick='add'>添加数据</button>
+</body>
+<script src="DBManager.js"></script>
+<script src="main.js"></script>
+</html>

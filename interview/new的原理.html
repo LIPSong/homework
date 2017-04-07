@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function Old(){
+			console.log(1);
+			this.name = 1;
+		}
+		var NEW = function() {
+			var obj = {};
+			obj.__proto__ = Old.prototype;
+			var result = Old.call(obj);
+			return typeof result === 'obj'?result:obj;
+		}
+		var obj =NEW();
+	//	var obj = new Old();
+		//对于JavaScript解释器而言，Old后面带不带()是一样都会调用Old就像带括号一样
+	</script>
+</html>
