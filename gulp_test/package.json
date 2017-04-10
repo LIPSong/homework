@@ -1,0 +1,14 @@
+{
+  "name": "gulp_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild":"echo I run before the build script",
+    "build":"echo I run the build script",
+    "postbuild":"echo I run before the build script"
+  },
+  "author": "",
+  "license": "ISC"
+}
