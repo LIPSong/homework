@@ -76,7 +76,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 			}
 		}
 	});
-
+	$stateProvider.state('tabs.login',{
+    url:'/login',
+    views:{
+    	    'tab-setting':{
+    	    	templateUrl:'templates/login.html',
+    	    	controller:'loginController'
+    	    }
+    }
+	});
+	$stateProvider.state('tabs.register',{
+    url:'/register',
+    views:{
+    	    'tab-setting':{
+    	    	templateUrl:'templates/register.html',
+    	    	controller:'registerController'
+    	    }
+    }
+	});
 	$urlRouterProvider.otherwise("/tabs/recorders");
 })
 

@@ -2,7 +2,14 @@ angular.module("starter.HTTPServices",[])
 
 .service("HTTPManager",function ($http) {
 
+ this.get = function (url, param) {
+      var paramStrings =[];
+      for(key in param){
+        paramStrings.push(key+"="+param[key])
+      }
 
+      return $http.get(url+'?'+paramStrings.join("&"))
+   };
   this.post = function (url,param) {
 
     return $http({

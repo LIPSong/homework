@@ -224,10 +224,47 @@ angular.module('starter.controllers', [])
         };
     })
    //设置控制器 
-   .controller('settingController', function ($scope, HTTPManager) {
-   	$scope.gotoRegister = function () {
-   		HTTPManager.post(HOST+REGISTER,{name:'Jhon'}).then(function(result){console.log(result)});
-   	};
+   .controller('settingController', function ($scope, HTTPManager, $rootScope) {
+// 	$scope.gotoRegister = function () {
+// 		HTTPManager.post(HOST+REGISTER,$scope.userVerifyInfo).then(function(result){console.log(result.data)});
+// 	};
+// 	//发往后台用户验证信息数据模型
+// 	$scope.userVerifyInfo = {
+// 		username:'Jhon',
+// 		phone:'',
+// 		verifyCode:'123456'
+// 	}
+// 	//定义方法用来获取验证码
+// 	$scope.gotoVerifyCode = function (info) {
+// 		HTTPManager.post(HOST+VERIFICATION_CODE,info).then(function(result){console.log(result.data)});
+// 	}
+// 读取用户名登录状态
+$rootScope.isLogin = window.localStorage.getItem(IS_LOGIN);
+$rootScope.isLogin = 0;
+// 如果登录了 显示用户名
+if ($rootScope.isLogin) {
+$rootScope.username = window.localStorage.getItem(USER_NAME);	
+} 
    })
-    
+   .controller('loginController', function ($scope) {})
+   .controller('registerController', function ($scope, $interval, HTTPManager) {
+       $scope.registerInfo = {};
+       $scope.codeStatus = '获取验证码';
+       $scope.codeStatusDisable = false;
+       $scope.isFinish = false;
+       $scope.getVerifyCode = function () {
+     	HTTPManager.post(HOST+GET_VERIFICATION_CODE,{phone:$scope.registerInfo.phone}).then(function (result) {console.log(result.data);}).catch(function (error) {console.log(error.data);});
+       $scope.codeStatusDisable = true;
+       var time = 5;
+       	var timer = $interval(function (){ $scope.codeStatus = --time + '秒后重试';
+       	if(time === 0){$interval.cancel(timer);
+       	$scope.codeStatus = '获取验证码';
+        $scope.codeStatusDisable = false;
+       	}}
+,1000);
+       }
+       $scope.toRegister = function (info) {
+       	console.log(info);
+       }
+   })
     ;
