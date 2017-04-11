@@ -216,7 +216,16 @@ this.week = function (timeStamp) {
         return list[weekNum];
       }
     })
-    
+   .service('alertView', function ($ionicLoading, $timeout) {
+   	this.showMessageForDelay = function (message, delay) {
+   		$ionicLoading.show({
+   			template:message
+   		});
+   		$timeout(function () {
+   		$ionicLoading.hide();
+   		}, delay)
+   	}
+   })
     
     
     

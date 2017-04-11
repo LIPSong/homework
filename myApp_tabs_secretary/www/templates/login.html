@@ -3,16 +3,18 @@
 
     <ion-list>
       <ion-item class="item item-input-inset">
-        <input type="text" placeholder="手机号">
+<input type="text" placeholder="手机号" ng-model='userInfo.phone'ng-pattern='/^1[0-9]{10}$/'>
+        <label ng-hide='userInfo.phone' class="assertive item-button-left">请输入正确的手机号码</label>
       </ion-item>
 
       <ion-item class="item item-input-inset">
-        <input type="text" placeholder="登录密码">
+        <input type="password" ng-model='userInfo.password' placeholder="登录密码">
+        	<label ng-hide='userInfo.password' class="assertive item-button-left">请输入正确的登录密码</label>
       </ion-item>
 
     </ion-list>
 
-    <button class="button button-energized button-full">登录</button>
+    <button class="button button-balanced button-full" ng-click='toLogin(userInfo)' ng-disabled='!(userInfo.phone && userInfo.password)'>登录</button>
     <div class="row">
       <button class="col-50 button button-dark button-clear" ui-sref="tabs.register">快速注册</button>
       <button class="col-50 button button-dark button-clear">忘记密码</button>

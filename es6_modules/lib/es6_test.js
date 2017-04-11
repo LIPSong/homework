@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
 * @file es6 syntax study
@@ -16,5 +16,9 @@
 	for (var i = 0; i < 10; i++) {
 		_loop(i);
 	}
-	a[6]();
+	// a[6]();
+	for (var i = 0; i < 3; i++) {
+		var i = 'abc';
+		console.log(i);
+	}
 })();

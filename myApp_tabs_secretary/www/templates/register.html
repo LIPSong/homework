@@ -11,7 +11,8 @@
         <label ng-hide='registerInfo.phone' class="assertive item-button-left">请输入正确的手机号</label>
       </ion-item>
       <ion-item class="item item-input-inset item-button-right">
-        <input type="text"ng-disabled ='!registerInfo.phone' ng-model='registerInfo.verifyCode' placeholder="输入验证码">
+        <input type="text"ng-disabled ='!registerInfo.phone' ng-model='registerInfo.verifyCode' class='col-25' ng-pattern='/^\d{6}$/'  placeholder="输入验证码">
+        	      	<label ng-hide='registerInfo.verfifyCode' class="assertive padding">请输入六位验证码</label>
         <button class="button button-balanced" ng-click="getVerifyCode()" ng-bind='codeStatus' ng-disabled="codeStatusDisable || !registerInfo.phone || !registerInfo.username"></button>
       </ion-item>
       <ion-item class="item item-input-inset">

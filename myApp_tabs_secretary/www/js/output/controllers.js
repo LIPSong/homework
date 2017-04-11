@@ -9,7 +9,11 @@ angular.module('starter.controllers', [])
             console.log(error);
         });
     })
-    .controller('RecorderWriteController', function ($scope, writeService, $ionicActionSheet, $ionicPopup, DBManager, $ionicNavBarDelegate, $stateParams, $ionicHistory, $rootScope, timeTool,alertView,HTTPManager) {
+    .controller('RecorderWriteController', function ($scope, writeService, $ionicActionSheet, $ionicPopup, DBManager, $ionicNavBarDelegate, $stateParams, $ionicHistory, $rootScope, timeTool) {
+        console.log($rootScope.recoderList);
+
+        console.log($stateParams);
+
         // 根据type在视图上面去区分进入的是哪一种界面
         $scope.type = $stateParams.type;
 
@@ -120,18 +124,7 @@ angular.module('starter.controllers', [])
         }
         // 保存到云端
         function saveForOnline(info) {
-            // todo:判断是否登录
-            if (!window.localStorage.getItem(IS_LOGIN)) {
-            	    alertView.showMessageForDelay('请登录后保存', 2000)
-            	    return;
-            }
-            // todo: 调用保存到云端的接口
-            HTTPManager.post().then(function (result) {
-            	    result.data.code == 2000?$ionicHistory.goBack():alertView.showMessageForDelay(result.data.message, 2000);
-            }).catch(function (error) {
-            	    alertView.showMessageForDelay(error.data.message,2000);
-            });
-            // 保存到云端的时候保存到本地一份
+            alert('云端');
             saveForOffline(info);
         }
         $scope.toSave = function (info) {
@@ -247,38 +240,15 @@ angular.module('starter.controllers', [])
         // 	}
         // 读取用户名登录状态
         $rootScope.isLogin = window.localStorage.getItem(IS_LOGIN);
-//      $rootScope.isLogin = 0;
+        $rootScope.isLogin = 0;
         // 如果登录了 显示用户名
         if ($rootScope.isLogin) {
             $rootScope.username = window.localStorage.getItem(USER_NAME);
         }
 
     })
-    .controller('loginController', function ($rootScope,$scope, alertView,HTTPManager,$ionicHistory) {
-      	$scope.userInfo = {};
-      	var reg = '/^1[0-9]{10}$/';
-        $scope.toLogin = function (info) {
-      	    info.password = md5(sha1(info.password+"secretary"));
-        	    HTTPManager.post(HOST+LOGIN,info).then(function(result){
-        	    	console.log(result);
-            if (result.data.code == 2000) {
-            // 保存登录状态	
-            // 保存用户名到本地
-            window.localStorage.setItem(IS_LOGIN, 1);
-            window.localStorage.setItem(USER_NAME, result.data.data.username);
-            $rootScope.isLogin = window.localStorage.getItem(IS_LOGIN);
-            $rootScope.username = window.localStorage.getItem(USER_NAME);
-            $ionicHistory.goBack();	
-            }else {
-            	alertView.showMessageForDelay(result.data.message,2000)
-            }
-        	    }).catch(function(error){
-        	        console.log(error);	
-        	        alertView.showMessageForDelay(error.data.message,2000);	
-        	    });
-        }
-    })
-    .controller('registerController', function ($scope, $interval, HTTPManager,alertView, $ionicHistory, $timeout) {
+    .controller('loginController', function ($scope) {})
+    .controller('registerController', function ($scope, $interval, HTTPManager) {
         $scope.registerInfo = {};
         $scope.codeStatus = '获取验证码';
         $scope.codeStatusDisable = false;
@@ -287,12 +257,9 @@ angular.module('starter.controllers', [])
             HTTPManager.post(HOST + GET_VERIFICATION_CODE, {
                 phone: $scope.registerInfo.phone
             }).then(function (result) {
-                console.log(result.data);               
-                alertView.showMessageForDelay(result.data.message, 2000);
-                $scope.code = result.data.verifyCode;
+                console.log(result.data);
             }).catch(function (error) {
-                console.log(error.data);                
-                alertView.showMessageForDelay(error.data.message, 2000);
+                console.log(error.data);
             });
             $scope.codeStatusDisable = true;
             var time = 5;
@@ -307,25 +274,7 @@ angular.module('starter.controllers', [])
             }
                 , 1000);
         };
-       $scope.toRegister=function (info) {
-      if($scope.code==$scope.registerInfo.verifyCode){
-      	info.password = md5(sha1(info.password+"secretary"));
-        HTTPManager.post(HOST+REGISTER,info).then(function (result) {
-        	  console.log(result.data);
-        	  if(result.data.code == '2000'){
-           $scope.registerInfo={};
-           alertView.showMessageForDelay(result.data.message,2000);
-           $timeout($ionicHistory.goBack(), 3000);
-        	  }else{
-          alertView.showMessageForDelay(result.data.message,2000);
-        	  }
-        }).catch(function (error) {
-        	console.log('error:'+error);
-        	
-          alertView.showMessageForDelay(error.data.message,2000);
-        });
-      }else{
-        alertView.showMessageForDelay("验证码错误",2000);
-      }
-     }; 
+        $scope.toRegister = function (info) {
+            console.log(info);
+        };
     });

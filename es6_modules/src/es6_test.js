@@ -9,6 +9,10 @@ for(let i =0; i<10; i++) {
 	console.log(i);
 	};
 }
-a[6]();
+// a[6]();
+for (let i = 0; i < 3; i ++) {
+    let i = 'abc';
+    console.log(i);
+}
 })();
 
