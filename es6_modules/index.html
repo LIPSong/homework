@@ -6,5 +6,30 @@
 	</head>
 	<body>
 		<script src="lib/index.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+for (var i = 0; i < 3; i ++) {
+	let i = 'ass';
+}
+console.log(i);
+'use strict'
+if(true){const MAX = 5;}
+const foo = Object.freeze({});
+foo.prop = 123;
+console.log(foo);
+var constantize = (obj) => {
+    Object.freeze(obj);	
+	Object.keys(obj).forEach( (key, i) => {
+        if ( typeof obj[key] === 'object') {
+        constantize( obj[key] );	
+	}	
+	});
+}
+let obj = {prop:1,
+
+	obj:{prop:2}
+}
+constantize(obj);
+console.log(obj);
+</script>
 	</body>
 </html>

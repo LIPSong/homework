@@ -19,19 +19,20 @@ angular.module("starter.HTTPServices",[])
       headers:{
         "content-type":"application/x-www-form-urlencoded"
       },
-      transformRequest:function (data) {
-
-        var body = [];
-        for (key in data) {
-
-          var value = data[key];
-          var item = key+"="+encodeURIComponent(value);
-          body.push(item);
-        }
-
-        return body.join("&");
-
-      }
+//    transformRequest:function (data) {
+//
+//      var body = [];
+//      for (key in data) {
+//
+//        var value = data[key];
+//        var item = key+"="+encodeURIComponent(value);
+//        body.push(item);
+//      }
+//
+//      return body.join("&");
+//
+//    }
+      data:$httpParamSerializerJQLike(param)
 
     });
 
