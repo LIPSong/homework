@@ -54,8 +54,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 	$stateProvider.state("tabs.friends",{
 		url:"/friends",
 		views:{
-			"tab-friedns":{
-				templateUrl:"templates/friends.html"
+			"tab-friends":{
+				templateUrl:"templates/friends.html",
+				controller:'friendsController'
+			}
+		}
+	});
+	$stateProvider.state('tabs.searchFriends',{
+		url:"/searchFriends",
+		views:{
+			'tab-friends':{
+				templateUrl:"templates/searchFriends.html",
+				controller:'searchFriendController'
 			}
 		}
 	});
@@ -63,7 +73,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 		url:"/circle",
 		views:{
 			"tab-circle":{
-				templateUrl:"templates/circle.html"
+				templateUrl:"templates/circle.html",
+				controller:'circleController'
 			}
 		}
 	});
@@ -73,6 +84,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 			"tab-setting":{
 				templateUrl:"templates/setting.html",
 				controller:"settingController"
+			}
+		}
+	});
+	$stateProvider.state('tabs.trash', {
+		url:"/trash",
+		views:{
+			"tab-setting":{
+				templateUrl:"templates/trashBox.html",
+				controller:"trashBoxController"
 			}
 		}
 	});

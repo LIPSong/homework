@@ -15,6 +15,21 @@ var sms = new Alidayu('23739992', '2fa374b88108e28930c482afd0a8cc60');
 router.get('/login', function (req, res) {
     res.send('login success');
 });
+// 根据查询的内容，去查询匹配到的所有用户
+router.get ("/searchAllUsers", function(req,res){
+DBManagerTools.searchAllUsers(req.query.info).then(function(result){
+res.send({
+	code:2000,
+	message:'查询成功',
+	data:result
+});
+}).catch(function(error){
+	res.send({
+	code:3000,
+	message:'数据库操作失败'})
+
+});
+})
 // 短信验证接口
 router.post('/verifyCode', function (req, res) {
     // 随机生成6位验证码
@@ -127,4 +142,16 @@ router.post('/login', function (req, res) {
     }
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;

@@ -125,8 +125,12 @@ angular.module('starter.controllers', [])
             	    alertView.showMessageForDelay('请登录后保存', 2000)
             	    return;
             }
+             //录入的数据中 没有用户ID  需要把登录时候的ID添加到这个对象中
+
+      $scope.writeInfo.userID = parseInt(window.localStorage.getItem(USER_ID));
+
             // todo: 调用保存到云端的接口
-            HTTPManager.post().then(function (result) {
+            HTTPManager.post(HOST+ADD_RECODER,$scope.writeInfo).then(function (result) {
             	    result.data.code == 2000?$ionicHistory.goBack():alertView.showMessageForDelay(result.data.message, 2000);
             }).catch(function (error) {
             	    alertView.showMessageForDelay(error.data.message,2000);
@@ -171,37 +175,56 @@ angular.module('starter.controllers', [])
         };
     })
     // 首页控制器
-    .controller('recorderController', function ($scope, DBManager, $ionicLoading, $timeout, timeTool, $ionicListDelegate, $rootScope) {
+    .controller('recorderController', function ($scope, DBManager, $ionicLoading, $timeout, timeTool, $ionicListDelegate, $rootScope,HTTPManager) {
         function loadData() {
-            // 等待视图
+              // 等待视图
             $ionicLoading.show({
                 template: '正在努力加载中……'
             });
-            // 所有的控制器都可以访问recoderList这个变量
+             //  所有的控制器都可以访问recoderList这个变量
             $rootScope.recoderList = [];
             $scope.recorders = $rootScope.recoderList;
-            DBManager.searchData('SELECT*FROM recoder').then(function (result) {
-                $scope.$apply(function () {
-                    for (var i = 0; i < result.data.length; i++) {
-                        $scope.recorders.push(result.data[i]);
-                        if ($scope.recorders[i]) {
-                            $scope.recorders[i].alert_time = timeTool.amOrPm(result.data[i].alert_time);
-                        }
+             HTTPManager.get(HOST+SEARCH_RECODER,{user_id:window.localStorage.getItem(USER_ID)}).then(function (result) {
 
-                    }
-                });
-                $ionicLoading.hide();
-                $scope.$broadcast('scroll.refreshComplete');
-                console.log($scope.recorders);
-            }).catch(function (error) {
-                $ionicLoading.hide();
-                $ionicLoading.show({
-                    template: error.message
-                });
-                $timeout(function () {
-                    $ionicLoading.hide();
-                }, 2000);
-            });
+        console.log(result);
+
+        if (result.data.code==2000){
+          //todo:
+          $scope.recorders = result.data.data;
+          $rootScope.recoderList = $scope.recorders;
+            $ionicLoading.hide();
+
+            $scope.$broadcast('scroll.refreshComplete');
+
+        }
+
+      }).catch(function (error) {
+          //todo:
+          console.log(error);
+      });
+
+//          DBManager.searchData('SELECT*FROM recoder').then(function (result) {
+//              $scope.$apply(function () {
+//                  for (var i = 0; i < result.data.length; i++) {
+//                      $scope.recorders.push(result.data[i]);
+//                      if ($scope.recorders[i]) {
+//                          $scope.recorders[i].alert_time = timeTool.amOrPm(result.data[i].alert_time);
+//                      }
+//
+//                  }
+//              });
+//              $ionicLoading.hide();
+//              $scope.$broadcast('scroll.refreshComplete');
+//              console.log($scope.recorders);
+//          }).catch(function (error) {
+//              $ionicLoading.hide();
+//              $ionicLoading.show({
+//                  template: error.message
+//              });
+//              $timeout(function () {
+//                  $ionicLoading.hide();
+//              }, 2000);
+//          });
         }
         loadData();
         $scope.reload = function () {
@@ -211,24 +234,139 @@ angular.module('starter.controllers', [])
             $ionicLoading.show({
                 template: '正在删除中...'
             });
-            DBManager.deleteData('DELETE FROM recoder WHERE date=' + info.date).then(function (result) {
-                $ionicListDelegate.closeOptionButtons();
-                $ionicLoading.hide();
+              HTTPManager.get(HOST+DELETE_RECODER,{recoderID:info.recoder_id}).then(function (result) {
 
-                // 获得要删除元素的下标在数组中删除，并且在数据库中删除
-                var deleteIndex = $scope.recorders.indexOf(info);
-                $scope.recorders.splice(deleteIndex, 1);
+        if (result.data.code==2000){
+          $ionicLoading.hide();
+          $scope.recorders.splice($scope.recorders.indexOf(info),1);
+        }
 
-            }).catch(function (error) {
-                $ionicLoading.show({
-                    template: error.message
-                });
-                $timeout(function () {
-                    $ionicLoading.hide();
-                }, 2000);
+      }).catch(function (error) {
+        $ionicLoading.show({
+          template:error.message
+        });
 
-            });
+        $timeout(function () {
+          $ionicLoading.hide();
+        },2000);
+      });
+
+//          DBManager.deleteData('DELETE FROM recoder WHERE date=' + info.date).then(function (result) {
+//              $ionicListDelegate.closeOptionButtons();
+//              $ionicLoading.hide();
+//
+//              // 获得要删除元素的下标在数组中删除，并且在数据库中删除
+//              var deleteIndex = $scope.recorders.indexOf(info);
+//              $scope.recorders.splice(deleteIndex, 1);
+//
+//          }).catch(function (error) {
+//              $ionicLoading.show({
+//                  template: error.message
+//              });
+//              $timeout(function () {
+//                  $ionicLoading.hide();
+//              }, 2000);
+//
+//          });
         };
+    })
+    //垃圾桶控制器
+    .controller('trashBoxController', function ($scope, $ionicListDelegate,HTTPManager,alertView,$ionicHistory,$ionicPopup) {
+    //删除记录的数组
+    $scope.removedRecoders = [];
+    //清空所有数据
+    $scope.clearAll = function () {
+    	$ionicPopup.alert({
+      title: '温馨提示',
+      template: '是否清空垃圾箱',
+      buttons:[{
+        text:"必须",
+        type:"button-energized",
+        onTap:function () {
+
+          HTTPManager.get(HOST+CLEAR_ALL_RECODER,{userID:window.localStorage.getItem(USER_ID)}).then(function (result) {
+            if (result.data.code == 2000){
+              //如果 还原单条数据成功
+              //需要把 垃圾箱数组中 这条数据删除
+              $scope.reomvedRecoders = [];
+
+              alertView.showMessageForDelay(result.data.message,2000);
+            }
+          }).catch(function (error) {
+            alertView.showMessageForDelay(error.data.message,2000);
+          });
+        }
+      },{
+        text:"取消",
+        type:"button-energized"
+      }]
+    });
+    }
+    //还原数据的函数
+    $scope.restoreRecoder = function (info) {
+    function restoreItem(info) {}
+    	$ionicPopup.alert({
+      title: '温馨提示',
+      template: '是否还原',
+      buttons:[{
+        text:"还原",
+        type:"button-energized",
+        onTap: function restoreItem() {
+        	    console.log(info);
+        	    HTTPManager.get(HOST+RESTORE_RECODER, {recoderID:info.recoder_id}).then(function(result){
+        	    if (result.data.code == 2000) {
+        	    	// 如果还原单条数据成功
+        	    	// 需要把垃圾箱数组中这条数据删除
+        	    	$scope.removedRecoders.splice($scope.removedRecoders.indexOf(info),1);
+        	    	alertView.showMessageForDelay(result.data.message,2000);
+        	    }
+        	    }).catch(function (error) {
+        	    	alertView.showMessageForDelay(error.data.message,2000);
+        	    });
+        }
+      },{
+        text:"取消",
+        type:"button-energized"
+      }]
+    }).then(function (result) {
+      console.log(result);
+    });
+
+    };
+    //清空某条记录的函数
+    $scope.deleteItem = function (info) {
+    HTTPManager.get(HOST+CLEAR_RECODER,{recoderID:info.recoder_id}).then(function (result) {
+    if (result.data.code == 2000) {
+    	console.log(result);
+    	$scope.removedRecoders.splice($scope.removedRecoders.indexOf(info),1);
+    	alertView.showMessageForDelay(result.data.message,2000);
+
+    }
+    }).catch(function (error) {
+    	alertView.showMessageForDelay(result.data.message,2000);
+    });
+    };
+    // 下拉刷新加载数据的函数
+    $scope.reload = function () {
+    	    loadData();
+    };
+    // 加载数据的函数
+    function loadData() {
+    	// 每次重新加载 青空之前的数据
+    	$scope.removedRecoders = [];
+    	HTTPManager.get(HOST+SEARCH_TRASH_RECODER,{user_id:window.localStorage.getItem(USER_ID)}).then(function (result) {
+    		if (result.data.code == 2000) {
+    			console.log(result);
+    			$scope.removedRecoders = result.data.data;
+    			$scope.$broadcast('scroll.refreshComplete');
+    		}
+    	}).catch(function(error){
+    		alertView.showMessageForDelay(error.data.message,2000);
+    	});
+    }
+    
+    
+    
     })
     // 设置控制器 
     .controller('settingController', function ($scope, HTTPManager, $rootScope) {
@@ -266,6 +404,7 @@ angular.module('starter.controllers', [])
             // 保存用户名到本地
             window.localStorage.setItem(IS_LOGIN, 1);
             window.localStorage.setItem(USER_NAME, result.data.data.username);
+             window.localStorage.setItem(USER_ID,result.data.data.user_id);
             $rootScope.isLogin = window.localStorage.getItem(IS_LOGIN);
             $rootScope.username = window.localStorage.getItem(USER_NAME);
             $ionicHistory.goBack();	
@@ -328,4 +467,80 @@ angular.module('starter.controllers', [])
         alertView.showMessageForDelay("验证码错误",2000);
       }
      }; 
-    });
+    })
+.controller('friendsController',function ($scope) {})    
+.controller('searchFriendController',function ($scope,$ionicPopup, HTTPManager, alertView) {
+//	var socket = io(HOST);
+//  socket.on("connect",function () {
+//    console.log("已连接上...");
+//
+//    this.emit("addFriendInvite",{userID:8,friendID:10,message:"你好，加个好友"},function (e) {
+//      console.log(e);
+//    });
+//
+//    this.on("addFriendResponse",function (e) {
+//      console.log(e);
+//    });
+
+//    });
+        $scope.message = '';	
+	$scope.friends = [];
+	$scope.searchMessage = '';
+	$scope.showSendView = function (friendInfo) {
+            $ionicPopup.show({
+        template: '<input type="message" ng-model="message">',
+        title: '添加好友',
+        scope: $scope,
+        buttons: [
+          { text: '取消' },
+          {
+            text: '<b>添加</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+		    var sendMessage = {
+	          userID:window.localStorage.getItem(USER_ID),
+		    friendID:friendInfo.user_id,
+		    message:this.scope.message
+	    };
+		    HTTPManager.send(ADD_FRIEND_INVITE,sendMessage).then(function (result) {
+		   alertView.showMessageForDelay(result,2000); 
+		    }).catch(function (error) {
+		   alertView.showMessageForDelay(error,2000); 
+		    });
+            }
+          },
+        ]
+      }); 
+	};
+	$scope.searchFriend = function () {
+	HTTPManager.get(HOST+SEARCH_ALL_USERS,{info:$scope.searchMessage}).then(function (result){
+		$scope.friends = result.data.data;
+	alertView.showMessageForDelay(result.data.message,2000);	
+	}).catch(function (error) {
+		
+	alertView.showMessageForDelay(error.data.message,2000);	
+	});
+	};
+})
+.controller('circleController', function ($interval,$scope, HTTPManager) {
+
+})
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ;
