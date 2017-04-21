@@ -10,6 +10,5 @@
   },
   "_source": "https://github.com/LearnBoost/socket.io-client.git",
   "_target": "^1.7.2",
-  "_originalSource": "socket.io-client",
-  "_direct": true
+  "_originalSource": "socket.io-client"
 }

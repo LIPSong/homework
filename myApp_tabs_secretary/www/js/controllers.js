@@ -1,5 +1,26 @@
 angular.module('starter.controllers', [])
-    .controller('tabController', function (DBManager) {
+    .controller('tabController', function ($rootScope,DBManager,$ionicPlatform, $cordovaLocalNotification) {
+        $ionicPlatform.ready(function () {
+        	         var timeStamp = new Date();
+      var date = new Date(timeStamp.getTime()+10*1000);
+
+      var notInfo = {
+        id:0,
+        title:"hello not",
+        text:"first not",
+        data:{
+          title:"有大奖",
+          message:"快来加入《秘书》"
+        },
+        at:date
+      };
+      //schedule 添加本地推送
+      $cordovaLocalNotification.schedule(notInfo).then(function (result) {console.log(result)}).catch(function(error){console.log(error)});
+      $rootScope.$on('$cordovaLocalNotification:trigger',
+        function (event, notification, state) {
+          console.log("通知已被触发",notification);
+        }); 
+    });
         // 打开数据库
         DBManager.openDB('recoders', 1.0);
         // 创建表
@@ -181,6 +202,7 @@ angular.module('starter.controllers', [])
             $ionicLoading.show({
                 template: '正在努力加载中……'
             });
+            $ionicLoading.hide();
              //  所有的控制器都可以访问recoderList这个变量
             $rootScope.recoderList = [];
             $scope.recorders = $rootScope.recoderList;

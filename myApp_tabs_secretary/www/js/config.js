@@ -1,6 +1,6 @@
 //主机地址
-//HOST = 'http://slp.ngrok.cc';
-HOST = 'http://localhost:3100';
+HOST = 'http://slp.ngrok.cc';
+//HOST = 'http://localhost:3100';
 //注册
 REGISTER = '/users/register';
 //登录
